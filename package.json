@@ -2,6 +2,13 @@
   "name": "sleeplater.co",
   "version": "0.0.0",
   "description": "Website for sleep later",
+  "scripts": {
+    "start": "webpack-dev-server --inline --open",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "lint-sass": "sass-lint 'app/**/*.sass' -v",
+    "lint-js": "eslint . --ext js,vue"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/controversial/sleeplater.co.git"
