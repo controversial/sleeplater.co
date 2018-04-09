@@ -65,5 +65,35 @@
     "plugins": [
       "syntax-dynamic-import"
     ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb",
+      "plugin:vue/essential"
+    ],
+    "env": {
+      "browser": true
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true
+        }
+      ],
+      "import/no-webpack-loader-syntax": "off",
+      "import/newline-after-import": "off",
+      "global-require": "off",
+      "no-param-reassign": "off"
+    },
+    "settings": {
+      "import/resolver": "webpack"
+    },
+    "plugins": [
+      "vue"
+    ]
   }
 }
