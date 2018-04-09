@@ -51,5 +51,19 @@
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "whatwg-fetch": "^2.0.4"
+  },
+  "babel": {
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
+      "es2016"
+    ],
+    "plugins": [
+      "syntax-dynamic-import"
+    ]
   }
 }
