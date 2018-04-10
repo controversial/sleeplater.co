@@ -17,3 +17,20 @@ body
   width: 100vw
   transform: translateY(-50%)
   margin: 0
+
+  cursor: pointer
+  user-select: none
+
+  .sleep,
+  .later
+    padding-right: .03em
+    text-align: center
+    display: inline-block
+    transition: transform .5s
+
+  &.expanded
+    .sleep
+      transform: translateY(-40%)
+
+    .later
+      transform: translateY(40%)
