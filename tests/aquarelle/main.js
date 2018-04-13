@@ -4,9 +4,9 @@ const aqua = new Aquarelle('image2.jpg', 'mask2.png', {
   duration: 4000,
 
   fromAmplitude: 20,
-  toAmplitude: 0,
+  toAmplitude: 3,
   fromFrequency: 5,
-  toFrequency: 5,
+  toFrequency: 4.9,
 
   fromOffset: -385,
   toOffset: 50,
