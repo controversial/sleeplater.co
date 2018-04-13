@@ -38,8 +38,7 @@ aqua.addEventListener('created', () => {
   // both performance-heavy and inflexible. Here we stop that loop, and we call
   // Aquarelle.prototype.render ourselves so that we can control the animation more precisely in our
   // own render loop.
-  const currentFrame = requestAnimationFrame(() => {});
-  cancelAnimationFrame(currentFrame - 1);
+  cancelAnimationFrame(Aquarelle.animationFrame);
 
   // Add aquarelle to DOM
   const canvas = aqua.getCanvas();
