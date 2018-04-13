@@ -13,6 +13,15 @@ const aqua = new Aquarelle('image2.jpg', 'mask2.png', {
 });
 
 aqua.addEventListener('created', () => {
+  // Stop aquarelle
+  // Aquarelle starts a requestAnimationFrame render loop as soon as the library is loaded, which is
+  // both performance-heavy and inflexible. Here we stop that loop, and we call
+  // Aquarelle.prototype.render ourselves so that we can control the animation more precisely in our
+  // own render loop.
+  const currentFrame = requestAnimationFrame(() => {});
+  cancelAnimationFrame(currentFrame - 1);
+
+  // Add aquarelle to DOM
   const canvas = aqua.getCanvas();
   document.body.appendChild(canvas);
 });
