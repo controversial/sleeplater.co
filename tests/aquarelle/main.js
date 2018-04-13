@@ -1,5 +1,5 @@
 /* global Aquarelle */
-const aqua = new Aquarelle('image.jpg', 'mask.png', {
+const aqua = new Aquarelle('image2.jpg', 'mask2.png', {
   autoplay: true,
   duration: 4000,
 
@@ -8,8 +8,8 @@ const aqua = new Aquarelle('image.jpg', 'mask.png', {
   fromFrequency: 5,
   toFrequency: 5,
 
-  fromOffset: -30,
-  toOffset: 20,
+  fromOffset: -385,
+  toOffset: 50,
 });
 
 aqua.addEventListener('created', () => {
