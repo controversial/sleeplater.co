@@ -1,5 +1,7 @@
 const textSplit = {
   elem: document.getElementById('main-title'),
+  get track() { return this.elem.getElementsByTagName('h1')[0]; },
+  get fill() { return this.elem.getElementsByTagName('h1')[1]; },
 
   setup() {
     [...this.elem.querySelectorAll('h1 > span')].forEach((child) => {
@@ -31,11 +33,10 @@ const textSplit = {
 
   set progress(p) {
     p = Math.min(Math.max(0, p), 1); // Bound to 0, 1
-    this.elem.getElementsByTagName('h1')[1].style.width = `${p * 100}%`;
+    this.fill.style.width = `${p * 100}%`;
   },
   get progress() {
-    return (this.elem.getElementsByTagName('h1')[1].style.width || '100%')
-      .slice(0, -1) / 100;
+    return (this.fill.style.width || '0%').slice(0, -1) / 100;
   },
 
   expand() { this.elem.classList.add('expanded'); },
