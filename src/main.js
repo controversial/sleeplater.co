@@ -33,6 +33,7 @@ const textSplit = {
 
   set progress(p) {
     p = Math.min(Math.max(0, p), 1); // Bound to 0, 1
+    this.fill.style.transitionDuration = `${Math.abs(this.progress - p) * 2.5}s`;
     this.fill.style.width = `${p * 100}%`;
   },
   get progress() {
