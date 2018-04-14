@@ -37,7 +37,7 @@ const textSplit = {
     this.fill.style.width = `${p * 100}%`;
   },
   get progress() {
-    return (this.fill.style.width || '0%').slice(0, -1) / 100;
+    return parseFloat(this.fill.style.width || '0%') / 100;
   },
 
   expand() { this.elem.classList.add('expanded'); },
