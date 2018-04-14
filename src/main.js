@@ -2,7 +2,7 @@ const textSplit = {
   elem: document.getElementById('main-title'),
 
   setup() {
-    [...this.elem.childNodes].forEach((child) => {
+    [...this.elem.querySelectorAll('h1 > span')].forEach((child) => {
       const text = child.textContent;
       child.innerHTML = '';
       [...text].forEach((letter, i) => {
