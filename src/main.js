@@ -33,8 +33,10 @@ const textSplit = {
 
   set progress(p) {
     p = Math.min(Math.max(0, p), 1); // Bound to 0, 1
-    this.fill.style.transitionDuration = `${Math.abs(this.progress - p) * 2.5}s`;
+    const transTime = Math.abs(this.progress - p) * 2.5;
+    this.fill.style.transitionDuration = `${transTime}s`;
     this.fill.style.width = `${p * 100}%`;
+    if (p >= 1) setTimeout(() => this.expand(), (transTime * 1000) + 333); // .33s after fill done
   },
   get progress() {
     return parseFloat(this.fill.style.width || '0%') / 100;
@@ -48,6 +50,4 @@ window.textSplit = textSplit;
 
 window.addEventListener('load', () => {
   textSplit.setup();
-
-  textSplit.elem.addEventListener('click', () => textSplit.toggle());
 });
