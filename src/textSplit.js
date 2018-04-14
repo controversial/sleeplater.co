@@ -33,7 +33,7 @@ export default {
 
   set progress(p) {
     p = Math.min(Math.max(0, p), 1); // Bound to 0, 1
-    const transTime = Math.abs(this.progress - p) * 2.5;
+    const transTime = Math.sqrt(Math.abs(this.progress - p)) * 1.5;
     this.fill.style.transitionDuration = `${transTime}s`;
     this.fill.style.width = `${p * 100}%`;
     if (p >= 1) setTimeout(() => this.expand(), (transTime * 1000) + 333); // .33s after fill done
