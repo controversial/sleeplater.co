@@ -1,9 +1,9 @@
-import textSplit from './textSplit';
+import loader from './loading';
 
-window.textSplit = textSplit;
+window.loader = loader;
 // Set up as soon as possible
-document.addEventListener('DOMContentLoaded', () => textSplit.setup());
+document.addEventListener('DOMContentLoaded', () => loader.setup());
 // Adjust widths again when fonts are loaded just in case
-window.addEventListener('load', () => textSplit.setup());
+window.addEventListener('load', () => loader.setup());
 // Complete progress bar when page loads
-window.addEventListener('load', () => setTimeout(() => { textSplit.progress = 1; }, 500));
+window.addEventListener('load', () => setTimeout(() => { loader.progress = 1; }, 500));
