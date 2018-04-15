@@ -60,6 +60,12 @@ module.exports = {
     ],
   },
 
+  resolve: {
+    alias: {
+      vue$: 'vue/dist/vue.esm.js',
+    },
+  },
+
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     noInfo: true,
