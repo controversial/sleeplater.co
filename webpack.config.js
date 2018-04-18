@@ -2,6 +2,8 @@
 
 const path = require('path');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
   mode: 'development',
 
@@ -65,6 +67,12 @@ module.exports = {
       vue$: 'vue/dist/vue.esm.js',
     },
   },
+
+  plugins: [
+    new CopyWebpackPlugin([
+      { from: 'src/assets', to: 'assets' },
+    ]),
+  ],
 
   devServer: {
     contentBase: path.join(__dirname, 'build'),
