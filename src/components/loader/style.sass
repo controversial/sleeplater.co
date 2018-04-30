@@ -1,12 +1,18 @@
 div
   position: relative
 
-  &.split
+  &.split h1
+    overflow: visible
+
     .first
       transform: translateY(-40%)
 
     .second
       transform: translateY(40%)
+
+    .first:last-child::after,
+    .second:last-child::after
+      transform: translate(300%)
 
 
 h1
