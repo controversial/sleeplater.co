@@ -37,16 +37,37 @@ h1
     text-align: center
     display: inline-block
     transition: transform .5s
+    position: relative
+
+    &:last-child::after
+      content: ''
+      display: inline-block
+      width: .14em
+      height: .14em
+      border-radius: 50%
+
+      position: relative
+      right: .25em
+      transition: transform .5s
+      transition-delay: inherit
 
   // "track" copy displays what the progress bar will fill
   &:nth-child(1)
     color: transparentize(#fff, .75)
+
+    .first:last-child::after,
+    .second:last-child::after
+      background: transparentize(#fff, .75)
 
   // "fill" copy is much brighter and expands in width to fill the "track"
   &:nth-child(2)
     color: transparentize(#fff, .1)
     width: 0%
     transition: width .25s
+
+    .first:last-child::after,
+    .second:last-child::after
+      background: transparentize(#fff, .1)
 
   // One child needs to set container size but the rest should be stacked on top
   &:not(:first-child)
