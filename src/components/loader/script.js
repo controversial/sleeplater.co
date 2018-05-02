@@ -1,3 +1,5 @@
+import { delay } from '../../helpers';
+
 export default {
   props: ['a', 'b'],
 
@@ -15,13 +17,18 @@ export default {
   },
 
   watch: {
-    progress(newval, oldval) {
+    async progress(newval, oldval) {
       const [newp, oldp] = [newval, oldval]
         .map(val => Math.min(Math.max(0, val), 1)); // Clamp to [0, 1]
-      const transTime = Math.sqrt(Math.abs(newp - oldp)) * 1.5;
-      this.$refs.fill[0].style.transitionDuration = `${transTime}s`;
+      const fillTime = Math.sqrt(Math.abs(newp - oldp)) * 1.5;
+      this.$refs.fill[0].style.transitionDuration = `${fillTime}s`;
       this.$refs.fill[0].style.width = `${newp * 100}%`;
-      if (newp === 1) setTimeout(() => { this.split = true; }, (transTime * 1000) + 333);
+      if (newp === 1) {
+        await delay(fillTime * 1000);
+        // Split .333 seconds after progress fills
+        await delay(333);
+        this.split = true;
+      }
     },
   },
 
