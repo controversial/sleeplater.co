@@ -6,6 +6,7 @@ export default {
   data: () => ({
     progress: 0,
     split: false,
+    zoomed: false,
   }),
 
   computed: {
@@ -28,6 +29,12 @@ export default {
         // Split .333 seconds after progress fills
         await delay(333);
         this.split = true;
+        // Wait for split to complete
+        const splitTime = (Math.floor((this.mergedText.length - 1) / 2) / 20) + 0.5;
+        await delay(splitTime * 1000);
+        // Zoom period half a second after split completes
+        await delay(500);
+        this.zoomed = true;
       }
     },
   },
