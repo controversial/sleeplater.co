@@ -1,3 +1,4 @@
+@import '../../colors'
 div
   position: relative
 
@@ -18,7 +19,6 @@ div
   &.zoomed h1:nth-child(2)
     .first:last-child::after,
     .second:last-child::after
-      background: #fff
       transform: translate(300%) scale(200)
       transition-duration: .35s
       transition-timing-function: cubic-bezier(.55, .055, .675, .19)
@@ -76,13 +76,13 @@ h1
 
   // "fill" copy is much brighter and expands in width to fill the "track"
   &:nth-child(2)
-    color: transparentize(#fff, .1)
+    color: $actually-white
     width: 0%
     transition: width .25s
 
     .first:last-child::after,
     .second:last-child::after
-      background: transparentize(#fff, .1)
+      background: $actually-white
 
   // One child needs to set container size but the rest should be stacked on top
   &:not(:first-child)
