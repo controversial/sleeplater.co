@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <loader a="sleep" b="later" ref="loader"></loader>
+    <loader a="sleep" b="later" ref="loader" v-on:completed="progressCompleted"></loader>
   </div>
 </template>
 
@@ -8,6 +8,11 @@
 export default {
   mounted() {
     setTimeout(() => { this.$refs.loader.progress = 1; }, 500);
+  },
+  methods: {
+    progressCompleted() {
+      this.$router.push('/shop');
+    },
   },
 };
 </script>
