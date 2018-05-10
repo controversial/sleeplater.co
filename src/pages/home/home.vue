@@ -1,9 +1,6 @@
 <template>
   <div class="page">
-    <loader
-      a="sleep" b="later"
-      id="main-loader" ref="loader"
-    ></loader>
+    <loader a="sleep" b="later" ref="loader"></loader>
   </div>
 </template>
 
@@ -14,3 +11,11 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="sass">
+.main-loader
+  position: absolute
+  top: 50vh
+  left: 50vw
+  transform: translate(-50%, -50%)
+</style>
