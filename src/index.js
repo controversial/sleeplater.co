@@ -11,4 +11,21 @@ import Vue from 'vue';
 window.app = new Vue({
   el: '#app',
   router,
+
+  data: {
+    transitionName: '',
+  },
+
+  methods: {
+    getTransitionName(to, from) {
+      return '';
+    },
+  },
+
+  watch: {
+    // Vue route changed
+    $route(to, from) {
+      this.transitionName = this.getTransitionName(to, from);
+    },
+  },
 });
