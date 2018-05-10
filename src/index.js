@@ -3,14 +3,12 @@ import './index.html';
 import './main.sass';
 
 import './components';
+import router from './router';
 
 import Vue from 'vue';
 
 
 window.app = new Vue({
   el: '#app',
-
-  mounted() {
-    setTimeout(() => { this.$refs.loader.progress = 1; }, 500);
-  },
+  router,
 });
