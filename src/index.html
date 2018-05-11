@@ -9,8 +9,7 @@
 <body>
   <div id="app">
     <transition
-      v-on:enter="routeEnter"
-      v-on:leave="routeLeave"
+      v-on:enter="routeChange"
       v-bind:css="false"
     >
       <router-view></router-view>

@@ -18,11 +18,9 @@ window.app = new Vue({
   },
 
   methods: {
-    routeEnter() {
-      console.log(`enter '${this.routeTo.path}' replacing '${this.routeFrom.path}'`);
-    },
-    routeLeave() {
-      console.log(`exit '${this.routeFrom.path}' replacing with '${this.routeTo.path}'`);
+    routeChange(_, done) {
+      console.log(`'${this.routeTo.path}' replacing '${this.routeFrom.path}'`);
+      done();
     },
   },
 
