@@ -13,19 +13,24 @@ window.app = new Vue({
   router,
 
   data: {
-    transitionName: '',
+    routeTo: '',
+    routeFrom: '',
   },
 
   methods: {
-    getTransitionName(to, from) {
-      return '';
+    routeEnter() {
+      console.log(`enter '${this.routeTo.path}' replacing '${this.routeFrom.path}'`);
+    },
+    routeLeave() {
+      console.log(`exit '${this.routeFrom.path}' replacing with '${this.routeTo.path}'`);
     },
   },
 
   watch: {
     // Vue route changed
     $route(to, from) {
-      this.transitionName = this.getTransitionName(to, from);
+      this.routeTo = to;
+      this.routeFrom = from;
     },
   },
 });
