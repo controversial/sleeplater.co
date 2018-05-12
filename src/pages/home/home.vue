@@ -18,9 +18,15 @@ export default {
 </script>
 
 <style scoped lang="sass">
+@import ../../colors
+
 .main-loader
   position: absolute
   top: 50vh
   left: 50vw
   transform: translate(-50%, -50%)
+
+.page
+  background: $dark-1
+  color: $actually-white
 </style>
