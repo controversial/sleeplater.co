@@ -11,4 +11,10 @@ export default [
     component: require('./shop/shop.vue').default,
     meta: { primary: true, navIconColor: 'black' },
   },
+  {
+    name: 'contact',
+    path: '/contact',
+    component: require('./contact/contact.vue').default,
+    meta: { primary: true, navIconColor: 'white' },
+  },
 ];
