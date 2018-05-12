@@ -1,3 +1,37 @@
+.slide-downwards-enter-active,
+.slide-downwards-leave-active,
+.slide-upwards-enter-active,
+.slide-upwards-leave-active
+  transition: transform .5s
+
+// Slide everything downwards to transition (move up one section)
+.slide-downwards-enter
+  transform: translateY(-100vh)
+
+.slide-downwards-enter-to
+  transform: translateY(0)
+
+.slide-downwards-leave
+  transform: translateY(0)
+
+.slide-downwards-leave-to
+  transform: translateY(100vh)
+
+// Slide everything upwards to transition (move down one section)
+.slide-upwards-enter
+  transform: translateY(100vh)
+
+.slide-upwards-enter-to
+  transform: none
+
+.slide-upwards-leave
+  transform: none
+
+.slide-upwards-leave-to
+  transform: translateY(-100vh)
+
+// Fancy scaling period animation
+
 .period-scale-leave-active
   transition-duration: .5s
 
@@ -19,4 +53,4 @@
   opacity: 0
 
 .period-scale-enter-to .contents
-  opacitY: 1
+  opacity: 1
