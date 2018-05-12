@@ -1,14 +1,23 @@
 import routes from '../../pages';
 
+const primaryRoutes = routes.filter(route => route.meta.primary);
+const primaryRouteNames = primaryRoutes.map(route => route.name);
+
 export default {
   props: ['color'],
 
+  computed: {
+    routeIndex() { return primaryRouteNames.indexOf(this.$route.name); },
+    canGoUp() { return this.routeIndex > 0; },
+    canGoDown() { return this.routeIndex < primaryRouteNames.length - 1; },
+  },
+
   methods: {
     navUp() {
-      console.log('up');
+      if (this.canGoUp) this.$router.push(primaryRoutes[this.routeIndex - 1]);
     },
     navDown() {
-      console.log('down');
+      if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]);
     },
   },
 };
