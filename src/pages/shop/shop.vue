@@ -1,15 +1,11 @@
 <template>
-  <div class="shop">
+  <div class="page">
     <div class="contents">
-      Hello
+      <h1 class="bg-title">
+        sleep later
+      </h1>
     </div>
   </div>
 </template>
 
-<style scoped lang="sass">
-@import ../../colors
-
-.shop
-  background: $actually-white
-  color: $dark-0
-</style>
+<style scoped lang="sass" src="./style.sass"></style>
