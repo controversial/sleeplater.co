@@ -19,7 +19,7 @@ window.app = new Vue({
   watch: {
     // Vue route changed
     $route(to, from) {
-      if (from.name === 'home') [this.transitionName, this.transitionMode] = ['period-scale', 'out-in'];
+      if (from.name === 'home' && to.name === 'shop') [this.transitionName, this.transitionMode] = ['period-scale', 'out-in'];
       else [this.transitionName, this.transitionMode] = ['', ''];
     },
   },
