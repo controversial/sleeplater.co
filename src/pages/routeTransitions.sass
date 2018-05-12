@@ -1,5 +1,5 @@
 .period-scale-leave-active
-  transition: transform .5s
+  transition-duration: .5s
 
 .period-scale-leave-to
   .main-loader h1:nth-child(2)
@@ -8,3 +8,15 @@
       transform: translate(300%) scale(200)
       transition-duration: .35s
       transition-timing-function: cubic-bezier(.55, .055, .675, .19)
+
+.period-scale-enter-active
+  transition-duration: 1s
+
+  .contents
+    transition: opacity .5s .5s
+
+.period-scale-enter .contents
+  opacity: 0
+
+.period-scale-enter-to .contents
+  opacitY: 1
