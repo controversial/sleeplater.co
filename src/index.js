@@ -16,6 +16,12 @@ window.app = new Vue({
     transitionMode: '',
   },
 
+  computed: {
+    navIconColor() {
+      return this.$route.meta.navIconColor;
+    },
+  },
+
   watch: {
     // Vue route changed
     $route(to, from) {
