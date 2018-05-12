@@ -8,11 +8,7 @@
 </head>
 <body>
   <div id="app">
-    <transition
-      v-on:enter="routeChange"
-      v-bind:css="false"
-    >
-      <router-view></router-view>
+    <transition v-bind:name="transitionName" v-bind:mode="transitionMode">
     </transition>
   </div>
 

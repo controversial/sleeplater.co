@@ -1,0 +1,10 @@
+.period-scale-leave-active
+  transition: transform 1.5s
+
+.period-scale-leave-to
+  .main-loader h1:nth-child(2)
+    .first:last-child::after,
+    .second:last-child::after
+      transform: translate(300%) scale(200)
+      transition-duration: .35s
+      transition-timing-function: cubic-bezier(.55, .055, .675, .19)
