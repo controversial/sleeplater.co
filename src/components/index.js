@@ -15,3 +15,6 @@ Vue.component('mail-icon', MailIcon);
 
 import Loader from './loader/loader.vue';
 Vue.component('loader', Loader);
+
+import NavButtons from './nav-buttons/nav-buttons.vue';
+Vue.component('nav-buttons', NavButtons);
