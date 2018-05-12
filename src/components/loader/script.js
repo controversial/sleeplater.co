@@ -6,7 +6,6 @@ export default {
   data: () => ({
     progress: 0,
     split: false,
-    zoomed: false,
   }),
 
   computed: {
