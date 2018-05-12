@@ -1,7 +1,7 @@
 <template>
   <div class="nav-buttons" v-bind:style="{ color }">
-    <chevron-up-icon v-on:click="navUp"></chevron-up-icon><!--
- --><chevron-down-icon v-on:click="navDown"></chevron-down-icon>
+    <chevron-up-icon v-bind:class="{ disabled: !canGoUp }" v-on:click="navUp"></chevron-up-icon><!--
+ --><chevron-down-icon v-bind:class="{ disabled: !canGoDown }" v-on:click="navDown"></chevron-down-icon>
   </div>
 </template>
 
