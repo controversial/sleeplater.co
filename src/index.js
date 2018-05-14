@@ -33,7 +33,7 @@ window.app = new Vue({
       if (from.name === 'home' && to.name === 'shop') [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['period-scale', 'out-in', '.5s'];
       else if (primaryRouteNames.includes(from.name) && primaryRouteNames.includes(to.name)) {
         if (primaryRouteNames.indexOf(from.name) > primaryRouteNames.indexOf(to.name)) { // Going up
-          [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['slide-downwards', '', '.25s'];
+          [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['slide-downwards', '', '0s'];
         } else { // Going down
           [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['slide-upwards', '', '.25s'];
         }
