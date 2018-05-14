@@ -18,6 +18,7 @@ window.app = new Vue({
   data: {
     transitionName: '',
     transitionMode: '',
+    navTransitionDelay: 0,
   },
 
   computed: {
@@ -29,17 +30,16 @@ window.app = new Vue({
   watch: {
     // Vue route changed
     $route(to, from) {
-      if (from.name === 'home' && to.name === 'shop') [this.transitionName, this.transitionMode] = ['period-scale', 'out-in'];
+      if (from.name === 'home' && to.name === 'shop') [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['period-scale', 'out-in', '.5s'];
       else if (primaryRouteNames.includes(from.name) && primaryRouteNames.includes(to.name)) {
         if (primaryRouteNames.indexOf(from.name) > primaryRouteNames.indexOf(to.name)) { // Going up
-          [this.transitionName, this.transitionMode] = ['slide-downwards', ''];
+          [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['slide-downwards', '', '.25s'];
         } else { // Going down
-          [this.transitionName, this.transitionMode] = ['slide-upwards', ''];
+          [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['slide-upwards', '', '.25s'];
         }
       } else {
-        [this.transitionName, this.transitionMode] = ['', ''];
+        [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['', '.5s'];
       }
-      console.log(this.transitionName);
     },
   },
 });

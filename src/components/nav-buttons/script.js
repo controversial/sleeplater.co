@@ -4,7 +4,7 @@ const primaryRoutes = routes.filter(route => route.meta.primary);
 const primaryRouteNames = primaryRoutes.map(route => route.name);
 
 export default {
-  props: ['color'],
+  props: ['color', 'transition-delay'],
 
   computed: {
     routeIndex() { return primaryRouteNames.indexOf(this.$route.name); },
