@@ -5,10 +5,10 @@ export default {
 
   data: () => ({
     progress: 0,
-    split: false,
   }),
 
   computed: {
+    split() { return this.$store.state.loaderSplit; },
     mergedText() {
       const a = [...this.a];
       const b = [...this.b];
@@ -27,7 +27,7 @@ export default {
         await delay(fillTime * 1000);
         // Split .333 seconds after progress fills
         await delay(333);
-        this.split = true;
+        if (!this.$store.state.loaderSplit) this.$store.commit('toggleLoader');
         // Wait for split to complete
         const splitTime = (Math.floor((this.mergedText.length - 1) / 2) / 20) + 0.5;
         await delay(splitTime * 1000);
