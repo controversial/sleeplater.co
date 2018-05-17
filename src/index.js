@@ -4,6 +4,7 @@ import './main.sass';
 
 import './components';
 import router from './router';
+import store from './store';
 
 import Vue from 'vue';
 
@@ -14,6 +15,7 @@ const primaryRouteNames = primaryRoutes.map(route => route.name);
 window.app = new Vue({
   el: '#app',
   router,
+  store,
 
   data: {
     transitionName: '',
