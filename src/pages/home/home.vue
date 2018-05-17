@@ -1,11 +1,25 @@
 <template>
   <div class="page">
-    <loader a="sleep" b="later" ref="loader"></loader>
+    <loader a="sleep" b="later" v-bind:split="this.split"
+            ref="loader"
+            v-on:completed="completed"
+    ></loader>
   </div>
 </template>
 
 <script>
+import { delay } from '../../helpers';
+
 export default {
+  computed: {
+    split() { return this.$store.state.loaded; },
+  },
+  methods: {
+    async completed() {
+      await delay(333);
+      this.$store.commit('loaded');
+    },
+  },
   mounted() {
     setTimeout(() => { this.$refs.loader.progress = 1; }, 500);
   },

@@ -5,9 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    loaderSplit: false,
+    loaded: false,
   },
   mutations: {
-    toggleLoader(state) { state.loaderSplit = !state.loaderSplit; },
+    loaded(state) { state.loaded = true; },
   },
 });
