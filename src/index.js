@@ -21,6 +21,7 @@ window.app = new Vue({
     transitionName: '',
     transitionMode: '',
     navTransitionDelay: 0,
+    lastScrollNav: 0,
   },
 
   computed: {
@@ -41,6 +42,15 @@ window.app = new Vue({
         }
       } else {
         [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['', '.5s'];
+      }
+    },
+  },
+
+  methods: {
+    onWheel(e) {
+      if (Math.abs(e.deltaY) > 15 && new Date() - this.lastScrollNav > 650) {
+        this.$refs.nav[e.deltaY > 0 ? 'navDown' : 'navUp']();
+        this.lastScrollNav = new Date();
       }
     },
   },

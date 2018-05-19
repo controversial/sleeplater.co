@@ -7,8 +7,8 @@
   <title>sleep later</title>
 </head>
 <body>
-  <div id="app">
-    <nav-buttons v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"></nav-buttons>
+  <div id="app" v-on:wheel="onWheel">
+    <nav-buttons ref="nav" v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"></nav-buttons>
     <transition v-bind:name="transitionName" v-bind:mode="transitionMode">
       <router-view></router-view>
     </transition>
