@@ -14,7 +14,8 @@ button
   padding: .625rem 2.5rem
   background: $white
   border-radius: 3px
-  box-shadow: 0 7px 15px -3px transparentize($actually-black, .65)
+  box-shadow: 0 7px 15px -3px transparentize($actually-black, .75)
+  cursor: pointer
 
   color: $dark-1-contrast
   font-size: .45rem
@@ -22,4 +23,12 @@ button
   font-weight: 700
   text-transform: uppercase
   letter-spacing: .136em
-  text-rendering: geometricPrecision
+  transition: transform .25s, box-shadow .25s, padding .25s
+
+  &:hover
+    transform: scale(1.015)
+    box-shadow: 0 7px 20px -2px transparentize($actually-black, .75)
+
+  &:active
+    transform: scale(.985)
+    box-shadow: 0 7px 15px -3px transparentize($actually-black, .75)
