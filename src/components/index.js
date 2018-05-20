@@ -18,3 +18,6 @@ Vue.component('loader', Loader);
 
 import NavButtons from './nav-buttons/nav-buttons.vue';
 Vue.component('nav-buttons', NavButtons);
+
+import TextInput from './text-input/text-input.vue';
+Vue.component('text-input', TextInput);
