@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 v-bind:class="{ raised: this.value.length || this.focused }">{{title}}{{required ? '*' : ''}}</h3>
+    <label v-bind:class="{ raised: this.value.length || this.focused }">{{title}}{{required ? '*' : ''}}</label>
     <input
       v-bind:type="type || 'text'"
       v-bind:value="value" v-on:input="$emit('input', $event.target.value)"
