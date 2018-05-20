@@ -23,3 +23,6 @@ import TextInput from './text-input/text-input.vue';
 Vue.component('text-input', TextInput);
 import TextArea from './text-area/text-area.vue';
 Vue.component('text-area', TextArea);
+
+import PrimaryButton from './primary-button/primary-button.vue';
+Vue.component('primary-button', PrimaryButton);
