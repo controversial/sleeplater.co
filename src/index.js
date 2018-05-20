@@ -1,4 +1,10 @@
 /* eslint-disable import/first */
+
+// Polyfills
+import 'babel-polyfill';
+import 'promise-polyfill';
+import 'whatwg-fetch';
+
 import './index.html';
 import './main.sass';
 
