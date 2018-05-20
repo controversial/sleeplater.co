@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Contact form action for sleep later that sends a message to a slack channel for every contact form submission",
   "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
   "author": "Luke Deen Taylor",
   "license": "MIT",
   "dependencies": {
@@ -10,5 +14,8 @@
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
   }
 }
