@@ -3,5 +3,6 @@ export default {
     name: '',
     email: '',
     phone: '',
+    message: '',
   }),
 };

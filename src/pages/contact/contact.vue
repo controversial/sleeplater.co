@@ -8,6 +8,7 @@
         <text-input title="email" v-model="email" :required="true" type="email"></text-input>
         <text-input title="phone number" v-model="phone" :required="false" type="tel"></text-input>
       </div>
+      <text-area title="Project details" v-model="message" :required="true"></text-area>
     </div>
   </div>
 </template>
