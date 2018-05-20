@@ -3,5 +3,6 @@ export default {
     value: String, // For compatibility with v-model
     title: String,
     required: Boolean,
+    rows: Number,
   },
 };

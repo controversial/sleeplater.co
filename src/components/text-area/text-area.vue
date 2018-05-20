@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>{{title}}{{required ? '*' : ''}}</label>
-    <textarea v-bind:value="value" v-on:input="$emit('input', $event.target.value)"></textarea>
+    <textarea v-bind:value="value" v-on:input="$emit('input', $event.target.value)" :rows="rows"></textarea>
   </div>
 </template>
 
