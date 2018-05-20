@@ -30,15 +30,18 @@ function constructSlackMessage(name, email, phone, message) {
 
 app.post('/', (req, res) => {
   const { name, email, phone, message } = req.body; // eslint-disable-line object-curly-newline
+  // Report on missing parameters
+  if (!name || !email || !message) {
+    const missing = ['name', 'email', 'message'].filter(n => !Object.keys(req.body).includes(n));
+    res.status(400).send({ error: `missing parameter(s) ${missing.join(', ')}` });
+  }
 
   // Send request to Slack webhook
   fetch(process.env.WEBHOOK_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(constructSlackMessage(name, email, phone, message)),
-  })
-    .then(r => r.text())
-    .then(text => res.send(text));
+  }).then(() => res.send({ status: 'success' }));
 });
 
 // Run server
