@@ -13,6 +13,11 @@ h3
   text-transform: uppercase
   letter-spacing: .1em
   color: transparentize($actually-white, .8)
+  pointer-events: none
+  transition: transform .2s ease-out
+
+  &:not(.raised)
+    transform: translateY(1rem)
 
 input
   // Remove default styles
@@ -31,7 +36,7 @@ input
   border-bottom: 2px solid
   padding: .1rem 0 calc(.5rem - 2px)
   border-color: transparentize($actually-white, .8)
-  transition: border-color .33s
+  transition: border-color .2s
 
   &:focus
     border-color: transparentize($actually-white, .65)
