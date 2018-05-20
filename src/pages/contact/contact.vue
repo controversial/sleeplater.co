@@ -3,9 +3,11 @@
     <div class="form">
       <h1>Let’s work together</h1>
 
-      <form>
+      <div class="row">
         <text-input title="name" v-model="name" :required="true"></text-input>
-      </form>
+        <text-input title="email" v-model="email" :required="true"></text-input>
+        <text-input title="phone number" v-model="phone" :required="false"></text-input>
+      </div>
     </div>
   </div>
 </template>

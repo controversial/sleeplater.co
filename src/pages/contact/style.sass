@@ -23,3 +23,15 @@ h1
   margin-bottom: 1em
   width: 100%
   text-align: center
+
+.row
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+  & > div
+    padding-right: 10%
+    flex-grow: 1
+
+  \:last-child
+    padding-right: 0
