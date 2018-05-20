@@ -24,5 +24,5 @@ Vue.component('text-input', TextInput);
 import TextArea from './text-area/text-area.vue';
 Vue.component('text-area', TextArea);
 
-import PrimaryButton from './primary-button/primary-button.vue';
-Vue.component('primary-button', PrimaryButton);
+import SubmitButton from './submit-button/submit-button.vue';
+Vue.component('submit-button', SubmitButton);
