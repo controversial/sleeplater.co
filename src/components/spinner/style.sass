@@ -1,16 +1,17 @@
 @import '../../colors.sass'
 
-.spinner
+div
   width: 40px
   height: 40px
 
-.spinner > div
-  border: 2px solid $dark-1-contrast
-  border-radius: 50%
-  border-top-color: transparent
-  animation: spin 1s linear infinite
-  width: 100%
-  padding-top: calc(100% - 4px)
+  & > div.interior
+    border: 2px solid $dark-1-contrast
+    border-radius: 50%
+    border-top-color: transparent
+    animation: spin 1s linear infinite
+    width: 100%
+    height: auto
+    padding-top: calc(100% - 4px)
 
 @keyframes spin
   to
