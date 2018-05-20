@@ -5,8 +5,8 @@
 
       <div class="row">
         <text-input title="name" v-model="name" :required="true"></text-input>
-        <text-input title="email" v-model="email" :required="true"></text-input>
-        <text-input title="phone number" v-model="phone" :required="false"></text-input>
+        <text-input title="email" v-model="email" :required="true" type="email"></text-input>
+        <text-input title="phone number" v-model="phone" :required="false" type="tel"></text-input>
       </div>
     </div>
   </div>
