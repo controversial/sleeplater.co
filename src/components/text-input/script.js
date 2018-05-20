@@ -4,4 +4,8 @@ export default {
     title: String,
     required: Boolean,
   },
+
+  data: () => ({
+    focused: false,
+  }),
 };
