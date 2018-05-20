@@ -27,3 +27,16 @@ function constructSlackMessage(name, email, phone, message) {
     }],
   };
 }
+
+app.post('/', (req, res) => {
+  const { name, email, phone, message } = req.body; // eslint-disable-line object-curly-newline
+
+  // Send request to Slack webhook
+  fetch(process.env.WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(constructSlackMessage(name, email, phone, message)),
+  })
+    .then(r => r.text())
+    .then(text => res.send(text));
+});
