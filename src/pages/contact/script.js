@@ -18,4 +18,21 @@ export default {
       set(value) { this.$store.commit({ type: 'updateContactForm', item: 'message', value }); },
     },
   },
+
+  methods: {
+    submit() {
+      const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
+        ? 'http://0.0.0.0:3000/'
+        : 'https://contact-form.now.sh/';
+      const { name, email, phone, message } = this; // eslint-disable-line object-curly-newline
+
+      // Send request to backend
+
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, message }), // eslint-disable-line object-curly-newline, max-len
+      }).then(this.$emit('success'));
+    },
+  },
 };
