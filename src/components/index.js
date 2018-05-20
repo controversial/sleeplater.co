@@ -28,3 +28,6 @@ Vue.component('text-area', TextArea);
 
 import SubmitButton from './submit-button/submit-button.vue';
 Vue.component('submit-button', SubmitButton);
+
+import Spinner from './spinner/spinner.vue';
+Vue.component('spinner', Spinner);
