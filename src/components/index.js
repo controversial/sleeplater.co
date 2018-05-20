@@ -21,3 +21,5 @@ Vue.component('nav-buttons', NavButtons);
 
 import TextInput from './text-input/text-input.vue';
 Vue.component('text-input', TextInput);
+import TextArea from './text-area/text-area.vue';
+Vue.component('text-area', TextArea);
