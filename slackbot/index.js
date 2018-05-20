@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const fetch = require('node-fetch');
 
 // Load environment variables from .env file
 require('dotenv').config();
