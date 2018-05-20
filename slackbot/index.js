@@ -40,3 +40,9 @@ app.post('/', (req, res) => {
     .then(r => r.text())
     .then(text => res.send(text));
 });
+
+// Run server
+const args = process.argv.slice(2);
+const port = args.length ? args[0] : 3000;
+console.log(`Now listening at http://0.0.0.0:${port}`);
+app.listen(port, '0.0.0.0');
