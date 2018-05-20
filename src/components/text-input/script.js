@@ -1,7 +1,7 @@
 export default {
-  props: [
-    'value', // For compatibility with v-model
-    'title',
-    'required',
-  ],
+  props: {
+    value: String, // For compatibility with v-model
+    title: String,
+    required: Boolean,
+  },
 };

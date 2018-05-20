@@ -4,7 +4,7 @@
       <h1>Let’s work together</h1>
 
       <form>
-        <text-input title="name" v-model="name"></text-input>
+        <text-input title="name" v-model="name" :required="true"></text-input>
       </form>
     </div>
   </div>
