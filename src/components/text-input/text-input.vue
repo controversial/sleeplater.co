@@ -5,6 +5,7 @@
       v-bind:type="type || 'text'"
       v-bind:value="value" v-on:input="$emit('input', $event.target.value)"
       v-on:focus="focused = true" v-on:blur="focused = false"
+      v-on:keypress="checkInput"
     >
   </div>
 </template>

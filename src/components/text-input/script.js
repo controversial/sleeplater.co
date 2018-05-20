@@ -9,4 +9,12 @@ export default {
   data: () => ({
     focused: false,
   }),
+
+  methods: {
+    checkInput(e) {
+      if (this.type === 'tel' && Number.isNaN(parseInt(e.key, 10))) {
+        e.preventDefault();
+      }
+    },
+  },
 };
