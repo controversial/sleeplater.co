@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind:class="{ invalid }">
     <label>{{title}}{{required ? '*' : ''}}</label>
     <textarea v-bind:value="value" v-on:input="$emit('input', $event.target.value)" :rows="rows"></textarea>
   </div>

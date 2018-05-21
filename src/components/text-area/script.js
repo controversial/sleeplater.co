@@ -5,4 +5,7 @@ export default {
     required: Boolean,
     rows: Number,
   },
+  data: () => ({
+    invalid: false,
+  }),
 };
