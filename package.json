@@ -58,6 +58,7 @@
     "animate.css": "^3.6.1",
     "babel-polyfill": "^6.26.0",
     "promise-polyfill": "^7.1.2",
+    "validator": "^10.2.0",
     "vue": "^2.5.16",
     "vue-feather-icons": "^4.7.0",
     "vue-router": "^3.0.1",
