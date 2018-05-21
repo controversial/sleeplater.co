@@ -46,14 +46,14 @@ export default {
       const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
         ? 'http://0.0.0.0:3000/'
         : 'https://contact-form.now.sh/';
-      const { name, email, phone, message } = this; // eslint-disable-line object-curly-newline
+      const { name, email, phone, message, mode } = this; // eslint-disable-line object-curly-newline, max-len
 
       // Send request to backend
 
       fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, message }), // eslint-disable-line object-curly-newline, max-len
+        body: JSON.stringify({ name, email, phone, message, mode }), // eslint-disable-line object-curly-newline, max-len
       })
         .then((r) => {
           if (r.status === 200) this.$refs.submit.state = 'completed';

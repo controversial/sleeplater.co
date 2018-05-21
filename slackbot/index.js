@@ -12,10 +12,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.set('json spaces', 2);
 
-function constructSlackMessage(name, email, phone, message) {
+function constructSlackMessage(name, email, phone, message, mode) {
+  const modeWord = {
+    'Work with us': 'work opportunity',
+    'Ask a question': 'question',
+    'Just say hi': 'message',
+  }[mode];
   return {
     attachments: [{
-      pretext: 'New message from contact form:',
+      pretext: `New ${modeWord} from contact form:`,
       author_name: name,
       author_link: `mailto:${email}`,
       text: message,
@@ -29,17 +34,17 @@ function constructSlackMessage(name, email, phone, message) {
 }
 
 app.post('/', (req, res) => {
-  const { name, email, phone, message } = req.body; // eslint-disable-line object-curly-newline
+  const { name, email, phone, message, mode } = req.body; // eslint-disable-line object-curly-newline, max-len
   // Report on missing parameters
-  if (!name || !email || !message) {
-    const missing = ['name', 'email', 'message'].filter(n => !Object.keys(req.body).includes(n));
+  if (!name || !email || !message || !mode) {
+    const missing = ['name', 'email', 'message', 'mode'].filter(n => !Object.keys(req.body).includes(n));
     res.status(400).send({ error: `missing parameter(s) ${missing.join(', ')}` });
   } else {
     // Send request to Slack webhook
     fetch(process.env.WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(constructSlackMessage(name, email, phone, message)),
+      body: JSON.stringify(constructSlackMessage(name, email, phone, message, mode)),
     }).then(() => res.send({ status: 'success' }));
   }
 });
