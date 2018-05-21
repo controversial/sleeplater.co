@@ -19,8 +19,10 @@ export default {
     },
   },
 
+  data: () => ({ submitResetTimeout: undefined }),
   methods: {
     submit() {
+      clearTimeout(this.submitResetTimeout);
       this.$refs.submit.state = 'loading';
       const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
         ? 'http://0.0.0.0:3000/'
@@ -37,6 +39,8 @@ export default {
         .then((r) => {
           if (r.status === 200) this.$refs.submit.state = 'completed';
           else this.$refs.submit.state = 'failed';
+          // Return to normal "submit" button after a short delay
+          this.submitResetTimeout = setTimeout(() => { this.$refs.submit.state = 'static'; }, 1500);
         });
     },
   },
