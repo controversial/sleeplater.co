@@ -1,10 +1,10 @@
 export default {
   props: {
     options: Array,
+    value: String,
   },
-  data: () => ({
-    selection: undefined,
-  }),
-  // Select first option by default
-  mounted() { this.selection = this.options[0]; }, // eslint-disable-line prefer-destructuring
+  data: () => ({ selection: undefined }),
+  watch: {
+    value(v) { this.selection = v; },
+  },
 };

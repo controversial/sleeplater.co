@@ -6,6 +6,7 @@
         v-bind:name="_uid"
         v-bind:value="option"
         v-model="selection"
+        v-on:change="$emit('input', $event.target.value)"
       >{{option}}
     </label>
   </div>
