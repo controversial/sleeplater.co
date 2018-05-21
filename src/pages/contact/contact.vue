@@ -9,7 +9,7 @@
         <text-input title="phone number" v-model="phone" :required="false" type="tel"></text-input>
       </div>
       <text-area title="Project details" v-model="message" :required="true" :rows="10"></text-area>
-      <submit-button v-on:click.native="submit">Submit</submit-button>
+      <submit-button ref="submit" v-on:click.native="submit">Submit</submit-button>
     </div>
   </div>
 </template>

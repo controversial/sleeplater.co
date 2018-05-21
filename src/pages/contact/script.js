@@ -21,6 +21,7 @@ export default {
 
   methods: {
     submit() {
+      this.$refs.submit.state = 'loading';
       const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
         ? 'http://0.0.0.0:3000/'
         : 'https://contact-form.now.sh/';
@@ -32,7 +33,11 @@ export default {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, phone, message }), // eslint-disable-line object-curly-newline, max-len
-      }).then(this.$emit('success'));
+      })
+        .then((r) => {
+          if (r.status === 200) this.$refs.submit.state = 'completed';
+          else this.$refs.submit.state = 'failed';
+        });
     },
   },
 };
