@@ -37,6 +37,7 @@ export default {
   data: () => ({
     submitResetTimeout: undefined,
     mode: 'Work with us',
+    hasSubmitted: false,
   }),
 
   methods: {
@@ -60,6 +61,7 @@ export default {
           else this.$refs.submit.state = 'failed';
           // Return to normal "submit" button after a short delay
           this.submitResetTimeout = setTimeout(() => { this.$refs.submit.state = 'static'; }, 1500);
+          setTimeout(() => { this.hasSubmitted = true; }, 1500);
         });
     },
   },
