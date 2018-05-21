@@ -1,0 +1,35 @@
+@import '../../colors'
+@import '../../fonts'
+
+
+input
+  display: none
+
+label
+  color: transparentize($actually-white, .5)
+  font-family: $avenir-font-stack
+  font-size: .65rem
+  font-weight: 500
+  letter-spacing: .05em
+  text-transform: uppercase
+  transition: color .25s
+
+  position: relative
+  cursor: pointer
+
+  &.selected
+    color: $actually-white
+
+  &:not(:last-child)
+    margin-right: 1.66em
+
+    &::after
+      content: ''
+      width: 5px
+      height: 5px
+      background: transparentize($actually-white, .5)
+      position: absolute
+      top: calc(50% - .166em)
+      right: -.83em
+      border-radius: 2.5px
+      pointer-events: none
