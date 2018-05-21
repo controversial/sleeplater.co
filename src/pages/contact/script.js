@@ -17,6 +17,21 @@ export default {
       get() { return this.$store.state.contactForm.message; },
       set(value) { this.$store.commit({ type: 'updateContactForm', item: 'message', value }); },
     },
+
+    heading() {
+      return {
+        'Work with us': "Let's work together",
+        'Ask a question': 'Ask us a question',
+        'Just say hi': 'Hey there!',
+      }[this.mode];
+    },
+    messageBoxLabel() {
+      return {
+        'Work with us': 'Project details',
+        'Ask a question': 'Your question',
+        'Just say hi': 'Your message',
+      }[this.mode];
+    },
   },
 
   data: () => ({
