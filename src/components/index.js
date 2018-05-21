@@ -31,3 +31,6 @@ Vue.component('submit-button', SubmitButton);
 
 import Spinner from './spinner/spinner.vue';
 Vue.component('spinner', Spinner);
+
+import RadioOptions from './radio-options/radio-options.vue';
+Vue.component('radio-options', RadioOptions);
