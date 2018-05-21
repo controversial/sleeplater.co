@@ -15,7 +15,7 @@ label
   letter-spacing: .1em
   color: transparentize($actually-white, .8)
   pointer-events: none
-  transition: transform .2s ease-out
+  transition: transform .2s ease-out, color .2s
 
   &:not(.raised)
     transform: translateY(1rem)
@@ -41,3 +41,13 @@ input
 
   &:focus
     border-color: transparentize($actually-white, .65)
+
+.invalid
+  label
+    color: transparentize($red, .65)
+
+  input
+    border-color: transparentize($red, .65)
+
+    &:focus
+      border-color: transparentize($red, .525)

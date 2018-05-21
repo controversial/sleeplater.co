@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind:class="{ invalid }">
     <label v-bind:class="{ raised: this.value.length || this.focused }">{{title}}{{required ? '*' : ''}}</label>
     <input
       v-bind:type="type || 'text'"
