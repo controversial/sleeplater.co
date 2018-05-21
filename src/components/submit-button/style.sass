@@ -99,5 +99,27 @@
 
   // Displays the "failed" alert icon
   &[state='failed']
+    animation: shake linear .75s .5s
+
     .feather.feather-alert-circle
       opacity: 1
+
+
+@keyframes shake
+  14%
+    transform: translate(-7%)
+
+  29%
+    transform: translate(7%)
+
+  43%
+    transform: translate(-7%)
+
+  57%
+    transform: translate(7%)
+
+  71%
+    transform: translate(-7%)
+
+  86%
+    transform: translate(7%)
