@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="radio-options">
     <label v-bind:class="{ selected: selection === option }" v-for="(option, index) in options">
       <!-- Each Vue component instance has an assigned unique id (this._uid). We use this to establish the radio group -->
       <input type="radio"
