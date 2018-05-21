@@ -2,6 +2,9 @@
 @import '../../colors'
 
 
+// COMMON STYLES
+
+
 .button
   // Remove default styles
   background: transparent
@@ -10,21 +13,20 @@
   box-shadow: 0
   padding: 0
 
+  position: relative
   display: inline-block
-  padding: .625rem 2.5rem
+  height: 1.85rem
+  padding: .625rem 0
   background: $white
   border-radius: 3px
   box-shadow: 0 7px 15px -3px transparentize($actually-black, .75)
   cursor: pointer
 
-  color: $dark-1-contrast
   font-size: .45rem
-  line-height: 1.33
   font-family: $avenir-font-stack
   font-weight: 700
   text-transform: uppercase
   letter-spacing: .136em
-  transition: transform .25s, box-shadow .25s
 
   &:hover
     transform: scale(1.015)
@@ -34,3 +36,68 @@
     transform: scale(.985)
     box-shadow: 0 7px 15px -3px transparentize($actually-black, .75)
     transition: transform .15s, box-shadow .15s
+
+  .spinner,
+  .feather
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    opacity: 0
+
+  .spinner
+    width: 21px
+    height: 21px
+
+  .feather
+    color: $dark-1-contrast
+
+
+
+// STYLES FOR DIFFERENT STATES
+
+
+// "static" state
+   Displays "submit" text
+   Button should be big and wide here
+.button[state='static']
+  width: 7rem
+  color: $dark-1-contrast
+  transition: transform .25s, box-shadow .25s, width .5s, border-radius .5s, color .25s .25s
+
+  // The content of the other states should be invisible
+  .spinner,
+  .feather
+    opacity: 0
+    transition: opacity .25s
+
+
+
+// non-"static" states
+   Displays one of the three other states (loading, completed, or failed)
+   Button should collapse to circular here
+.button:not([state='static'])
+  // "submit" text should be invisible
+  color: transparent
+  border-radius: .925rem
+  width: 1.85rem
+  transition: transform .25s, box-shadow .25s, width .5s, border-radius .5s, color .25s
+
+  .spinner,
+  .feather
+    transition: opacity .25s .25s
+
+  // Displays the loading spinner
+  &[state='loading']
+    .spinner
+      opacity: 1
+
+  // Displays the "completed" check mark
+  &[state='completed']
+    .feather.feather-check-circle
+      opacity: 1
+
+  // Displays the "failed" alert icon
+  &[state='failed']
+    .feather.feather-alert-circle
+      opacity: 1

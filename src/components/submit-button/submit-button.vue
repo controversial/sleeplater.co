@@ -1,7 +1,9 @@
 <template>
   <div class="button" v-bind:state="state">
     <slot>Button</slot>
-  </button>
+    <spinner></spinner>
+    <check-circle-icon></check-circle-icon>
+    <alert-circle-icon></alert-circle-icon>
   </div>
 </template>
 
