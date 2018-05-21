@@ -1,7 +1,8 @@
 <template>
-  <button type="submit">
+  <div class="button" v-bind:state="state">
     <slot>Button</slot>
   </button>
+  </div>
 </template>
 
 <script src="./script.js"></script>

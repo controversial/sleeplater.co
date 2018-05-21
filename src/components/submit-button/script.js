@@ -1,7 +1,5 @@
 export default {
-  methods: {
-    load() {},
-    complete() {},
-    fail() {},
-  },
+  data: () => ({
+    state: 'static', // static, loading, completed, failed
+  }),
 };
