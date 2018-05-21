@@ -19,7 +19,11 @@ export default {
     },
   },
 
-  data: () => ({ submitResetTimeout: undefined }),
+  data: () => ({
+    submitResetTimeout: undefined,
+    mode: 'Work with us',
+  }),
+
   methods: {
     submit() {
       clearTimeout(this.submitResetTimeout);

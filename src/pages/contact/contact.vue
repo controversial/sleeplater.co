@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="form">
-      <radio-options :options="['Work with us', 'Ask a question', 'Just say hi']"></radio-options>
+      <radio-options v-model="mode" :options="['Work with us', 'Ask a question', 'Just say hi']"></radio-options>
       <h1>Let’s work together</h1>
 
       <div class="row">
