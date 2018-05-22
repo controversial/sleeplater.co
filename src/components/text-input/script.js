@@ -22,7 +22,7 @@ export default {
       if (!this.value.length) return !this.required;
       // If the form has content...
       if (this.type === 'email') return isEmail(this.value);
-      if (this.type === 'tel') return isNumeric(this.value) && (this.value.length >= 10 && this.value <= 12);
+      if (this.type === 'tel') return isNumeric(this.value) && (this.value.length >= 10 && this.value.length <= 12);
       return true;
     },
   },
