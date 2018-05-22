@@ -37,7 +37,7 @@ export default {
   data: () => ({
     submitResetTimeout: undefined,
     mode: 'Work with us',
-    hasSubmitted: false,
+    hasAttempted: false,
   }),
 
   methods: {
@@ -57,12 +57,25 @@ export default {
         body: JSON.stringify({ name, email, phone, message, mode }), // eslint-disable-line object-curly-newline, max-len
       })
         .then((r) => {
-          if (r.status === 200) this.$refs.submit.state = 'completed';
-          else this.$refs.submit.state = 'failed';
+          if (r.status === 200) {
+            this.$refs.submit.state = 'completed';
+            setTimeout(() => this.reset(), 1500);
+          } else {
+            this.$refs.submit.state = 'failed';
+            setTimeout(() => { this.hasAttempted = true; }, 1500);
+          }
           // Return to normal "submit" button after a short delay
           this.submitResetTimeout = setTimeout(() => { this.$refs.submit.state = 'static'; }, 1500);
-          setTimeout(() => { this.hasSubmitted = true; }, 1500);
         });
+    },
+
+    // Clear the form
+    reset() {
+      this.hasAttempted = false;
+      this.name = '';
+      this.email = '';
+      this.phone = '';
+      this.message = '';
     },
   },
 };
