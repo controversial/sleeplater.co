@@ -34,7 +34,9 @@ window.app = new Vue({
     transitionName: '',
     transitionMode: '',
     navTransitionDelay: 0,
-    lastScrollNav: 0,
+    lastScrollNav: 0, // Timestamp from the last time a wheel event caused navigation
+    touchStartPosition: [undefined, undefined], // Where the current touch started
+    canTouchNav: true, // false if the current touch has already resulted in navigation
   },
 
   computed: {
@@ -60,11 +62,32 @@ window.app = new Vue({
   },
 
   methods: {
+    // Navigate by scrolling
     onWheel(e) {
       if (Math.abs(e.deltaY) > 15 && new Date() - this.lastScrollNav > 650) {
         this.$refs.nav[e.deltaY > 0 ? 'navDown' : 'navUp']();
         this.lastScrollNav = new Date();
       }
+    },
+
+    // Navigate by swiping (touchscreens)
+
+    onTouchStart(e) {
+      if (e.touches.length > 1) return;
+      this.touchStartPosition = [e.touches[0].clientX, e.touches[0].clientY];
+    },
+    onTouchMove(e) {
+      if (e.touches.length > 1) return;
+      const pos = [e.touches[0].clientX, e.touches[0].clientY];
+      const delta = [pos[0] - this.touchStartPosition[0], pos[1] - this.touchStartPosition[1]];
+
+      if (Math.abs(delta[1]) > 20 && this.canTouchNav) {
+        this.$refs.nav[delta[1] > 0 ? 'navUp' : 'navDown']();
+        this.canTouchNav = false;
+      }
+    },
+    onTouchEnd() {
+      this.canTouchNav = true;
     },
   },
 });
