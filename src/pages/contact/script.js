@@ -57,7 +57,18 @@ export default {
   methods: {
     /* eslint-disable brace-style */
     async submit() {
+      // You can only press the "submit" button, can't submit while it's in a "loading,"
+      // "completed," or "failed" state
       if (this.$refs.submit.state !== 'static') return;
+
+      // If any inputs are invalid reveal that and stop
+      if (!this.valid) {
+        this.$refs.submit.state = 'failed';
+        await delay(1500);
+        this.hasAttempted = true;
+        this.$refs.submit.state = 'static';
+        return;
+      }
 
       // Show loading
       this.$refs.submit.state = 'loading';
