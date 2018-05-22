@@ -11,3 +11,14 @@ svg
   &.disabled
     opacity: .3
     cursor: default
+
+@media (pointer: coarse)
+  svg
+    width: calc(24px + 1.25vw)
+    height: calc(24px + 1.25vw)
+
+    &:first-child
+      padding-right: 3px
+
+    &:last-child
+      padding-left: 3px
