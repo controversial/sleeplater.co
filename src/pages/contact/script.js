@@ -1,3 +1,10 @@
+import { pick, delay } from '../../helpers';
+
+const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
+  ? 'http://0.0.0.0:3000/'
+  : 'https://contact-form.now.sh/';
+
+
 export default {
   // getters/setters so that each item can be reflected persistently in vuex
   computed: {
@@ -40,38 +47,45 @@ export default {
     hasAttempted: false,
   }),
 
+
   methods: {
-    submit() {
-      clearTimeout(this.submitResetTimeout);
+    /* eslint-disable brace-style */
+    async submit() {
+      if (this.$refs.submit.state !== 'static') return;
+
+      // Show loading
       this.$refs.submit.state = 'loading';
-      const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
-        ? 'http://0.0.0.0:3000/'
-        : 'https://contact-form.now.sh/';
-      const { name, email, phone, message, mode } = this; // eslint-disable-line object-curly-newline, max-len
 
-      // Send request to backend
-
-      fetch(url, {
+      // Send request to back-end
+      const result = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, message, mode }), // eslint-disable-line object-curly-newline, max-len
-      })
-        .then((r) => {
-          if (r.status === 200) {
-            this.$refs.submit.state = 'completed';
-            setTimeout(() => this.reset(), 1500);
-          } else {
-            this.$refs.submit.state = 'failed';
-            setTimeout(() => { this.hasAttempted = true; }, 1500);
-          }
-          // Return to normal "submit" button after a short delay
-          this.submitResetTimeout = setTimeout(() => { this.$refs.submit.state = 'static'; }, 1500);
-        });
+        // Only some properties of this
+        body: JSON.stringify(pick(this, ['name', 'email', 'phone', 'message', 'mode'])),
+      });
+
+      // If request succeeded
+      if (result.status === 200) {
+        this.$refs.submit.state = 'completed';
+        await delay(1500);
+        this.reset();
+      }
+      // If server rejected request
+      else {
+        this.$refs.submit.state = 'failed';
+        await delay(1500);
+        // Record that the user has attempted to submit the form once
+        // This will enable as-you-type validation on the whole form
+        this.hasAttempted = true;
+        this.$refs.submit.state = 'static';
+      }
     },
+    /* eslint-enable brace-style */
 
     // Clear the form
     reset() {
       this.hasAttempted = false;
+      this.$refs.submit.state = 'static';
       this.name = '';
       this.email = '';
       this.phone = '';
