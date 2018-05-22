@@ -51,3 +51,9 @@ textarea
 
     &:focus
       border-color: transparentize($red, .525)
+
+
+// upright phones with limited vertical space (like SE-sized iPhones)
+@media screen and (max-width: 420px) and (max-height: 666px) and (orientation: portrait)
+  textarea
+    max-height: 8em
