@@ -45,6 +45,9 @@ input
 
   &:-webkit-autofill
     background: transparent
+    box-shadow: 0 0 0 1000px $dark-1 inset // Safari
+    color: $actually-white
+    -webkit-text-fill-color: $actually-white       // Safari
 
   &::-webkit-contacts-auto-fill-button
     background: transparentize($actually-white, .65)
