@@ -31,7 +31,7 @@ export default {
 
 .main-loader
   position: absolute
-  top: 50vh
+  top: 50%
   left: 50vw
   transform: translate(-50%, -50%)
 

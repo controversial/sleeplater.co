@@ -18,6 +18,13 @@ import routes from './pages';
 const primaryRoutes = routes.filter(route => route.meta.primary);
 const primaryRouteNames = primaryRoutes.map(route => route.name);
 
+// Fix for bad iOS scrolling behavior
+function iOSResize() { document.body.style.height = `${window.innerHeight}px`; }
+if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+  iOSResize();
+  window.addEventListener('resize', iOSResize);
+}
+
 window.app = new Vue({
   el: '#app',
   router,
