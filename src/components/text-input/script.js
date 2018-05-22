@@ -7,7 +7,7 @@ export default {
     title: String,
     required: Boolean,
     type: String,
-    shouldValidate: Boolean,
+    showValidation: Boolean,
   },
 
   data: () => ({
@@ -16,8 +16,6 @@ export default {
 
   computed: {
     valid() {
-      if (!this.shouldValidate) return true;
-
       // When the input is empty, it's automatically valid if it's not required but invalid if it is
       if (!this.value.length) return !this.required;
       // If the form has content...
