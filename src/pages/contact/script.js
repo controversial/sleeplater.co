@@ -39,6 +39,12 @@ export default {
         'Just say hi': 'Your message',
       }[this.mode];
     },
+
+    valid() {
+      const validatableChildren = this.$children.filter(c => typeof c.valid !== 'undefined');
+      const validChildren = this.$children.filter(c => c.valid);
+      return validatableChildren.length === validChildren.length;
+    },
   },
 
   data: () => ({
