@@ -20,14 +20,22 @@ export default {
   },
 
   computed: {
-    navIconColor() { return this.$route.meta.navIconColor; },
     routeIndex() { return primaryRouteNames.indexOf(this.$route.name); },
     canGoUp() { return this.routeIndex > 0; },
     canGoDown() { return this.routeIndex < primaryRouteNames.length - 1; },
+
+    navIconColor() { return this.$route.meta.navIconColor; },
   },
 
+  methods: {
+    // Move the whole page "up" or "down" (navigate)
+    navUp() { if (this.canGoUp) this.$router.push(primaryRoutes[this.routeIndex - 1]); },
+    navDown() { if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]); },
+  },
+
+
+  // Vue route changed: pick a transition
   watch: {
-    // Vue route changed
     $route(to, from) {
       if (from.name === 'home' && to.name === 'shop') [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['period-scale', 'out-in', '.5s'];
       else if (primaryRouteNames.includes(from.name) && primaryRouteNames.includes(to.name)) {
@@ -39,15 +47,6 @@ export default {
       } else {
         [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['', '.5s'];
       }
-    },
-  },
-
-  methods: {
-    navUp() {
-      if (this.canGoUp) this.$router.push(primaryRoutes[this.routeIndex - 1]);
-    },
-    navDown() {
-      if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]);
     },
   },
 };

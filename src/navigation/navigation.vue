@@ -9,6 +9,7 @@
     ></nav-buttons>
     <!-- Main page -->
     <transition v-bind:name="transitionName" v-bind:mode="transitionMode">
+      <!-- Bindings for switching route with touch / scroll gestures -->
       <router-view
         v-on:wheel.native="scrollHandler.onWheel"
 
