@@ -13,9 +13,10 @@ export default {
   }),
 
   computed: {
-    navIconColor() {
-      return this.$route.meta.navIconColor;
-    },
+    navIconColor() { return this.$route.meta.navIconColor; },
+    routeIndex() { return primaryRouteNames.indexOf(this.$route.name); },
+    canGoUp() { return this.routeIndex > 0; },
+    canGoDown() { return this.routeIndex < primaryRouteNames.length - 1; },
   },
 
   watch: {
@@ -35,6 +36,14 @@ export default {
   },
 
   methods: {
+    navUp() {
+      if (this.canGoUp) this.$router.push(primaryRoutes[this.routeIndex - 1]);
+    },
+    navDown() {
+      if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]);
+    },
+
+
     // Navigate by scrolling
     onWheel(e) {
       if (Math.abs(e.deltaY) > 15 && new Date() - this.lastScrollNav > 650) {
