@@ -6,7 +6,7 @@ const primaryRouteNames = primaryRoutes.map(route => route.name);
 
 export default {
   data: () => ({
-    shrunken: false,
+    navOpen: false,
 
     transitionName: '',
     transitionMode: '',
@@ -34,7 +34,7 @@ export default {
     navUp() { if (this.canGoUp) this.$router.push(primaryRoutes[this.routeIndex - 1]); },
     navDown() { if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]); },
     // Show/hide navigation menu
-    toggleShrink() { this.shrunken = !this.shrunken; },
+    toggle() { this.navOpen = !this.navOpen; },
   },
 
 
