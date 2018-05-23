@@ -1,20 +1,18 @@
 <template>
   <div class="navigation">
-    <!-- Nav controls -->
-    <transition>
-      <div v-if="!shrunken">
-        <menu-button
-          v-on:click="toggleShrink"
-          v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
-        ></menu-button>
-        <nav-buttons ref="nav"
-          v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
-          v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
-          v-on:up="navUp" v-on:down="navDown"
-        ></nav-buttons>
-      </div>
-    </transition>
+    <!-- Nav controls (atop pages) -->
+    <menu-button
+      v-bind:navOpen="shrunken"
+      v-on:click="toggleShrink"
+      v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
+    ></menu-button>
+    <nav-buttons ref="nav" v-if="!shrunken"
+      v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
+      v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
+      v-on:up="navUp" v-on:down="navDown"
+    ></nav-buttons>
 
+    <!-- Holds the actual full content, shrinks into navigation view -->
     <div class="page-wrapper" v-bind:class="{ shrunken }">
       <!-- Main page -->
       <transition v-bind:name="transitionName" v-bind:mode="transitionMode">

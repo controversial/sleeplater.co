@@ -1,11 +1,14 @@
 <template>
-  <menu-icon class="menu-button" v-bind:style="{ color, transitionDelay }" v-on:click="$emit('click')"></menu-icon>
+  <component v-bind:is="navOpen ? 'close-icon' : 'menu-icon'"
+    class="menu-button"
+    v-bind:style="{ color: navOpen ? 'white' : color, transitionDelay }" v-on:click="$emit('click')"
+  ></component>
 </template>
 
 <script>
 
 export default {
-  props: ['color', 'transition-delay'],
+  props: ['navOpen', 'color', 'transition-delay'],
 };
 
 </script>
