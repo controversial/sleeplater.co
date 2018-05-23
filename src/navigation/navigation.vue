@@ -6,11 +6,13 @@
       v-on:click="toggle"
       v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
     ></menu-button>
-    <nav-buttons ref="nav" v-if="!navOpen"
-      v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
-      v-on:up="navUp" v-on:down="navDown"
-      v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
-    ></nav-buttons>
+    <transition name="fade">
+      <nav-buttons ref="nav" v-if="!navOpen"
+        v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
+        v-on:up="navUp" v-on:down="navDown"
+        v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
+      ></nav-buttons>
+    </transition>
 
     <!-- Holds the actual full content, shrinks into navigation view -->
     <div class="page-wrapper" v-bind:class="{ 'nav-open': navOpen }">

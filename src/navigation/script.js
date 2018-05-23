@@ -35,7 +35,7 @@ export default {
     navDown() { if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]); },
     // Show/hide navigation menu
     toggle() {
-      this.navTransitionDelay = this.navOpen ? '.5s' : '0s';
+      this.navTransitionDelay = '0s';
       this.navOpen = !this.navOpen;
     },
   },
