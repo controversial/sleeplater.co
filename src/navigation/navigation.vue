@@ -10,8 +10,11 @@
     <!-- Main page -->
     <transition v-bind:name="transitionName" v-bind:mode="transitionMode">
       <router-view
-        v-on:wheel="onWheel"
-        v-on:touchstart="onTouchStart" v-on:touchmove="onTouchMove" v-on:touchend="onTouchEnd"
+        v-on:wheel.native="scrollHandler.onWheel"
+
+        v-on:touchstart.native="swipeHandler.onTouchStart"
+        v-on:touchmove.native="swipeHandler.onTouchMove"
+        v-on:touchend.native="swipeHandler.onTouchEnd"
       ></router-view>
     </transition>
   </div>

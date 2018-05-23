@@ -1,3 +1,5 @@
+import { ScrollHandler, SwipeHandler } from './gestures';
+
 import routes from '../pages';
 const primaryRoutes = routes.filter(route => route.meta.primary);
 const primaryRouteNames = primaryRoutes.map(route => route.name);
@@ -7,10 +9,15 @@ export default {
     transitionName: '',
     transitionMode: '',
     navTransitionDelay: 0,
-    lastScrollNav: 0, // Timestamp from the last time a wheel event caused navigation
-    touchStartPosition: [undefined, undefined], // Where the current touch started
-    canTouchNav: true, // false if the current touch has already resulted in navigation
+
+    scrollHandler: undefined,
+    swipeHandler: undefined,
   }),
+
+  created() {
+    this.scrollHandler = new ScrollHandler(() => this.navUp(), () => this.navDown());
+    this.swipeHandler = new SwipeHandler(() => this.navUp(), () => this.navDown());
+  },
 
   computed: {
     navIconColor() { return this.$route.meta.navIconColor; },
@@ -41,35 +48,6 @@ export default {
     },
     navDown() {
       if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]);
-    },
-
-
-    // Navigate by scrolling
-    onWheel(e) {
-      if (Math.abs(e.deltaY) > 15 && new Date() - this.lastScrollNav > 650) {
-        this.$refs.nav[e.deltaY > 0 ? 'navDown' : 'navUp']();
-        this.lastScrollNav = new Date();
-      }
-    },
-
-    // Navigate by swiping (touchscreens)
-
-    onTouchStart(e) {
-      if (e.touches.length > 1) return;
-      this.touchStartPosition = [e.touches[0].clientX, e.touches[0].clientY];
-    },
-    onTouchMove(e) {
-      if (e.touches.length > 1) return;
-      const pos = [e.touches[0].clientX, e.touches[0].clientY];
-      const delta = [pos[0] - this.touchStartPosition[0], pos[1] - this.touchStartPosition[1]];
-
-      if (Math.abs(delta[1]) > 20 && this.canTouchNav) {
-        this.$refs.nav[delta[1] > 0 ? 'navUp' : 'navDown']();
-        this.canTouchNav = false;
-      }
-    },
-    onTouchEnd() {
-      this.canTouchNav = true;
     },
   },
 };
