@@ -34,7 +34,10 @@ export default {
     navUp() { if (this.canGoUp) this.$router.push(primaryRoutes[this.routeIndex - 1]); },
     navDown() { if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]); },
     // Show/hide navigation menu
-    toggle() { this.navOpen = !this.navOpen; },
+    toggle() {
+      this.navTransitionDelay = this.navOpen ? '.5s' : '0s';
+      this.navOpen = !this.navOpen;
+    },
   },
 
 
