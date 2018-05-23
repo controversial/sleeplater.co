@@ -1,15 +1,19 @@
 <template>
   <div class="navigation">
     <!-- Nav controls -->
-    <menu-button
-      v-on:click="shrunken = !shrunken"
-      v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
-    ></menu-button>
-    <nav-buttons ref="nav"
-      v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
-      v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
-      v-on:up="navUp" v-on:down="navDown"
-    ></nav-buttons>
+    <transition>
+      <div v-if="!shrunken">
+        <menu-button
+          v-on:click="toggleShrink"
+          v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
+        ></menu-button>
+        <nav-buttons ref="nav"
+          v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
+          v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
+          v-on:up="navUp" v-on:down="navDown"
+        ></nav-buttons>
+      </div>
+    </transition>
 
     <div class="page-wrapper" v-bind:class="{ shrunken }">
       <!-- Main page -->

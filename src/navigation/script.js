@@ -33,6 +33,8 @@ export default {
     // Move the whole page "up" or "down" (navigate)
     navUp() { if (this.canGoUp) this.$router.push(primaryRoutes[this.routeIndex - 1]); },
     navDown() { if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]); },
+    // Show/hide navigation menu
+    toggleShrink() { this.shrunken = !this.shrunken; },
   },
 
 
