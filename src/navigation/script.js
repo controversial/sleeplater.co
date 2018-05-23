@@ -6,6 +6,8 @@ const primaryRouteNames = primaryRoutes.map(route => route.name);
 
 export default {
   data: () => ({
+    shrunken: false,
+
     transitionName: '',
     transitionMode: '',
     navTransitionDelay: 0,

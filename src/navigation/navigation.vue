@@ -7,17 +7,21 @@
       v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
       v-on:up="navUp" v-on:down="navDown"
     ></nav-buttons>
-    <!-- Main page -->
-    <transition v-bind:name="transitionName" v-bind:mode="transitionMode">
-      <!-- Bindings for switching route with touch / scroll gestures -->
-      <router-view
-        v-on:wheel.native="scrollHandler.onWheel"
 
-        v-on:touchstart.native="swipeHandler.onTouchStart"
-        v-on:touchmove.native="swipeHandler.onTouchMove"
-        v-on:touchend.native="swipeHandler.onTouchEnd"
-      ></router-view>
-    </transition>
+    <div class="page-wrapper" v-bind:class="{ shrunken }">
+      <!-- Main page -->
+      <transition v-bind:name="transitionName" v-bind:mode="transitionMode">
+        <!-- Bindings for switching route with touch / scroll gestures -->
+        <router-view
+          v-on:wheel.native="scrollHandler.onWheel"
+
+          v-on:touchstart.native="swipeHandler.onTouchStart"
+          v-on:touchmove.native="swipeHandler.onTouchMove"
+          v-on:touchend.native="swipeHandler.onTouchEnd"
+        ></router-view>
+      </transition>
+    </div>
+
   </div>
 </template>
 

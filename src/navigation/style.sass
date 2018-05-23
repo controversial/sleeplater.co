@@ -1,20 +1,42 @@
-.page
+@import '../colors'
+
+.navigation
   position: absolute
   z-index: 0
   top: 0
   left: 0
   width: 100vw
   height: 100%
+  background: $dark-0
+
+.page-wrapper
+  position: absolute
+  z-index: 50
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100%
+  overflow: hidden
+
+  box-shadow: 0 4px 40px -10px transparentize($actually-black, .7)
+  transition: transform .65s
+
+  .page
+    width: 100%
+    height: 100%
+
+  &.shrunken
+    transform: scale(.825)
 
 .nav-buttons
   position: absolute
-  z-index: 1
+  z-index: 51
   top: 0
   left: 50vw
   transform: translate(-50%)
 
 .menu-button
   position: absolute
-  z-index: 1
+  z-index: 51
   top: calc(14px + 1.25vw)
   left: calc(23px + 2.1vw)
