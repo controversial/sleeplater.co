@@ -1,5 +1,4 @@
 @import '../colors'
-@import '../helpers'
 
 
 .navigation
@@ -61,10 +60,17 @@
       opacity: .65
       pointer-events: none
 
+  $prev-scale: .825
+  $prev-offset: 0%
+
   @for $index from 1 through 20
     .background-page-wrapper:nth-child(#{$index})
       z-index: 25 - $index
-      transform: scale(#{.825 * pow(.9, $index)})
+      $scale: $prev-scale * .9
+      $offset: ($prev-offset / .9) - 5.405 - 4 // 5.405% on each brings the top edges of each page flush
+      transform: scale(#{$scale}) translateY(#{50% / $scale}) translateY($offset)
+      $prev-scale: $scale
+      $prev-offset: $offset
 
 
 // Buttons available for interacting with navigation while menu is collapsed
