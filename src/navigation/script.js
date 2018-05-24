@@ -26,6 +26,11 @@ export default {
     canGoUp() { return this.routeIndex > 0; },
     canGoDown() { return this.routeIndex < primaryRouteNames.length - 1; },
 
+    otherRoutes() {
+      // name assumed to be unique in this case
+      return primaryRoutes.filter(route => route.name !== this.$route.name);
+    },
+
     navIconColor() { return this.$route.meta.navIconColor; },
   },
 
