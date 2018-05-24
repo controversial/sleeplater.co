@@ -30,11 +30,11 @@
     </div>
 
     <!-- Other pages appear in a stack behind -->
-    <div class="other-pages">
+    <transition name="delay"><div class="other-pages" v-if="navOpen">
       <div class="background-page-wrapper" v-for="page in otherRoutes">
         <component v-bind:is="page.component"></component>
       </div>
-    </div>
+    </div></transition>
 
   </div>
 </template>
