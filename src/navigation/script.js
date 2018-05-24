@@ -28,7 +28,16 @@ export default {
 
     otherRoutes() {
       // name assumed to be unique in this case
-      return primaryRoutes.filter(route => route.name !== this.$route.name);
+      const others = primaryRoutes.filter(route => route.name !== this.$route.name);
+      // Items that are "closer" by position in the list of primary routes to the current one come
+      // first. In cases of equal closeness, the one from after the current route comes before the
+      // one that appears before the current route in the main scroll
+      others.sort((a, b) => {
+        const dist = page => Math.abs(this.routeIndex - primaryRouteNames.indexOf(page.name));
+        if (dist(a) !== dist(b)) return dist(a) - dist(b);
+        return primaryRouteNames.indexOf(b) - primaryRouteNames.indexOf(a);
+      });
+      return others;
     },
 
     navIconColor() { return this.$route.meta.navIconColor; },
