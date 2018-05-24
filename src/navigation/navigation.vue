@@ -15,7 +15,7 @@
     </transition>
 
     <!-- Holds the actual full content, shrinks into navigation view -->
-    <div class="page-wrapper" v-bind:class="{ 'nav-open': navOpen }">
+    <div class="page-wrapper" v-bind:class="{ 'nav-open': navOpen }" v-on:click="navOpen = false">
       <!-- Main page -->
       <transition v-bind:name="transitionName" v-bind:mode="transitionMode">
         <!-- Bindings for switching route with touch / scroll gestures -->
