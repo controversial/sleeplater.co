@@ -31,7 +31,7 @@
 
     <!-- Links to other pages -->
     <div class="pageLinks">
-      <nav-link v-for="route in primaryRoutes" v-bind="{ route }"></nav-link>
+      <nav-link v-for="route in primaryRoutes" v-bind:route="route" v-bind:key="route.name"></nav-link>
     </div>
 
     <!-- Other pages appear in a stack behind -->
