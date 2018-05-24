@@ -1,4 +1,9 @@
+/* eslint-disable import/first */
+import Vue from 'vue';
 import { ScrollHandler, SwipeHandler } from './gestures';
+
+import NavLink from './nav-link/nav-link.vue';
+Vue.component('nav-link', NavLink);
 
 import routes from '../pages';
 const primaryRoutes = routes.filter(route => route.meta.primary);
@@ -14,6 +19,8 @@ export default {
 
     scrollHandler: undefined,
     swipeHandler: undefined,
+
+    primaryRoutes,
   }),
 
   created() {

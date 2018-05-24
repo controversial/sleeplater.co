@@ -29,6 +29,11 @@
       </transition>
     </div>
 
+    <!-- Links to other pages -->
+    <div class="pageLinks">
+      <nav-link v-for="route in primaryRoutes" v-bind="{ route }"></nav-link>
+    </div>
+
     <!-- Other pages appear in a stack behind -->
     <transition name="delay"><div class="other-pages" v-if="navOpen">
       <div class="background-page-wrapper" v-for="page in otherRoutes">
