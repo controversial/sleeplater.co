@@ -1,5 +1,5 @@
 <template>
-  <span>{{route.name}}</span>
+  <span class="nav-link">{{route.name}}</span>
 </template>
 
 <script src="./script.js"></script>

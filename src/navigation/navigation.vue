@@ -30,7 +30,7 @@
     </div>
 
     <!-- Links to other pages -->
-    <div class="pageLinks">
+    <div class="page-links">
       <nav-link v-for="route in primaryRoutes" v-bind:route="route" v-bind:key="route.name"></nav-link>
     </div>
 
