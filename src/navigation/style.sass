@@ -1,4 +1,6 @@
 @import '../colors'
+@import '../helpers'
+
 
 .navigation
   position: absolute
@@ -58,6 +60,11 @@
       height: 100%
       opacity: .65
       pointer-events: none
+
+  @for $index from 1 through 20
+    .background-page-wrapper:nth-child(#{$index})
+      z-index: 25 - $index
+      transform: scale(#{.825 * pow(.9, $index)})
 
 
 // Buttons available for interacting with navigation while menu is collapsed
