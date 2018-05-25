@@ -131,6 +131,12 @@
     z-index: 11
     top: calc(25% - .5rem)
     transform: translateX(-50%)
+    transition: opacity .65s
+
+  // When marked as "highlight" the non-hovered links should fade to highlight the one we're trying
+     to draw the user's attention to
+  &.highlight > :not(.hover)
+    opacity: .35
 
   & > :nth-child(3n + 1)
     left: 25vw
