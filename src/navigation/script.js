@@ -74,7 +74,23 @@ export default {
         if (page) page.classList.remove('hover');
       }
     },
-    linkClick(pageName) { console.log('click', p); },
+    linkClick(pageName) { console.log('click', pageName); },
+
+    pageMouseover(e) {
+      if (this.navOpen) {
+        const pageName = e.target.getAttribute('name');
+        const link = this.$refs.pageLinks.querySelector(`[name=${pageName}]`);
+        if (link) link.classList.add('hover');
+      }
+    },
+    pageMouseout(e) {
+      if (this.navOpen) {
+        const pageName = e.target.getAttribute('name');
+        const link = this.$refs.pageLinks.querySelector(`[name=${pageName}]`);
+        if (link) link.classList.remove('hover');
+      }
+    },
+    pageClick() {},
   },
 
 

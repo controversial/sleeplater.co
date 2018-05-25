@@ -15,7 +15,10 @@
     </transition>
 
     <!-- Holds the actual full content, shrinks into navigation view -->
-    <div class="page-wrapper" ref="pageWrapper" v-bind:class="{ 'nav-open': navOpen }" v-on:click="navOpen = false">
+    <div class="page-wrapper" ref="pageWrapper" v-bind:class="{ 'nav-open': navOpen }" v-bind:name="$route.name"
+      v-on:click="navOpen = false"
+      v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout"
+    >
       <!-- Main page -->
       <transition v-bind:name="transitionName" v-bind:mode="transitionMode">
         <!-- Bindings for switching route with touch / scroll gestures -->
@@ -30,8 +33,8 @@
     </div>
 
     <!-- Links to other pages -->
-    <div class="page-links">
-      <nav-link v-for="route in primaryRoutes" v-bind:key="route.name"
+    <div class="page-links" ref="pageLinks">
+      <nav-link v-for="route in primaryRoutes" v-bind:key="route.name" v-bind:name="route.name"
         v-bind:route="route"
         v-on:mouseover="linkMouseover"
         v-on:mouseout="linkMouseout"
@@ -41,7 +44,9 @@
 
     <!-- Other pages appear in a stack behind -->
     <transition name="delay"><div class="other-pages" ref="stack" v-if="navOpen">
-      <div class="background-page-wrapper" v-for="page in otherRoutes" v-bind:name="page.name">
+      <div class="background-page-wrapper" v-for="page in otherRoutes" v-bind:name="page.name"
+        v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout" v-on:click="pageClick"
+      >
         <component v-bind:is="page.component"></component>
       </div>
     </div></transition>
