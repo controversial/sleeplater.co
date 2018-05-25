@@ -59,6 +59,22 @@ export default {
       this.navTransitionDelay = '0s';
       this.navOpen = !this.navOpen;
     },
+
+    linkMouseover(pageName) {
+      if (pageName === this.$route.name) this.$refs.pageWrapper.classList.add('hover');
+      else {
+        const page = this.$refs.stack.querySelector(`[name=${pageName}]`);
+        if (page) page.classList.add('hover');
+      }
+    },
+    linkMouseout(pageName) {
+      if (pageName === this.$route.name) this.$refs.pageWrapper.classList.remove('hover');
+      else {
+        const page = this.$refs.stack.querySelector(`[name=${pageName}]`);
+        if (page) page.classList.remove('hover');
+      }
+    },
+    linkClick(pageName) { console.log('click', p); },
   },
 
 
