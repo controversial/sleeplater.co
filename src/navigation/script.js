@@ -74,7 +74,9 @@ export default {
         if (page) page.classList.remove('hover');
       }
     },
-    linkClick() {},
+    linkClick(pageName) {
+      if (pageName === this.$route.name) this.navOpen = false;
+    },
 
     pageMouseover(e) {
       if (this.navOpen) {
