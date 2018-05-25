@@ -63,6 +63,13 @@
       opacity: .65
       pointer-events: none
 
+    &.hover,
+    &:hover
+      transform: scale(.825) translateY(-10vh)
+
+      .page
+        opacity: .9
+
 
 // OTHER PAGES
 
@@ -85,6 +92,7 @@
     border-radius: .3vw
     overflow: hidden
     cursor: pointer
+    transition: transform .65s
 
     .page
       position: absolute
@@ -92,6 +100,7 @@
       height: 100%
       opacity: .65
       pointer-events: none
+      transition: opacity .65s
 
   $prev-scale: .825
   $prev-offset: 0%
@@ -104,6 +113,13 @@
       transform: scale(#{$scale}) translateY(#{50% / $scale}) translateY($offset)
       $prev-scale: $scale
       $prev-offset: $offset
+
+      &.hover,
+      &:hover
+        transform: scale(#{$scale}) translateY(#{50% / $scale}) translateY($offset) translateY(-10vh)
+
+        .page
+          opacity: .9
 
 
 // NAV LINKS
