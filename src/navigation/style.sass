@@ -44,9 +44,8 @@
 
   background: $dark-1
   box-shadow: 0 5px 48px -12px transparentize($actually-black, .65)
-  border-radius: .3vw
   transform-origin: 50% 335.71%
-  transition: transform .65s
+  transition: transform .65s, border-radius 0s .3s
 
   .page
     position: absolute
@@ -57,6 +56,7 @@
   // Shrinks to bottom
   &.nav-open
     transform: scale(.825)
+    border-radius: .3vw
     cursor: pointer
 
     .page
