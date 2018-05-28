@@ -70,6 +70,9 @@
       .page
         opacity: .9
 
+    &.down
+      transform: scale(.825) translateY(50%)
+
 
 // OTHER PAGES
 
@@ -120,6 +123,9 @@
 
         .page
           opacity: .9
+
+      &.down
+        transform: scale(#{$scale}) translateY(#{50% / $scale}) translateY(50%)
 
 
 // NAV LINKS
