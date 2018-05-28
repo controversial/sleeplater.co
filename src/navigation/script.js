@@ -18,6 +18,7 @@ export default {
     transitionName: '',
     transitionMode: '',
     navTransitionDelay: 0,
+    transitionOverride: false,
 
     scrollHandler: undefined,
     swipeHandler: undefined,
@@ -50,6 +51,7 @@ export default {
     },
 
     navIconColor() { return this.$route.meta.navIconColor; },
+    wrapperTransitionDuration() { return this.transitionOverride ? 0 : undefined; },
   },
 
   methods: {
@@ -90,6 +92,7 @@ export default {
         // Move the page in question up to fill viewport
         pages.find(p => p.getAttribute('name') === pageName).classList.add('up');
         await delay(650);
+        this.transitionOverride = true;
         pages.forEach(page => page.classList.remove('down', 'up', 'hover'));
         this.navOpen = false;
         this.$router.push(routes.find(r => r.name === pageName).path);
@@ -122,7 +125,8 @@ export default {
   watch: {
     // Vue route changed: pick a transition
     $route(to, from) {
-      if (from.name === 'home' && to.name === 'shop') [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['period-scale', 'out-in', '.5s'];
+      if (this.transitionOverride) [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['', '', '0s'];
+      else if (from.name === 'home' && to.name === 'shop') [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['period-scale', 'out-in', '.5s'];
       else if (primaryRouteNames.includes(from.name) && primaryRouteNames.includes(to.name)) {
         if (primaryRouteNames.indexOf(from.name) > primaryRouteNames.indexOf(to.name)) { // Going up
           [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['slide-downwards', '', '0s'];
@@ -130,8 +134,10 @@ export default {
           [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['slide-upwards', '', '.25s'];
         }
       } else {
-        [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['', '.5s'];
+        [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['', '', ''];
       }
+
+      setTimeout(() => { this.transitionOverride = false; }, 150);
     },
 
     // Remove highlight class from links when closing menu
