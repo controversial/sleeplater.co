@@ -51,7 +51,7 @@ export default {
     },
 
     navIconColor() { return this.$route.meta.navIconColor; },
-    wrapperTransitionDuration() { return this.transitionOverride ? 0 : undefined; },
+    wrapperTransitionDuration() { return this.transitionOverride ? '0s' : undefined; },
   },
 
   methods: {
