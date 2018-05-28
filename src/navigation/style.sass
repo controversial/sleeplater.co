@@ -46,12 +46,14 @@
   box-shadow: 0 5px 48px -12px transparentize($actually-black, .65)
   transform-origin: 50% 335.71%
   transition: transform .65s, border-radius 0s .3s
+  will-change: transform
 
   .page
     position: absolute
     width: 100%
     height: 100%
     transition: transform .5s, opacity .65s
+    will-change: transform, opacity
 
   // Shrinks to bottom
   &.nav-open
@@ -103,6 +105,7 @@
     cursor: pointer
     pointer-events: all
     transition: transform .65s
+    will-change: transform
 
     .page
       position: absolute
@@ -111,6 +114,7 @@
       opacity: .65
       pointer-events: none
       transition: opacity .65s
+      will-change: opacity
 
   $prev-scale: .825
   $prev-offset: 0%
