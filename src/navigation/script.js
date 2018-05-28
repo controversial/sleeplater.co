@@ -88,7 +88,7 @@ export default {
         pages
           .filter(p => p.getAttribute('name') !== pageName)
           .forEach(page => page.classList.add('down'));
-        await delay(400); // .4s later (before that animation finishes)
+        await delay(25); // .25s later
         // Move the page in question up to fill viewport
         pages.find(p => p.getAttribute('name') === pageName).classList.add('up');
         await delay(650);

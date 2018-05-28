@@ -73,6 +73,10 @@
     &.down
       // 31px = shadow blur + spread - y offset
       transform: scale(.825) translateY(calc(50% + 31px))
+      transition-duration: .5s
+
+      .page
+        opacity: 0
 
 
 // OTHER PAGES
@@ -129,6 +133,10 @@
 
       &.down
         transform: scale(#{$scale}) translateY(#{50% / $scale}) translateY(calc(50% + 31px))
+        transition-duration: .5s
+
+        .page
+          opacity: 0
 
       &.up
         transform: none
