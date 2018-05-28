@@ -71,7 +71,8 @@
         opacity: .9
 
     &.down
-      transform: scale(.825) translateY(50%)
+      // 31px = shadow blur + spread - y offset
+      transform: scale(.825) translateY(calc(50% + 31px))
 
 
 // OTHER PAGES
@@ -125,7 +126,7 @@
           opacity: .9
 
       &.down
-        transform: scale(#{$scale}) translateY(#{50% / $scale}) translateY(50%)
+        transform: scale(#{$scale}) translateY(#{50% / $scale}) translateY(calc(50% + 31px))
 
 
 // NAV LINKS
