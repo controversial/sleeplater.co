@@ -45,7 +45,7 @@
     <!-- Other pages appear in a stack behind -->
     <transition name="delay"><div class="other-pages" ref="stack" v-if="navOpen">
       <div class="background-page-wrapper" v-for="page in otherRoutes" v-bind:name="page.name"
-        v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout" v-on:click="pageClick"
+        v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout" v-on:click="linkClick($event.target.getAttribute('name'))"
       >
         <component v-bind:is="page.component"></component>
       </div>

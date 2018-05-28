@@ -9,6 +9,8 @@ import routes from '../pages';
 const primaryRoutes = routes.filter(route => route.meta.primary);
 const primaryRouteNames = primaryRoutes.map(route => route.name);
 
+import { delay } from '../helpers';
+
 export default {
   data: () => ({
     navOpen: false,
@@ -74,8 +76,24 @@ export default {
         if (page) page.classList.remove('hover');
       }
     },
-    linkClick(pageName) {
+    async linkClick(pageName) {
+      // Clicking the front page is simple: just close the menu
       if (pageName === this.$route.name) this.navOpen = false;
+      // Clicking other pages requires more logic
+      else {
+        // Move other pages down offscreen (takes 0.65s)
+        const pages = [this.$refs.pageWrapper, ...this.$refs.stack.childNodes];
+        pages
+          .filter(p => p.getAttribute('name') !== pageName)
+          .forEach(page => page.classList.add('down'));
+        await delay(400); // .4s later (before that animation finishes)
+        // Move the page in question up to fill viewport
+        pages.find(p => p.getAttribute('name') === pageName).classList.add('up');
+        await delay(650);
+        pages.forEach(page => page.classList.remove('down', 'up', 'hover'));
+        this.navOpen = false;
+        this.$router.push(routes.find(r => r.name === pageName).path);
+      }
     },
 
     pageMouseover(e) {
@@ -98,12 +116,11 @@ export default {
         }
       }
     },
-    pageClick() {},
   },
 
 
-  // Vue route changed: pick a transition
   watch: {
+    // Vue route changed: pick a transition
     $route(to, from) {
       if (from.name === 'home' && to.name === 'shop') [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['period-scale', 'out-in', '.5s'];
       else if (primaryRouteNames.includes(from.name) && primaryRouteNames.includes(to.name)) {
@@ -115,6 +132,11 @@ export default {
       } else {
         [this.transitionName, this.transitionMode, this.navTransitionDelay] = ['', '.5s'];
       }
+    },
+
+    // Remove highlight class from links when closing menu
+    navOpen(open) {
+      if (!open) this.$refs.pageLinks.classList.remove('highlight');
     },
   },
 };

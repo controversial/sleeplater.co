@@ -81,11 +81,12 @@
 // New pages come up
 .other-pages
   position: absolute
-  z-index: 10
+  z-index: 11
   top: 0
   left: 0
   width: 100vw
   height: 100%
+  pointer-events: none
 
   .background-page-wrapper
     position: absolute
@@ -96,6 +97,7 @@
     border-radius: .3vw
     overflow: hidden
     cursor: pointer
+    pointer-events: all
     transition: transform .65s
 
     .page
@@ -128,6 +130,12 @@
       &.down
         transform: scale(#{$scale}) translateY(#{50% / $scale}) translateY(calc(50% + 31px))
 
+      &.up
+        transform: none
+
+        .page
+          opacity: 1
+
 
 // NAV LINKS
    Visible in the navigation menu
@@ -135,7 +143,7 @@
 .page-links
   & > *
     position: absolute
-    z-index: 11
+    z-index: 10
     top: calc(25% - .5rem)
     transform: translateX(-50%)
     transition: opacity .65s
