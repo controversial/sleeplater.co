@@ -142,7 +142,10 @@ export default {
 
     // Remove highlight class from links when closing menu
     navOpen(open) {
-      if (!open) this.$refs.pageLinks.classList.remove('highlight');
+      if (!open) {
+        this.$refs.pageLinks.classList.remove('highlight');
+        this.$refs.pageLinks.childNodes.forEach(l => l.classList.remove('hover'));
+      }
     },
   },
 };
