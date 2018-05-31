@@ -41,6 +41,8 @@
         v-on:mouseout="linkMouseout"
         v-on:click="linkClick"
       ></nav-link>
+      <!-- External social links -->
+      <social-links></social-links>
     </div>
 
     <!-- Other pages appear in a stack behind -->

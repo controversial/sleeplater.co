@@ -162,7 +162,7 @@
 
   // When marked as "highlight" the non-hovered links should fade to highlight the one we're trying
      to draw the user's attention to
-  &.highlight > :not(.hover)
+  &.highlight > :not(.hover):not(.social-icons)
     opacity: .35
 
   & > :nth-child(3n + 1)
@@ -173,6 +173,10 @@
 
   & > :nth-child(3n + 3) // the +3 is unnecessary but it makes the pattern nice fight me
     left: 75vw
+
+  & > .social-icons
+    top: calc(25% + 4.2rem)
+    left: 50vw
 
 @media screen and (max-width: 775px)
   .page-links > *:nth-child(1n)
