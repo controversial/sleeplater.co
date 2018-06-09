@@ -2,8 +2,8 @@ import { pick, delay } from '../../helpers';
 
 // Send request to development server if running locally
 const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
-  ? 'http://0.0.0.0:3000/'
-  : 'https://sleeplater-contact.now.sh/';
+  ? 'http://0.0.0.0:3000/contact'
+  : 'https://sleeplater-backend.now.sh/contact';
 
 
 export default {
