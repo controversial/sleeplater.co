@@ -16,6 +16,17 @@ app.use(bodyParser.json());
 app.set('json spaces', 2);
 
 
+function makeReq(endpoint) {
+  const base = 'api.bigcartel.com/v1/';
+  const url = `https://${path.join(base, endpoint)}`;
+
+  const authString = `${process.env.BIGCARTEL_USERNAME}:${process.env.BIGCARTEL_PASSWORD}`;
+  const Authorization = `Basic ${Buffer.from(authString).toString('base64')}`;
+  return fetch(url, {
+    headers: { Authorization, Accept: 'application/vnd.api+json' },
+  }).then(r => r.json());
+}
+
 app.get('/', (req, res) => {
   res.send('ok');
 });
