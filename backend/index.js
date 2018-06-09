@@ -27,6 +27,11 @@ function makeReq(endpoint) {
   }).then(r => r.json());
 }
 
+// Fetch the ID for the account with the credentials provided
+let accountId;
+makeReq('/accounts').then((r) => { accountId = r.data[0].id; });
+
+
 app.get('/', (req, res) => {
   res.send('ok');
 });
