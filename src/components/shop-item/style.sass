@@ -1,0 +1,30 @@
+@import '../../colors'
+@import '../../fonts'
+
+
+.shop-item
+  position: absolute
+
+  img
+    position: static
+    height: 100%
+    width: auto
+    filter: drop-shadow(0 2.25vh 8.85vh transparentize($actually-black, .75))
+
+  .info
+    position: absolute
+    bottom: 10%
+    left: -8.5%
+    width: 100%
+    font-family: $avenir-font-stack
+    font-style: italic
+    font-size: 1.3rem
+    color: $dark-1
+
+    .title
+      text-transform: uppercase
+      font-weight: 700
+      text-shadow: 0 .067em .83em transparentize($actually-black, .9)
+
+    .price
+      font-weight: 400
