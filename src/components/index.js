@@ -33,6 +33,12 @@ import Loader from './loader/loader.vue';
 Vue.component('loader', Loader);
 
 
+// Shop
+
+import ShopItem from './shop-item/shop-item.vue';
+Vue.component('shop-item', ShopItem);
+
+
 // Contact
 
 import TextInput from './text-input/text-input.vue';
