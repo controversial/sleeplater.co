@@ -15,8 +15,8 @@ Vue.component('mail-icon', MailIcon);
 Vue.component('check-circle-icon', CheckCircleIcon);
 Vue.component('alert-circle-icon', AlertCircleIcon);
 
-import Loader from './loader/loader.vue';
-Vue.component('loader', Loader);
+
+// Navigation
 
 import NavButtons from './nav-buttons/nav-buttons.vue';
 Vue.component('nav-buttons', NavButtons);
@@ -26,6 +26,14 @@ Vue.component('menu-button', MenuButton);
 
 import SocialLinks from './social-links/social-links.vue';
 Vue.component('social-links', SocialLinks);
+
+// Loader
+
+import Loader from './loader/loader.vue';
+Vue.component('loader', Loader);
+
+
+// Contact
 
 import TextInput from './text-input/text-input.vue';
 Vue.component('text-input', TextInput);
