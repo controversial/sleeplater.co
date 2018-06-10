@@ -37,7 +37,7 @@ module.exports.getProducts = async function getProducts() {
     name: p.attributes.name,
     status: p.attributes.status,
     description: p.attributes.description,
-    prince: p.attributes.default_price,
+    price: p.attributes.default_price,
     image: p.attributes.primary_image_url,
     options: p.relationships.options.data.map(option => findOption(option.id)),
   }));
