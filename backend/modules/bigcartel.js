@@ -25,12 +25,23 @@ makeReq('/accounts').then((r) => { accountId = r.data[0].id; });
 
 module.exports.getProducts = async function getProducts() {
   const r = await makeReq(`/accounts/${accountId}/products`);
+  // Find the object to represent the "option" with a given ID
   function findOption(optionId) {
     // Build array of "options" objects that were attached to the response
     return r.included
       .filter(e => e.type === 'product_options')
       .map(o => ({ id: o.id, name: o.attributes.name, price: o.attributes.price }))
+      // Pick out the right one
       .find(o => o.id === optionId);
+  }
+  // Find the object to represent the "category" with a given ID
+  function findCategory(categoryId) {
+    // Build array of "category" objects that were attached to the response
+    return r.included
+      .filter(e => e.type === 'categories')
+      .map(c => ({ id: c.id, name: c.attributes.name, position: c.attributes.position }))
+      // Pick out the right one
+      .find(c => c.id === categoryId);
   }
   const products = r.data.map(p => ({
     id: p.id,
@@ -40,6 +51,7 @@ module.exports.getProducts = async function getProducts() {
     price: p.attributes.default_price,
     image: p.attributes.primary_image_url,
     options: p.relationships.options.data.map(option => findOption(option.id)),
+    categories: p.relationships.categories.data.map(category => findCategory(category.id)),
   }));
   return products;
 };
