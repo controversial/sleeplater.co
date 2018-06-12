@@ -1,7 +1,6 @@
 <template>
-  <div class="page">
-    <h1 class="bg-title fade-in">sleep later</h1>
-    <products-display></products-display>
+  <div class="products">
+    <shop-item v-for="product in products" v-bind="product" v-bind:key="product.id"></shop-item>
   </div>
 </template>
 
