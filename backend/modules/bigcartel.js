@@ -28,11 +28,10 @@ module.exports.getProducts = async function getProducts() {
   // Find the object to represent the "option" with a given ID
   function findOption(optionId) {
     // Build array of "options" objects that were attached to the response
-    return r.included
+    const option = r.included
       .filter(e => e.type === 'product_options')
-      .map(o => ({ id: o.id, name: o.attributes.name, price: o.attributes.price }))
-      // Pick out the right one
       .find(o => o.id === optionId);
+    return { name: option.attributes.name, price: option.attributes.price };
   }
   // Find the object to represent the "category" with a given ID
   function findCategory(categoryId) {
