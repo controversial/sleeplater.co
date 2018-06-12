@@ -30,17 +30,16 @@ module.exports.getProducts = async function getProducts() {
     // Build array of "options" objects that were attached to the response
     const option = r.included
       .filter(e => e.type === 'product_options')
-      .find(o => o.id === optionId);
+      .find(o => o.id === optionId); // Find the right one
     return { name: option.attributes.name, price: option.attributes.price };
   }
-  // Find the object to represent the "category" with a given ID
-  function findCategory(categoryId) {
+  // Find the name of the category with a given ID
+  function nameCategory(categoryId) {
     // Build array of "category" objects that were attached to the response
     return r.included
       .filter(e => e.type === 'categories')
-      .map(c => ({ id: c.id, name: c.attributes.name, position: c.attributes.position }))
-      // Pick out the right one
-      .find(c => c.id === categoryId);
+      .find(c => c.id === categoryId) // Pick out the right one
+      .attributes.name;
   }
   const products = r.data.map(p => ({
     id: p.id,
@@ -50,7 +49,7 @@ module.exports.getProducts = async function getProducts() {
     price: p.attributes.default_price,
     image: p.attributes.primary_image_url,
     options: p.relationships.options.data.map(option => findOption(option.id)),
-    categories: p.relationships.categories.data.map(category => findCategory(category.id)),
+    categories: p.relationships.categories.data.map(category => nameCategory(category.id)),
   }));
   return products;
 };
