@@ -1,5 +1,5 @@
 <template>
-  <div class="shop-item">
+  <div class="shop-item" v-bind:style="{ transform }">
     <img v-bind:src="image" alt="Product preview">
     <div class="info">
       <div class="title">{{name}}</div>

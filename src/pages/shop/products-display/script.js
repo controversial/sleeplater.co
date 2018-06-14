@@ -22,6 +22,14 @@ export default {
     },
   },
 
+  methods: {
+    getXOffset(productIndex) {
+      // leftmost item's initial x-center is 17.8vw
+      // 4th item (index 3) should start with 82.2vw
+      return `${27.4 * productIndex}vw`;
+    },
+  },
+
   mounted() {
     // Get products list from backend
     fetch(`${apiBase}/products`)

@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <shop-item
-      v-for="product in categoryProducts" v-bind="product"
+      v-for="(product, i) in categoryProducts" v-bind="product" v-bind:offset-x="getXOffset(i)"
       v-bind:key="product.id"></shop-item>
   </div>
 </template>
