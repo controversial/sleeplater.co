@@ -100,7 +100,13 @@
       "import/no-webpack-loader-syntax": "off",
       "import/newline-after-import": "off",
       "global-require": "off",
-      "no-param-reassign": "off"
+      "no-param-reassign": "off",
+      "prefer-destructuring": ["error", {
+        "array": false,
+        "object": true
+      }, {
+        "enforceForRenamedProperties": false
+      }]
     },
     "settings": {
       "import/resolver": "webpack"
