@@ -7,6 +7,7 @@ const apiBase = ['localhost', '0.0.0.0'].includes(window.location.hostname)
 export default {
   data: () => ({
     products: [],
+    category: '',
   }),
 
   computed: {
@@ -22,6 +23,7 @@ export default {
     // Get products list from backend
     fetch(`${apiBase}/products`)
       .then(r => r.json())
-      .then((products) => { this.products = products; });
+      .then((products) => { this.products = products; })
+      .then(() => { this.category = this.categories[0]; });
   },
 };
