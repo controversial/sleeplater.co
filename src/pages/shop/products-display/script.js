@@ -17,6 +17,9 @@ export default {
         .reduce((a, b) => a.concat(b), []) // flatten
         .filter((n, i, list) => list.indexOf(n) === i); // Remove duplicates
     },
+    categoryProducts() {
+      return this.products.filter(p => p.categories.includes(this.category));
+    },
   },
 
   mounted() {

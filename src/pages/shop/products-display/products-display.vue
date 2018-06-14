@@ -1,6 +1,8 @@
 <template>
   <div class="products">
-    <shop-item v-for="product in products" v-bind="product" v-bind:key="product.id"></shop-item>
+    <shop-item
+      v-for="product in categoryProducts" v-bind="product"
+      v-bind:key="product.id"></shop-item>
   </div>
 </template>
 
