@@ -29,6 +29,11 @@ export default {
       // 4th item (index 3) should start with 82.2vw
       return `calc(${27.4 * productIndex}vw - ${this.scrollPx}px)`;
     },
+
+    scrollHandler(evt) {
+      this.scrollPx += evt.deltaY;
+      evt.stopPropagation(); // Prevent navigation
+    },
   },
 
   mounted() {
