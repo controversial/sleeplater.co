@@ -36,6 +36,7 @@ export default {
     scrollHandler(evt) {
       this.scrollPx += evt.deltaY;
       evt.stopPropagation(); // Prevent navigation
+      evt.preventDefault();
     },
   },
 
