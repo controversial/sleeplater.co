@@ -9,3 +9,7 @@ export function pick(object, keys) {
   keys.forEach((k) => { out[k] = object[k]; });
   return out;
 }
+
+export function clamp(num, min, max) {
+  return Math.max(Math.min(num, max), min);
+}
