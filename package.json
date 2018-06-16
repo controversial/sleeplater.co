@@ -38,6 +38,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-vue": "^4.4.0",
+    "exports-loader": "^0.7.0",
     "extract-loader": "^2.0.1",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
@@ -57,6 +58,7 @@
   "dependencies": {
     "animate.css": "^3.6.1",
     "babel-polyfill": "^6.26.0",
+    "lethargy": "^1.0.4",
     "promise-polyfill": "^7.1.2",
     "validator": "^10.2.0",
     "vue": "^2.5.16",
@@ -101,12 +103,16 @@
       "import/newline-after-import": "off",
       "global-require": "off",
       "no-param-reassign": "off",
-      "prefer-destructuring": ["error", {
-        "array": false,
-        "object": true
-      }, {
-        "enforceForRenamedProperties": false
-      }]
+      "prefer-destructuring": [
+        "error",
+        {
+          "array": false,
+          "object": true
+        },
+        {
+          "enforceForRenamedProperties": false
+        }
+      ]
     },
     "settings": {
       "import/resolver": "webpack"
