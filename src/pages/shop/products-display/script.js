@@ -21,6 +21,9 @@ export default {
     categoryProducts() {
       return this.products.filter(p => p.categories.includes(this.category));
     },
+
+    minScroll() { return 0; },
+    maxScroll() { return Infinity; },
   },
 
   methods: {
