@@ -1,3 +1,6 @@
+const Lethargy = require('exports-loader?this.Lethargy!lethargy/lethargy');
+const lethargy = new Lethargy(null, 30);
+
 // Send request to development server if running locally
 const apiBase = ['localhost', '0.0.0.0'].includes(window.location.hostname)
   ? 'http://0.0.0.0:3000'
@@ -34,9 +37,26 @@ export default {
     },
 
     scrollHandler(evt) {
-      this.scrollPx += evt.deltaY;
       evt.stopPropagation(); // Prevent navigation
       evt.preventDefault();
+
+      // Distinguish between user scrolling and "inertial" scrolling
+      const isUserScroll = lethargy.check(evt);
+
+      // Move scroll if we're within bounds
+      const newScroll = this.scrollPx + evt.deltaY;
+
+      if (newScroll >= this.minScroll && newScroll <= this.maxScroll) {
+        // Scroll normally if the scroll event would land us in the category's bounds
+        this.scrollPx = newScroll;
+        console.log('scroll');
+      } else if (!isUserScroll) {
+        // Rubber band if inertial scrolling carries scroll out of bounds
+        console.log('rubber band');
+      } else {
+        // Change category if user-initiated scrolling brings us out of bounds
+        console.log('switch');
+      }
     },
   },
 
