@@ -1,3 +1,5 @@
+import store from '../store';
+
 export default [
   {
     name: 'home',
@@ -5,6 +7,8 @@ export default [
     component: require('./home/home.vue').default,
     meta: { primary: true, navIconColor: 'white' },
   },
+  // When navigating to /shop, go to the category most recently visited
+  { path: '/shop', redirect: () => `/shop/${store.state.shopCategory}` },
   {
     name: 'shop',
     path: '/shop/:category',

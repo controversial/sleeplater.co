@@ -6,7 +6,7 @@ import NavLink from './nav-link/nav-link.vue';
 Vue.component('nav-link', NavLink);
 
 import routes from '../pages';
-const primaryRoutes = routes.filter(route => route.meta.primary);
+const primaryRoutes = routes.filter(route => (route.meta || {}).primary);
 const primaryRouteNames = primaryRoutes.map(route => route.name);
 
 import store from '../store';
