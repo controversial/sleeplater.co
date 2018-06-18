@@ -16,6 +16,7 @@ export default {
     scrollPx: 0,
 
     scrollEndTimeout: undefined,
+    windowWidth: window.innerWidth, // Reactive version
   }),
 
   computed: {
@@ -30,7 +31,12 @@ export default {
     },
 
     minScroll() { return 0; },
-    maxScroll() { return Infinity; },
+    maxScroll() {
+      //                  |  margins  |+| width of items from center of first to center of last |
+      const itemsWidthVw = ((17.8 * 2) + (27.4 * (this.categoryProducts.length - 1)));
+      const itemsWidthPx = itemsWidthVw * (0.01 * this.windowWidth);
+      return clamp(itemsWidthPx - this.windowWidth, 0, Infinity);
+    },
   },
 
   methods: {
@@ -85,5 +91,9 @@ export default {
       .then(r => r.json())
       .then((products) => { this.products = products; })
       .then(() => { this.category = this.categories[0]; });
+
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth;
+    });
   },
 };
