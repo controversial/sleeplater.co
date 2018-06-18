@@ -89,7 +89,9 @@ export default {
     fetch(`${apiBase}/products`)
       .then(r => r.json())
       .then((products) => { this.products = products; })
-      .then(() => { this.category = this.categories[0]; });
+      .then(() => {
+        if (this.$route.params.category === 'default') this.$router.replace(`/shop/${this.categories[0]}`);
+      });
 
     window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
