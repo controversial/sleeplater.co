@@ -10,6 +10,6 @@ export function pick(object, keys) {
   return out;
 }
 
-export function clamp(num, min, max) {
+export function clamp(num, min = 0, max = Infinity) {
   return Math.max(Math.min(num, max), min);
 }
