@@ -84,7 +84,7 @@ export default {
     },
   },
 
-  mounted() {
+  created() {
     // Make sure vuex record of category matches the one we're displaying
     this.$store.commit('changeCategory', this.$route.params.category);
 
