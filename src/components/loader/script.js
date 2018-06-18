@@ -42,7 +42,7 @@ export default {
       // Tries to find a balance between letters looking properly-kerned while collapsed and letters
       // looking properly-kerned while expanded. Moves the width of each letter closer to the
       // average width of all letters by a specified amount (0 has no effect, 1 has complete effect)
-      const spans = [...elem.childNodes];
+      const spans = [...elem.children];
       const letterWidths = spans.map(span => span.offsetWidth);
       const averageWidth = letterWidths.reduce((a, b) => a + b) / letterWidths.length;
       const amount = 0.5;

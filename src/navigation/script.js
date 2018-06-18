@@ -84,7 +84,7 @@ export default {
       // Clicking other pages requires more logic
       else {
         // Move other pages down offscreen (takes 0.65s)
-        const pages = [this.$refs.pageWrapper, ...this.$refs.stack.childNodes];
+        const pages = [this.$refs.pageWrapper, ...this.$refs.stack.children];
         pages
           .filter(p => p.getAttribute('name') !== pageName)
           .forEach(page => page.classList.add('down'));
@@ -144,7 +144,7 @@ export default {
     navOpen(open) {
       if (!open) {
         this.$refs.pageLinks.classList.remove('highlight');
-        this.$refs.pageLinks.childNodes.forEach(l => l.classList.remove('hover'));
+        [...this.$refs.pageLinks.children].forEach(l => l.classList.remove('hover'));
       }
     },
   },
