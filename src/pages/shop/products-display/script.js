@@ -12,6 +12,8 @@ export default {
     products: [],
     category: '',
     scrollPx: 0,
+
+    scrollEndTimeout: undefined,
   }),
 
   computed: {
@@ -57,6 +59,17 @@ export default {
         // Change category if user-initiated scrolling brings us out of bounds
         console.log('switch');
       }
+
+      // event will be called, but each scroll also cancels any existing "scroll end timer." Only
+      // when inertial scrolling is finished will the "scroll end" event be called, because this
+      // timer will not be cancelled
+      clearTimeout(this.scrollEndTimeout);
+      this.scrollEndTimeout = setTimeout(() => this.scrollEnd(), 100);
+    },
+
+    // Called when inertial scrolling is finished
+    scrollEnd() {
+      console.log('---------------');
     },
   },
 
