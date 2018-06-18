@@ -9,7 +9,8 @@
   transform: translate(-50%, -50%)
 
   img
-    position: static
+    position: relative
+    z-index: 0
     height: 100%
     width: auto
     will-change: transform
@@ -17,6 +18,8 @@
 
   .info
     position: absolute
+    z-index: 1
+    transform: translateZ(10px)
     bottom: 10%
     left: -8.5%
     width: 100%
