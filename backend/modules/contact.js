@@ -23,7 +23,7 @@ module.exports = function sendContactMessage(name, email, phone, message, mode) 
         { title: 'Email', value: email, short: true },
         phone ? { title: 'Phone number', value: phone, short: true } : undefined,
       ],
-      fallback: `Message from ${name} (${email}, ${phone}): ${message}.`, // TODO: modeWord here
+      fallback: `${modeWord} from ${name} (${email}, ${phone}): ${message}.`,
     }],
   };
   // Send request to Slack webhook
