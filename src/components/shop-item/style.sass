@@ -7,6 +7,8 @@
   top: 50%
   left: 17.8vw
   transform: translate(-50%, -50%)
+  cursor: pointer
+  perspective: 800px
 
   img
     position: relative
@@ -19,7 +21,7 @@
   .info
     position: absolute
     z-index: 1
-    transform: translateZ(10px)
+    transform: translateZ(10px) rotateY(-60deg)
     bottom: 10%
     left: -8.5%
     width: 100%
@@ -28,6 +30,10 @@
     font-size: 1.3rem
     color: $dark-1
 
+    opacity: 0
+    transform-origin: 58.5% 50% -3em
+    transition: opacity .5s, transform .65s
+
     .title
       text-transform: uppercase
       font-weight: 700
@@ -35,3 +41,7 @@
 
     .price
       font-weight: 400
+
+  &:hover .info
+    opacity: 1
+    transform: translateZ(10px) rotateY(0)
