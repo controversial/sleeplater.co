@@ -85,6 +85,9 @@ export default {
   },
 
   mounted() {
+    // Make sure vuex record of category matches the one we're displaying
+    this.$store.commit('changeCategory', this.$route.params.category);
+
     // Get products list from backend
     fetch(`${apiBase}/products`)
       .then(r => r.json())
@@ -96,5 +99,12 @@ export default {
     window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
     });
+  },
+
+  watch: {
+    '$route.params.category': function categoryChanged() {
+      console.log(this.$route.params.category);
+      this.$store.commit('changeCategory', this.$route.params.category);
+    },
   },
 };

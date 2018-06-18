@@ -9,6 +9,8 @@ import routes from '../pages';
 const primaryRoutes = routes.filter(route => route.meta.primary);
 const primaryRouteNames = primaryRoutes.map(route => route.name);
 
+import store from '../store';
+
 import { delay } from '../helpers';
 
 export default {
@@ -56,8 +58,15 @@ export default {
 
   methods: {
     // Move the whole page "up" or "down" (navigate)
-    navUp() { if (this.canGoUp) this.$router.push(primaryRoutes[this.routeIndex - 1]); },
-    navDown() { if (this.canGoDown) this.$router.push(primaryRoutes[this.routeIndex + 1]); },
+    navToIndex(index) {
+      this.$router.push({
+        name: primaryRoutes[index].name,
+        // Pass appropriate params to shop page if necessary
+        params: primaryRoutes[index].name === 'shop' ? { category: store.state.shopCategory } : undefined,
+      });
+    },
+    navUp() { if (this.canGoUp) this.navToIndex(this.routeIndex - 1); },
+    navDown() { if (this.canGoDown) this.navToIndex(this.routeIndex + 1); },
     // Show/hide navigation menu
     toggle() {
       this.navTransitionDelay = '0s';
@@ -95,7 +104,7 @@ export default {
         this.transitionOverride = true;
         pages.forEach(page => page.classList.remove('down', 'up', 'hover'));
         this.navOpen = false;
-        this.$router.push(routes.find(r => r.name === pageName).path);
+        this.$router.push({ name: pageName });
       }
     },
 

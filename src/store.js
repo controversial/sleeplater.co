@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     loaded: false,
+    shopCategory: 'default',
     contactForm: {
       name: '',
       email: '',
@@ -15,6 +16,7 @@ export default new Vuex.Store({
   },
   mutations: {
     loaded(state) { state.loaded = true; },
+    changeCategory(state, category) { state.shopCategory = category; },
     updateContactForm(state, payload) { state.contactForm[payload.item] = payload.value; },
   },
 });
