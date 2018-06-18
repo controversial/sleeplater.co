@@ -1,3 +1,5 @@
+import { clamp } from '../../../helpers';
+
 const Lethargy = require('exports-loader?this.Lethargy!lethargy/lethargy');
 const lethargy = new Lethargy(null, 30);
 
@@ -54,10 +56,14 @@ export default {
         console.log('scroll');
       } else if (!isUserScroll) {
         // Rubber band if inertial scrolling carries scroll out of bounds
+        // TODO
+        this.scrollPx = clamp(newScroll, this.minScroll, this.maxScroll);
         console.log('rubber band');
       } else {
         // Change category if user-initiated scrolling brings us out of bounds
-        console.log('switch');
+        // TODO
+        this.scrollPx = clamp(newScroll, this.minScroll, this.maxScroll);
+        console.log('SWITCH');
       }
 
       // event will be called, but each scroll also cancels any existing "scroll end timer." Only
