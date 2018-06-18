@@ -12,7 +12,6 @@ const apiBase = ['localhost', '0.0.0.0'].includes(window.location.hostname)
 export default {
   data: () => ({
     products: [],
-    category: '',
     scrollPx: 0,
 
     scrollEndTimeout: undefined,
@@ -27,7 +26,7 @@ export default {
         .filter((n, i, list) => list.indexOf(n) === i); // Remove duplicates
     },
     categoryProducts() {
-      return this.products.filter(p => p.categories.includes(this.category));
+      return this.products.filter(p => p.categories.includes(this.$route.params.category));
     },
 
     minScroll() { return 0; },

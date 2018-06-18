@@ -7,7 +7,7 @@ export default [
   },
   {
     name: 'shop',
-    path: '/shop',
+    path: '/shop/:category',
     component: require('./shop/shop.vue').default,
     meta: { primary: true, navIconColor: 'black' },
   },
