@@ -6,13 +6,19 @@
   height: 2px
   background: $actually-black
   bottom: calc(5% - 1px)
-  transition: opacity .5s
+  transition: opacity .5s, transform .5s
 
   &.left
     left: 0
+    transform-origin: left center
 
   &.right
     right: 0
+    transform-origin: right center
+
+  &.hidden
+    transform: scaleX(0)
+    opacity: .25
 
 
 .num
@@ -37,5 +43,17 @@
   &.right
     transform: translate(-50%, 50%) translateX(calc(46.875vw - 1em)) scale(.66)
 
+    &:hover
+      transform: translate(-50%, 50%) translateX(calc(45.625vw - 1em)) scale(.66)
+
+      & ~ .arrow.right
+        transform: scaleX(1.4)
+
   &.left
     transform: translate(-50%, 50%) translateX(calc(-46.875vw + 1em)) scale(.66)
+
+    &:hover
+      transform: translate(-50%, 50%) translateX(calc(-45.625vw + 1em)) scale(.66)
+
+      & ~ .arrow.left
+        transform: scaleX(1.4)

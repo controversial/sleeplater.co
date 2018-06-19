@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div class="arrow left" v-bind:style="{ opacity: canGoLeft ? 1 : 0 }"></div>
-    <div class="arrow right" v-bind:style="{ opacity: canGoRight ? 1 : 0 }"></div>
     <div class="num" v-for="(_, n) in numItems /* _ is range [1, numItems]; n is [0, numItems) */"
       v-bind:class="{
         left: n <= leftVal, // Should the number be on the left side?
@@ -11,6 +9,9 @@
       }"
       v-on:click="change(n)"
     >{{(n + 1).toString().padStart(2, '0')}}</div>
+
+    <div class="arrow left" v-bind:class="{ hidden: !canGoLeft }"></div>
+    <div class="arrow right" v-bind:class="{ hidden: !canGoRight }"></div>
   </div>
 </template>
 <script src="./script.js"></script>
