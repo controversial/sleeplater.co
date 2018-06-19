@@ -1,0 +1,36 @@
+@import '../../colors'
+
+.arrow
+  position: absolute
+  width: 3.125vw
+  height: 2px
+  background: $actually-black
+  bottom: calc(3.5% - 1px)
+
+  &.left
+    left: 0
+
+  &.right
+    right: 0
+
+
+.num
+  position: absolute
+  bottom: 3.5%
+  left: 50vw
+  font-size: 1.3rem
+  font-family: 'Alef', sans-serif
+  font-weight: 700
+  opacity: 0
+
+  &.visible
+    opacity: 1
+
+  &.center
+    transform: translate(-50%, 50%)
+
+  &.right
+    transform: translate(-50%, 50%) translateX(calc(46.875vw - 1em)) scale(.66)
+
+  &.left
+    transform: translate(-50%, 50%) translateX(calc(-46.875vw + 1em)) scale(.66)
