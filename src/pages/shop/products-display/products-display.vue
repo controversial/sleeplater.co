@@ -7,7 +7,7 @@
       </shop-item>
     </div>
 
-    <pagination v-bind:num-items="categories.length"></pagination>
+    <pagination v-bind:num-items="categories.length" v-model="categoryIndex"></pagination>
   </div>
 </template>
 

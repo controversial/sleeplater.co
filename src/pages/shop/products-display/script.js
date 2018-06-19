@@ -29,6 +29,11 @@ export default {
       return this.products.filter(p => p.categories.includes(this.$route.params.category));
     },
 
+    categoryIndex: {
+      get() { return this.categories.indexOf(this.$route.params.category); },
+      set(i) { this.$router.push(`/shop/${this.categories[i]}`); },
+    },
+
     minScroll() { return 0; },
     maxScroll() {
       //                  |  margins  |+| width of items from center of first to center of last |
