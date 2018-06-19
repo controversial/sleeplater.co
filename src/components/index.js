@@ -38,6 +38,9 @@ Vue.component('loader', Loader);
 import ShopItem from './shop-item/shop-item.vue';
 Vue.component('shop-item', ShopItem);
 
+import ShopPagination from './shop-pagination/shop-pagination.vue';
+Vue.component('pagination', ShopPagination);
+
 
 // Contact
 
