@@ -14,7 +14,7 @@ export default {
   },
 
   methods: {
-    switch(value) {
+    change(value) {
       this.$emit('input', value);
     },
   },
