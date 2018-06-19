@@ -103,7 +103,6 @@ export default {
 
   watch: {
     '$route.params.category': function categoryChanged() {
-      console.log(this.$route.params.category);
       this.$store.commit('changeCategory', this.$route.params.category);
     },
   },
