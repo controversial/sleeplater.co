@@ -8,8 +8,6 @@
     "watch": "webpack --watch",
     "lint-sass": "sass-lint 'app/**/*.sass' -v",
     "lint-js": "eslint . --ext js,vue",
-    "preinstall": "rm -rf node_modules/aquarelle",
-    "postinstall": "git clone https://github.com/controversial/aquarelle node_modules/aquarelle"
   },
   "repository": {
     "type": "git",
