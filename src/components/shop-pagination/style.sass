@@ -22,11 +22,14 @@
   font-size: 1.3rem
   font-family: 'Alef', sans-serif
   font-weight: 700
+  cursor: pointer
+  pointer-events: none
   opacity: 0
   transition: transform .5s, opacity .5s
 
   &.visible
     opacity: 1
+    pointer-events: all
 
   &.center
     transform: translate(-50%, 50%)
