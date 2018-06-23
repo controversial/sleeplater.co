@@ -2,6 +2,7 @@
 
 .arrow
   position: absolute
+  z-index: 1
   width: 3.125vw
   height: 2px
   background: $actually-black
@@ -23,12 +24,12 @@
 
 .num
   position: absolute
+  z-index: 1
   bottom: 5%
   left: 50vw
   font-size: 1.3rem
   font-family: 'Alef', sans-serif
   font-weight: 700
-  cursor: pointer
   pointer-events: none
   opacity: 0
   transition: transform .5s, opacity .5s
@@ -43,17 +44,35 @@
   &.right
     transform: translate(-50%, 50%) translateX(calc(46.875vw - 1em)) scale(.66)
 
-    &:hover
-      transform: translate(-50%, 50%) translateX(calc(45.625vw - 1em)) scale(.66)
-
-      & ~ .arrow.right
-        transform: scaleX(1.4)
-
   &.left
     transform: translate(-50%, 50%) translateX(calc(-46.875vw + 1em)) scale(.66)
 
-    &:hover
+
+.click-target
+  position: absolute
+  z-index: 2
+  width: calc(3.5vw + 2em)
+  height: 1.5rem
+  bottom: calc(5% - .75em)
+  cursor: pointer
+
+  &:hover
+    width: calc(3.5vw + 3em)
+
+  &.left
+    left: 0
+
+    &:hover ~ .num.left
       transform: translate(-50%, 50%) translateX(calc(-45.625vw + 1em)) scale(.66)
 
-      & ~ .arrow.left
-        transform: scaleX(1.4)
+  &.right
+    right: 0
+
+    &:hover ~ .num.right
+      transform: translate(-50%, 50%) translateX(calc(45.625vw - 1em)) scale(.66)
+
+  &:hover ~ .arrow:not(.hidden)
+    transform: scaleX(1.4)
+
+  &.disabled
+    pointer-events: none

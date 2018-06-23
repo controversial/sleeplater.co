@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="click-target left" v-bind:class="{ disabled: !canGoLeft }" v-on:click="left"></div>
+    <div class="click-target right" v-bind:class="{ disabled: !canGoRight }" v-on:click="right"></div>
+
     <div class="num" v-for="(_, n) in numItems /* _ is range [1, numItems]; n is [0, numItems) */"
       v-bind:class="{
         left: n <= leftVal, // Should the number be on the left side?

@@ -14,8 +14,7 @@ export default {
   },
 
   methods: {
-    change(value) {
-      this.$emit('input', value);
-    },
+    left() { this.$emit('input', this.leftVal); },
+    right() { this.$emit('input', this.rightVal); },
   },
 };
