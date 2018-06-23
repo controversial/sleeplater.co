@@ -107,8 +107,13 @@ export default {
   },
 
   watch: {
-    '$route.params.category': function categoryChanged() {
+    '$route.params.category': function categoryChanged(newCat, oldCat) {
+      // Update current category stored in Vuex
       this.$store.commit('changeCategory', this.$route.params.category);
+      // Match scroll position to the direction we're coming from for continuity
+      this.scrollPx = this.categories.indexOf(newCat) > this.categories.indexOf(oldCat)
+        ? this.minScroll
+        : this.maxScroll;
     },
   },
 };
