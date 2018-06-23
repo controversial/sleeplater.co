@@ -63,17 +63,14 @@ export default {
       if (newScroll >= this.minScroll && newScroll <= this.maxScroll) {
         // Scroll normally if the scroll event would land us in the category's bounds
         this.scrollPx = newScroll;
-        console.log('scroll');
       } else if (!isUserScroll) {
         // Rubber band if inertial scrolling carries scroll out of bounds
         // TODO
         this.scrollPx = clamp(newScroll, this.minScroll, this.maxScroll);
-        console.log('rubber band');
       } else {
         // Change category if user-initiated scrolling brings us out of bounds
         // TODO
         this.scrollPx = clamp(newScroll, this.minScroll, this.maxScroll);
-        console.log('SWITCH');
       }
 
       // event will be called, but each scroll also cancels any existing "scroll end timer." Only
@@ -84,9 +81,7 @@ export default {
     },
 
     // Called when inertial scrolling is finished
-    scrollEnd() {
-      console.log('---------------');
-    },
+    scrollEnd() {},
   },
 
   created() {
