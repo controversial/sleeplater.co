@@ -7,8 +7,15 @@ const enterDuration = 0.35;
 
 // Old items leaving
 export async function leave(el, done) {
+  const goingRight = this.categoryIndex > this.categories.indexOf(this.prevCategory);
+
   // Delay
-  await delay(0 * el.dataset.index);
+  // Staggers from edge that we're going towards (going to the category to the right means rightmost
+  // product leaves first)
+  const oldProducts = this.products.filter(p => p.categories.includes(this.prevCategory));
+  await delay(goingRight
+    ? 50 * el.dataset.index // leftmost out first
+    : 50 * (oldProducts.length - 1 - el.dataset.index)); // rightmost out first
 
   // Before
   el.style.transition = `transform ${leaveDuration}s, opacity ${leaveDuration}s`;
@@ -16,7 +23,7 @@ export async function leave(el, done) {
 
   // Animate
   const initialTransform = el.style.transform;
-  el.style.transform = `${initialTransform} translateX(-50%)`;
+  el.style.transform = `${initialTransform} translateX(${goingRight ? '-' : ''}50%)`;
   el.style.opacity = 0;
 
   // End
