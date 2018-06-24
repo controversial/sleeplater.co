@@ -44,6 +44,9 @@ Vue.component('pagination', ShopPagination);
 import CartButton from './cart-button/cart-button.vue';
 Vue.component('cart-button', CartButton);
 
+import Cart from './cart/cart.vue';
+Vue.component('cart', Cart);
+
 
 // Contact
 
