@@ -11,7 +11,8 @@ export async function leave(el, done) {
   const goingRight = this.categoryIndex > this.categories.indexOf(this.prevCategory);
 
   // Stagger delay
-  const oldProducts = this.products.filter(p => p.categories.includes(this.prevCategory));
+  const oldProducts = this.$store.state.products
+    .filter(p => p.categories.includes(this.prevCategory));
   await delay(goingRight
     ? stagger * el.dataset.index // leftmost out first
     : stagger * (oldProducts.length - 1 - el.dataset.index)); // rightmost out first
@@ -51,7 +52,8 @@ export async function enter(el, done) {
   const goingRight = this.categoryIndex > this.categories.indexOf(this.prevCategory);
 
   // Wait for old items to leave
-  const oldProducts = this.products.filter(p => p.categories.includes(this.prevCategory));
+  const oldProducts = this.$store.state.products
+    .filter(p => p.categories.includes(this.prevCategory));
   if (oldProducts.length) await delay((leaveDuration * 600) + (stagger * oldProducts.length));
 
   // Stagger delay
