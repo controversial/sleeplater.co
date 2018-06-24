@@ -2,12 +2,12 @@
   <div class="navigation">
     <!-- Nav controls (atop pages) -->
     <menu-button
-      v-bind:navOpen="navOpen"
+      v-bind:navOpen="$store.state.navOpen"
       v-on:click="toggle"
       v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
     ></menu-button>
     <transition name="fade">
-      <nav-buttons ref="nav" v-if="!navOpen"
+      <nav-buttons ref="nav" v-if="!$store.state.navOpen"
         v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
         v-on:up="navUp" v-on:down="navDown"
         v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
@@ -16,8 +16,8 @@
 
     <!-- Holds the actual full content, shrinks into navigation view -->
     <div class="page-wrapper" ref="pageWrapper" v-bind:name="$route.name"
-      v-bind:class="{ 'nav-open': navOpen }" v-bind:style="{ transitionDuration: wrapperTransitionDuration }"
-      v-on:click="navOpen = false"
+      v-bind:class="{ 'nav-open': $store.state.navOpen }" v-bind:style="{ transitionDuration: wrapperTransitionDuration }"
+      v-on:click="$store.commit('closeNav')"
       v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout"
     >
       <!-- Main page -->
@@ -46,7 +46,7 @@
     </div>
 
     <!-- Other pages appear in a stack behind -->
-    <transition name="delay"><div class="other-pages" ref="stack" v-if="navOpen">
+    <transition name="delay"><div class="other-pages" ref="stack" v-if="$store.state.navOpen">
       <div class="background-page-wrapper" v-for="page in otherRoutes" v-bind:name="page.name"
         v-bind:style="{ transitionDuration: wrapperTransitionDuration }"
         v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout" v-on:click="linkClick($event.target.getAttribute('name'))"

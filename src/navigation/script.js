@@ -15,8 +15,6 @@ import { delay } from '../helpers';
 
 export default {
   data: () => ({
-    navOpen: false,
-
     transitionName: '',
     transitionMode: '',
     navTransitionDelay: 0,
@@ -70,7 +68,7 @@ export default {
     // Show/hide navigation menu
     toggle() {
       this.navTransitionDelay = '0s';
-      this.navOpen = !this.navOpen;
+      this.$store.commit('toggleNav');
     },
 
     linkMouseover(pageName) {
@@ -89,7 +87,7 @@ export default {
     },
     async linkClick(pageName) {
       // Clicking the front page is simple: just close the menu
-      if (pageName === this.$route.name) this.navOpen = false;
+      if (pageName === this.$route.name) this.$store.commit('closeNav');
       // Clicking other pages requires more logic
       else {
         // Move other pages down offscreen (takes 0.65s)
@@ -103,13 +101,13 @@ export default {
         await delay(650);
         this.transitionOverride = true;
         pages.forEach(page => page.classList.remove('down', 'up', 'hover'));
-        this.navOpen = false;
-        this.$router.push({ name: pageName });
+        this.$store.commit('closeNav');
+        this.$router.push({ name: pageName, params: pageName === 'shop' ? { category: store.state.shopCategory } : undefined });
       }
     },
 
     pageMouseover(e) {
-      if (this.navOpen) {
+      if (this.$store.state.navOpen) {
         const pageName = e.target.getAttribute('name');
         const link = this.$refs.pageLinks.querySelector(`[name=${pageName}]`);
         if (link) {
@@ -119,7 +117,7 @@ export default {
       }
     },
     pageMouseout(e) {
-      if (this.navOpen) {
+      if (this.$store.state.navOpen) {
         const pageName = e.target.getAttribute('name');
         const link = this.$refs.pageLinks.querySelector(`[name=${pageName}]`);
         if (link) {
@@ -150,7 +148,7 @@ export default {
     },
 
     // Remove highlight class from links when closing menu
-    navOpen(open) {
+    '$store.state.navOpen': function navOpenWatcher(open) {
       if (!open) {
         this.$refs.pageLinks.classList.remove('highlight');
         [...this.$refs.pageLinks.children].forEach(l => l.classList.remove('hover'));
