@@ -1,9 +1,33 @@
-.cart-button svg
-  width: calc(11px + 1vw)
-  height: calc(11px + 1vw)
-  cursor: pointer
+@import '../../colors'
+
+.cart-button
+  svg
+    width: calc(11px + 1vw)
+    height: calc(11px + 1vw)
+    cursor: pointer
 
 @media (pointer: coarse)
   .cart-button svg
     width: calc(19px + 1vw)
     height: calc(19px + 1vw)
+
+
+.badge
+  font-family: 'Source Sans Pro', sans-serif
+  font-weight: 700
+  font-size: .45rem
+  color: $actually-white
+  width: .65rem
+  height: .65rem
+  position: absolute
+  top: -.25rem
+  right: -.25rem
+  background: $header-text
+  border-radius: 50%
+  box-shadow: 0 0 0 2px $actually-white
+
+  span
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -55%)
