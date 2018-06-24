@@ -1,11 +1,15 @@
 <template>
   <div class="products-container">
-    <div class="products" v-on:wheel="scrollHandler">
+    <transition-group tag="div" name="products" class="products" ref="products" v-on:wheel.native="scrollHandler" :appear="true" :css="false"
+      v-on:before-enter="beforeEnter"
+      v-on:enter="enter"
+      v-on:leave="leave"
+    >
       <shop-item
-        v-for="(product, i) in categoryProducts" v-bind="product" v-bind:offset-x="getXOffset(i)"
-        v-bind:key="product.id">
+        v-for="(product, i) in categoryProducts" v-bind="product" v-bind:offset-x="getXOffset(i)" v-bind:data-index="i"
+        v-bind:key="product.id + categoryIndex /* adding categoryIndex ensures that a product that's in multiple categories still animates */">
       </shop-item>
-    </div>
+    </transition-group>
 
     <pagination v-bind:num-items="categories.length" v-model="categoryIndex"></pagination>
   </div>

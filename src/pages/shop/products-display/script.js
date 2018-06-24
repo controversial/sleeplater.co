@@ -1,3 +1,4 @@
+import * as transitions from './item-transitions';
 import { clamp } from '../../../helpers';
 
 const Lethargy = require('exports-loader?this.Lethargy!lethargy/lethargy');
@@ -13,6 +14,7 @@ export default {
   data: () => ({
     products: [],
     scrollPx: 0,
+    prevCategory: null,
 
     scrollEndTimeout: undefined,
     windowWidth: window.innerWidth, // Reactive version
@@ -99,10 +101,16 @@ export default {
     window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
     });
+
+    // add transitions as methods such that each function keeps *this* context that we're in rn
+    Object.assign(this, ...Object.keys(transitions).map(key => ({
+      [key]: transitions[key].bind(this),
+    })));
   },
 
   watch: {
     '$route.params.category': function categoryChanged(newCat, oldCat) {
+      this.prevCategory = oldCat;
       // Update current category stored in Vuex
       this.$store.commit('changeCategory', this.$route.params.category);
       // Match scroll position to the direction we're coming from for continuity
