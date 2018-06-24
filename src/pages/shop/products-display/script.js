@@ -87,20 +87,23 @@ export default {
   },
 
   created() {
-    // Make sure vuex record of category matches the one we're displaying
-    this.$store.commit('changeCategory', this.$route.params.category);
+    // When the component is rendered in the nav menu don't try to do all this stuff haha
+    if (!this.$store.state.navOpen) {
+      // Make sure vuex record of category matches the one we're displaying
+      this.$store.commit('changeCategory', this.$route.params.category);
 
-    // Get products list from backend
-    fetch(`${apiBase}/products`)
-      .then(r => r.json())
-      .then((products) => { this.products = products; })
-      .then(() => {
-        if (this.$route.params.category === 'default') this.$router.replace(`/shop/${this.categories[0]}`);
+      // Get products list from backend
+      fetch(`${apiBase}/products`)
+        .then(r => r.json())
+        .then((products) => { this.products = products; })
+        .then(() => {
+          if (this.$route.params.category === 'default') this.$router.replace(`/shop/${this.categories[0]}`);
+        });
+
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth;
       });
-
-    window.addEventListener('resize', () => {
-      this.windowWidth = window.innerWidth;
-    });
+    }
 
     // add transitions as methods such that each function keeps *this* context that we're in rn
     Object.assign(this, ...Object.keys(transitions).map(key => ({
