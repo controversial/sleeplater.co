@@ -15,6 +15,11 @@
 
   background: $dark-1
   box-shadow: -.25vmin 0 4vmin -.5vmin transparentize($actually-black, .5)
+  transition: transform .5s, box-shadow .5s
+
+  &.hidden
+    box-shadow: none
+    transform: translateX(100%)
 
 .contents
   position: absolute
