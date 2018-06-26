@@ -7,7 +7,8 @@
     >
       <shop-item
         v-for="(product, i) in categoryProducts" v-bind="product" v-bind:offset-x="getXOffset(i)" v-bind:data-index="i"
-        v-bind:key="product.id + categoryIndex /* adding categoryIndex ensures that a product that's in multiple categories still animates */">
+        v-bind:key="product.id + categoryIndex /* adding categoryIndex ensures that a product that's in multiple categories still animates */"
+        v-on:click.native="clicked(i)">
       </shop-item>
     </transition-group>
 

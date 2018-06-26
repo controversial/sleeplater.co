@@ -52,6 +52,10 @@ export default {
       return `calc(${27.4 * productIndex}vw - ${this.scrollPx}px)`;
     },
 
+    clicked(i) {
+      console.log(this.categoryProducts[i]);
+    },
+
     scrollHandler(evt) {
       evt.stopPropagation(); // Prevent navigation
       evt.preventDefault();
