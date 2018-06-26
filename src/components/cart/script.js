@@ -2,6 +2,11 @@ export default {
   props: ['hidden'],
 
   computed: {
+    itemsCount() {
+      return this.$store.state.cart
+        .map(item => item.quantity)
+        .reduce((a, b) => a + b, 0);
+    },
     subtotal() {
       return this.$store.state.cart
         // Calculate price for each cart item
@@ -11,7 +16,7 @@ export default {
           return optionPrice * quantity;
         })
         // Sum
-        .reduce((a, b) => a + b);
+        .reduce((a, b) => a + b, 0);
     },
   },
 };
