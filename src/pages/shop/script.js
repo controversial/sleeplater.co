@@ -6,4 +6,11 @@ export default {
   data: () => ({
     cartOpen: false,
   }),
+  computed: {
+    itemsCount() {
+      return this.$store.state.cart
+        .map(item => item.quantity)
+        .reduce((a, b) => a + b, 0);
+    },
+  },
 };
