@@ -48,7 +48,9 @@ module.exports.getProducts = async function getProducts() {
     description: p.attributes.description,
     price: p.attributes.default_price,
     image: p.attributes.primary_image_url,
-    options: p.relationships.options.data.map(option => findOption(option.id)),
+    options: p.relationships.options.data
+      .map(option => findOption(option.id)) // Find options
+      .reduce((acc, o) => Object.assign(acc, { [o.name]: o.price }), {}), // Make into an object
     categories: p.relationships.categories.data.map(category => nameCategory(category.id)),
   }));
   return products;
