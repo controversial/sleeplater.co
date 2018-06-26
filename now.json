@@ -1,4 +1,5 @@
 {
+  "alias": "sleeplater.now.sh",
   "static": {
     "rewrites": [
       { "source": "**", "destination": "/index.html" }
