@@ -53,7 +53,14 @@ export default {
     },
 
     clicked(i) {
-      console.log(this.categoryProducts[i]);
+      const product = this.categoryProducts[i];
+      // TODO: options and quantity should be configureable
+      // maybe: store an object in Vuex that maps product ID to currently selected options/quantity?
+      this.$store.commit('cartUpdate', {
+        id: product.id,
+        option: Object.keys(product.options)[0], // FIXME: just the first one first for now
+        quantity: 1, // FIXME: ahh
+      });
     },
 
     scrollHandler(evt) {
