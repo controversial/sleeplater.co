@@ -30,6 +30,8 @@ export default new Vuex.Store({
     // Shop
     changeCategory(state, category) { state.shopCategory = category; },
     productsFetched(state, products) { state.products = products; state.productsFetched = true; },
+    addToCart(state, payload) { /* TODO (add item configured with given options/quantity) */ },
+    updateInCart(state, payload) { /* TODO (change options/quantity) */ },
     // Contact
     updateContactForm(state, payload) { state.contactForm[payload.item] = payload.value; },
   },
