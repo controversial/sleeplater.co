@@ -12,7 +12,7 @@
         <span>${{ Math.round(subtotal * 100) / 100 }}</span>
       </div>
 
-      <div class="details">
+      <div class="details" v-if="itemsCount">
         <div class="cart-item" v-for="(product, i) in productsInCart">
           <div class="number">{{i+1}}.</div>
           <div class="name">{{product.name}}</div>
