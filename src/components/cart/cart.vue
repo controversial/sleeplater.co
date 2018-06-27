@@ -9,7 +9,7 @@
       <div class="summary">
         <span>{{itemsCount}} item{{itemsCount === 1 ? '' : 's'}}</span>
         <div class="separator"></div>
-        <span>${{ subtotal }}</span>
+        <span>${{ Math.round(subtotal * 100) / 100 }}</span>
       </div>
 
       <div class="details">
