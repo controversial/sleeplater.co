@@ -3,6 +3,9 @@
 @import 'cart-item'
 
 
+
+// Cart drawer
+
 .cart
   position: absolute
   top: 0
@@ -22,12 +25,15 @@
     box-shadow: -375px 0 0 100vw transparentize($actually-black, 1)
     transform: translateX(100%)
 
-.contents
-  position: absolute
-  width: 100%
-  height: 100%
-  padding: 8% 10.6%
+  .contents
+    position: absolute
+    width: 100%
+    height: 100%
+    padding: 8% 10.6%
 
+
+
+// Close button
 
 svg.feather-x
   color: $actually-white
@@ -42,7 +48,7 @@ svg.feather-x
     width: calc(19px + 1vw)
     height: calc(19px + 1vw)
 
-
+// "cart" header
 
 h1
   font-family: $avenir-font-stack
@@ -54,6 +60,8 @@ h1
   color: $actually-white
 
 
+
+// Very simple quick summary of what's in the cart (how many items, how much)
 
 .summary
   display: flex
@@ -72,12 +80,19 @@ h1
     background: transparentize($actually-white, .35)
     margin: 0 .3rem
 
+
+
+// Detailed listing of all items in cart
+
 .details
   margin-top: .88rem
   padding: 5%
   background: $dark-2
   border-radius: 3px
   box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
+
+
+  // Some info (subtotal, tax, total) that appears at the bottom below the .cart-item divs
 
   .cart-info div
     display: flex
@@ -100,3 +115,37 @@ h1
       &.right
         font-weight: 500
         margin-left: auto
+
+
+
+// Payment options
+
+.row
+  display: flex
+  align-items: flex-start
+  margin-top: 10px
+
+  .payment-method
+    flex-grow: 1
+    background: $dark-2
+    color: transparentize($actually-white, .35)
+    text-align: center
+    font-size: 16px
+    font-family: $avenir-font-stack
+    font-weight: 600
+    border-radius: 3px
+    height: 45px
+    padding: 13px
+    box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
+
+    // Keep everythin centered inside
+    display: flex
+    justify-content: center
+    align-items: center
+
+    &.selected
+      background: $dark-4
+      color: transparentize($actually-white, .15)
+
+    &:not(:last-child)
+      margin-right: 10px

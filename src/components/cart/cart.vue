@@ -33,9 +33,33 @@
         </div>
       </div>
 
+      <div class="checkout">
+        <div class="row">
+          <div class="payment-method paypal" v-html="require('!raw-loader!../../assets/PayPal.svg')"></div>
+          <div class="payment-method applepay" v-html="require('!raw-loader!../../assets/ApplePay.svg')"></div>
+        </div>
+        <div class="row">
+          <div class="payment-method creditcard" v-html="require('!raw-loader!../../assets/credit-card.svg') + '<span>Pay with credit card</span>'"></div>
+        </div>
     </div>
   </div>
 </template>
 
 <script src="./script.js"></script>
 <style scoped lang="sass" src="./style.sass"></style>
+
+<!-- these svg styles can't be scoped because the SVGs are added from require statements -->
+<style lang="sass">
+.cart .checkout .payment-method
+  svg
+    height: 18px
+    flex-grow: 0
+    width: auto
+    fill: currentColor
+
+    &:not(:last-child)
+      margin-right: 7px
+
+  g
+    fill: currentColor
+</style>
