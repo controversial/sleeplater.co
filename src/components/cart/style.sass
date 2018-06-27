@@ -78,3 +78,25 @@ h1
   background: $dark-2
   border-radius: 3px
   box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
+
+  .cart-info div
+    display: flex
+
+    span
+      font-family: $avenir-font-stack
+      font-size: 12px
+      font-weight: 600
+      letter-spacing: .53px
+      color: transparentize($actually-white, .55)
+
+      &.emphasis
+        font-size: 14px
+        color: transparentize($actually-white, .25)
+
+      &.left
+        font-weight: 600
+        margin-right: auto
+
+      &.right
+        font-weight: 500
+        margin-left: auto
