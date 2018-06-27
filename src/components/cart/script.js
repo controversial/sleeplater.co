@@ -1,6 +1,12 @@
 export default {
   props: ['hidden'],
 
+  methods: {
+    roundPrice(price) {
+      return (Math.round(price * 100) / 100).toFixed(2);
+    },
+  },
+
   computed: {
     itemsCount() {
       return this.$store.state.cart

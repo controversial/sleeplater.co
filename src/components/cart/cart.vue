@@ -9,7 +9,7 @@
       <div class="summary">
         <span>{{itemsCount}} item{{itemsCount === 1 ? '' : 's'}}</span>
         <div class="separator"></div>
-        <span>${{ Math.round(subtotal * 100) / 100 }}</span>
+        <span>${{ roundPrice(subtotal) }}</span>
       </div>
 
       <div class="details" v-if="itemsCount">
