@@ -21,14 +21,14 @@
         <div class="cart-info">
           <div>
             <span class="left">Subtotal</span>
-            <span class="right">{{ roundPrice(subtotal) }}</span>
+            <span class="right">${{ roundPrice(subtotal) }}</span>
           </div>
           <div>
             <span class="left">Tax</span>
-            <span class="right">{{ roundPrice(subtotal * 0.08) }}</span>
+            <span class="right">${{ roundPrice(subtotal * 0.08) }}</span>
           </div>
           <div>
-            <span class="left emphasis">Total</span><span class="right emphasis">{{ roundPrice(subtotal * 1.08) }}</span>
+            <span class="left emphasis">Total</span><span class="right emphasis">${{ roundPrice(subtotal * 1.08) }}</span>
           </div>
         </div>
       </div>
