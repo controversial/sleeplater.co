@@ -1,5 +1,6 @@
 @import '../../colors'
 @import '../../fonts'
+@import 'cart-item'
 
 
 .cart
@@ -11,7 +12,7 @@
   // 375px is full width on iPhone 6-size/X-size, and leaves a healthy margin on 6+ size phones (not
      so small that it looks accidental)
   width: 100vw
-  max-width: 375px
+  max-width: 400px
 
   background: $dark-1
   box-shadow: -375px 0 0 100vw transparentize($actually-black, .65)
@@ -70,3 +71,10 @@ h1
     border-radius: .11rem
     background: transparentize($actually-white, .35)
     margin: 0 .3rem
+
+.details
+  margin-top: .88rem
+  padding: 5%
+  background: $dark-2
+  border-radius: 3px
+  box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
