@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <div class="checkout">
+      <div class="checkout" v-if="itemsCount">
         <div class="row">
           <payment-method
             name="paypal"
@@ -58,6 +58,8 @@
           <submit-button style="flex-grow: 1" v-bind:disabled="!$store.state.paymentMethod">checkout</submit-button>
         </div>
       </div>
+
+      <div class="empty-state" v-if="!itemsCount">There's nothing in your cart!</div>
 
     </div>
   </div>
