@@ -6,7 +6,7 @@ export default {
   props: ['hidden'],
 
   data: () => ({
-    selectedPaymentMethod: 'paypal',
+    selectedPaymentMethod: '',
   }),
 
   methods: {
