@@ -1,0 +1,39 @@
+@import '../../../colors'
+@import '../../../fonts'
+
+
+.payment-method
+  flex: 1 0 0
+  cursor: pointer
+  background: $dark-2
+  color: transparentize($actually-white, .35)
+  text-align: center
+  font-size: 16px
+  font-family: $avenir-font-stack
+  font-weight: 600
+  border-radius: 3px
+  height: 45px
+  padding: 13px
+  box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
+
+  // Keep everythin centered inside
+  display: flex
+  justify-content: center
+  align-items: center
+
+  transition: background-color .35s, color .35s
+
+  &:hover
+    background: $dark-3
+    color: transparentize($actually-white, .25)
+
+  &.selected,
+  &.selected:hover
+    background: $dark-4
+    color: transparentize($actually-white, .15)
+
+  &:not(:last-child)
+    margin-right: 5px
+
+  &:not(:first-child)
+    margin-left: 5px

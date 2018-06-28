@@ -1,3 +1,7 @@
+import Vue from 'vue';
+import PaymentMethod from './payment-method/payment-method.vue';
+Vue.component('payment-method', PaymentMethod);
+
 export default {
   props: ['hidden'],
 
