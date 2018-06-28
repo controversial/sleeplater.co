@@ -29,14 +29,18 @@
   letter-spacing: .136em
   text-align: center
 
-  &:hover
+  &:not(.disabled):hover
     transform: scale(1.015)
     box-shadow: 0 7px 20px -2px transparentize($actually-black, .75)
 
-  &:active
+  &:not(.disabled):active
     transform: scale(.985)
     box-shadow: 0 7px 15px -3px transparentize($actually-black, .75)
     transition: transform .15s, box-shadow .15s
+
+  &.disabled
+    cursor: not-allowed
+    opacity: .35
 
   .spinner,
   .feather
@@ -64,7 +68,7 @@
 .button[state='static']
   width: 7rem
   color: $dark-1-contrast
-  transition: transform .25s, box-shadow .25s, width .35s, border-radius .35s, color .4s .25s
+  transition: transform .25s, box-shadow .25s, width .35s, border-radius .35s, color .4s .25s, opacity .25s
 
   // The content of the other states should be invisible
   .spinner,
