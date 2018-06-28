@@ -10,7 +10,6 @@
         right: n >= rightVal, // Right?
         visible: n >= leftVal && n <= rightVal // If it's not either left, center, or right, hide it
       }"
-      v-on:click="change(n)"
     >{{(n + 1).toString().padStart(2, '0')}}</div>
 
     <div class="arrow left" v-bind:class="{ hidden: !canGoLeft }"></div>
