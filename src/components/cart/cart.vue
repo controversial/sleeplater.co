@@ -47,7 +47,7 @@
           ></payment-method>
         </div>
         <div class="row">
-          <submit-button style="flex-grow: 1">checkout</submit-button>
+          <submit-button style="flex-grow: 1" v-bind:disabled="!selectedPaymentMethod">checkout</submit-button>
         </div>
       </div>
 
