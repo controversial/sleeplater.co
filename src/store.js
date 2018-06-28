@@ -7,12 +7,15 @@ export default new Vuex.Store({
   state: {
     // Navigation
     navOpen: false,
+
     // Home
     loaded: false,
+
     // Shop
     shopCategory: 'default',
     products: [],
     productsFetched: false,
+    paymentMethod: '',
     cart: [
       /*
       {
@@ -22,6 +25,7 @@ export default new Vuex.Store({
       }
       */
     ],
+
     // Contact
     contactForm: {
       name: '',
@@ -39,6 +43,7 @@ export default new Vuex.Store({
     // Shop
     changeCategory(state, category) { state.shopCategory = category; },
     productsFetched(state, products) { state.products = products; state.productsFetched = true; },
+    selectPaymentMethod(state, paymentMethodName) { state.paymentMethod = paymentMethodName; },
     cartUpdate(state, payload) { // Add or update an item in the cart
       // Search for the item/configuration in the existing cart state
       const cartItem = state.cart

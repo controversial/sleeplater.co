@@ -5,17 +5,9 @@ Vue.component('payment-method', PaymentMethod);
 export default {
   props: ['hidden'],
 
-  data: () => ({
-    selectedPaymentMethod: '',
-  }),
-
   methods: {
     roundPrice(price) {
       return (Math.round(price * 100) / 100).toFixed(2);
-    },
-
-    paymentChanged(paymentMethod) {
-      this.selectedPaymentMethod = paymentMethod;
     },
   },
 

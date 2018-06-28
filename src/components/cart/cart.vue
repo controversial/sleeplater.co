@@ -35,19 +35,27 @@
 
       <div class="checkout">
         <div class="row">
-          <payment-method name="paypal" v-on:change="paymentChanged" v-bind="{ selectedName: selectedPaymentMethod, svg: require('!raw-loader!../../assets/PayPal.svg')}"></payment-method>
-          <payment-method name="applepay" v-on:change="paymentChanged" v-bind="{ selectedName: selectedPaymentMethod, svg: require('!raw-loader!../../assets/ApplePay.svg')}"></payment-method>
+          <payment-method
+            name="paypal"
+            v-on:change="(name) => $store.commit('selectPaymentMethod', name)"
+            v-bind="{ selectedName: $store.state.paymentMethod, svg: require('!raw-loader!../../assets/PayPal.svg')}"
+          ></payment-method>
+          <payment-method
+            name="applepay"
+            v-on:change="(name) => $store.commit('selectPaymentMethod', name)"
+            v-bind="{ selectedName: $store.state.paymentMethod, svg: require('!raw-loader!../../assets/ApplePay.svg')}"
+          ></payment-method>
         </div>
         <div class="row">
           <payment-method
             name="credit"
-            v-on:change="paymentChanged"
             text="Pay with credit card"
-            v-bind="{ selectedName: selectedPaymentMethod, svg: require('!raw-loader!../../assets/credit-card.svg')}"
+            v-on:change="(name) => $store.commit('selectPaymentMethod', name)"
+            v-bind="{ selectedName: $store.state.paymentMethod, svg: require('!raw-loader!../../assets/credit-card.svg')}"
           ></payment-method>
         </div>
         <div class="row">
-          <submit-button style="flex-grow: 1" v-bind:disabled="!selectedPaymentMethod">checkout</submit-button>
+          <submit-button style="flex-grow: 1" v-bind:disabled="!$store.state.paymentMethod">checkout</submit-button>
         </div>
       </div>
 
