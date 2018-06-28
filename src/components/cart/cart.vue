@@ -35,11 +35,16 @@
 
       <div class="checkout">
         <div class="row">
-          <payment-method name="paypal" :svg="require('!raw-loader!../../assets/PayPal.svg')"></payment-method>
-          <payment-method name="paypal" :svg="require('!raw-loader!../../assets/ApplePay.svg')"></payment-method>
+          <payment-method name="paypal" v-on:change="paymentChanged" v-bind="{ selectedName: selectedPaymentMethod, svg: require('!raw-loader!../../assets/PayPal.svg')}"></payment-method>
+          <payment-method name="applepay" v-on:change="paymentChanged" v-bind="{ selectedName: selectedPaymentMethod, svg: require('!raw-loader!../../assets/ApplePay.svg')}"></payment-method>
         </div>
         <div class="row">
-          <payment-method name="credit" :svg="require('!raw-loader!../../assets/credit-card.svg')" text="Pay with credit card"></payment-method>
+          <payment-method
+            name="credit"
+            v-on:change="paymentChanged"
+            text="Pay with credit card"
+            v-bind="{ selectedName: selectedPaymentMethod, svg: require('!raw-loader!../../assets/credit-card.svg')}"
+          ></payment-method>
         </div>
         <div class="row">
           <submit-button style="flex-grow: 1">checkout</submit-button>
