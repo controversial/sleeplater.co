@@ -41,6 +41,11 @@
         <div class="row">
           <div class="payment-method creditcard" v-html="require('!raw-loader!../../assets/credit-card.svg') + '<span>Pay with credit card</span>'"></div>
         </div>
+        <div class="row">
+          <submit-button style="flex-grow: 1">checkout</submit-button>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
