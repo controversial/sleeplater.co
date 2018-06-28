@@ -9,7 +9,7 @@ export class ScrollHandler {
   }
 
   onWheel(e) {
-    if (Math.abs(e.deltaY) > 15 && new Date() - this.lastScrollNav > 650) {
+    if (!e.ctrlKey && Math.abs(e.deltaY) > 15 && new Date() - this.lastScrollNav > 650) {
       this[e.deltaY > 0 ? 'downFunc' : 'upFunc']();
       this.lastScrollNav = new Date();
     }
@@ -28,7 +28,7 @@ export class SwipeHandler {
   }
 
   onTouchMove(e) {
-    if (e.touches.length > 1) return;
+    if (e.touches.length > 1) this.canTouchNav = false;
     const pos = [e.touches[0].clientX, e.touches[0].clientY];
     const delta = [pos[0] - this.touchStartPosition[0], pos[1] - this.touchStartPosition[1]];
 
@@ -38,7 +38,8 @@ export class SwipeHandler {
     }
   }
 
-  onTouchEnd() {
-    this.canTouchNav = true;
+  onTouchEnd(e) {
+    // All touches are released
+    if (!e.touches.length) this.canTouchNav = true;
   }
 }
