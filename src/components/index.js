@@ -2,7 +2,22 @@
 import Vue from 'vue';
 
 // Feather icons
-import { ChevronUpIcon, ChevronDownIcon, BarChartIcon, GridIcon, ShoppingCartIcon, XIcon, InstagramIcon, TwitterIcon, MailIcon, CheckCircleIcon, AlertCircleIcon } from 'vue-feather-icons';
+import {
+  ChevronUpIcon,
+  ChevronDownIcon,
+  BarChartIcon,
+  GridIcon,
+  ShoppingCartIcon,
+  XIcon,
+  InstagramIcon,
+  TwitterIcon,
+  MailIcon,
+  CheckCircleIcon,
+  AlertCircleIcon,
+  CheckIcon,
+  PlusIcon,
+  MinusIcon,
+} from 'vue-feather-icons';
 Vue.component('chevron-up-icon', ChevronUpIcon);
 Vue.component('chevron-down-icon', ChevronDownIcon);
 Vue.component('menu-icon', BarChartIcon); // Goes sideways
@@ -14,6 +29,9 @@ Vue.component('twitter-icon', TwitterIcon);
 Vue.component('mail-icon', MailIcon);
 Vue.component('check-circle-icon', CheckCircleIcon);
 Vue.component('alert-circle-icon', AlertCircleIcon);
+Vue.component('check-icon', CheckIcon);
+Vue.component('plus-icon', PlusIcon);
+Vue.component('minus-icon', MinusIcon);
 
 
 // Navigation
