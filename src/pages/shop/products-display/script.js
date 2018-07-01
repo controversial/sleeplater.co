@@ -58,7 +58,8 @@ export default {
       // maybe: store an object in Vuex that maps product ID to currently selected options/quantity?
       this.$store.commit('cartUpdate', {
         id: product.id,
-        option: Object.keys(product.options)[0], // FIXME: just the first one first for now
+        size: product.options.sizes[0], // FIXME: just the first one first for now
+        color: product.options.colors[0],
         quantity: 1, // FIXME: ahh
       });
     },

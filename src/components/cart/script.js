@@ -19,12 +19,12 @@ export default {
     },
     productsInCart() {
       return this.$store.state.cart
-        .map(({ id, option, quantity }) => {
+        .map(({ id, size, color, quantity }) => { // eslint-disable-line object-curly-newline
           const product = this.$store.state.products.find(p => p.id === id);
           return {
             ...product,
-            option,
-            price: product.options[option],
+            size,
+            color,
             quantity,
           };
         });

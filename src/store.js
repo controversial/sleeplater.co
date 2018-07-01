@@ -20,7 +20,8 @@ export default new Vuex.Store({
       /*
       {
         id: '',
-        option: 'xl',
+        size: 'xl',
+        color: '#D66763',
         quantity: 1,
       }
       */
@@ -47,19 +48,21 @@ export default new Vuex.Store({
     cartUpdate(state, payload) { // Add or update an item in the cart
       // Search for the item/configuration in the existing cart state
       const cartItem = state.cart
-        .find(entry => entry.id === payload.id && entry.option === payload.option);
+        .find(e => e.id === payload.id && e.size === payload.size && e.color === payload.color);
       // If it's already in the cart, just update quantity
       if (cartItem) {
         cartItem.quantity = payload.quantity;
       // If this item/configuration does not already exist in the cart, add it
       } else {
         const product = state.products.find(p => p.id === payload.id);
-        // Validate given option
-        if (!(payload.option in product.options)) throw new Error(`No such option ${payload.option} on product ${payload.id}`);
+        // Validate given options
+        if (product.options.sizes.length && !product.options.sizes.includes(payload.size)) throw new Error(`Size ${payload.size} not available for product ${payload.id}`);
+        if (product.options.colors.length && !product.options.colors.includes(payload.color)) throw new Error(`Color ${payload.color} not available for product ${payload.id}`);
         // Add
         state.cart.push({
           id: payload.id,
-          option: payload.option,
+          size: payload.size,
+          color: payload.color,
           quantity: payload.quantity,
         });
       }
