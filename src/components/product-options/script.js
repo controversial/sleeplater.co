@@ -6,4 +6,5 @@ Vue.component('color-select', ColorSelect);
 
 export default {
   props: ['open', 'product'],
+  data: () => ({ selectedColor: undefined }),
 };
