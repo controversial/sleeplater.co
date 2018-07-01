@@ -11,6 +11,8 @@ const apiBase = ['localhost', '0.0.0.0'].includes(window.location.hostname)
 
 
 export default {
+  props: ['interactable'],
+
   data: () => ({
     scrollPx: 0,
     prevCategory: null,

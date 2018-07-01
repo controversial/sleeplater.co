@@ -1,5 +1,5 @@
 <template>
-  <div class="products-container">
+  <div class="products-container" v-bind:style="{ pointerEvents: interactable ? 'all' : 'none' }">
     <transition-group tag="div" name="products" class="products" ref="products" v-on:wheel.native="scrollHandler" :appear="true" :css="false"
       v-on:before-enter="beforeEnter"
       v-on:enter="enter"
