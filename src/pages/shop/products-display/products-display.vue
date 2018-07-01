@@ -1,5 +1,7 @@
 <template>
   <div class="products-container" v-bind:style="{ pointerEvents: interactable ? 'all' : 'none' }">
+    <h1 class="bg-title fade-in">sleep later</h1>
+
     <transition-group tag="div" name="products" class="products" ref="products" v-on:wheel.native="scrollHandler" :appear="true" :css="false"
       v-on:before-enter="beforeEnter"
       v-on:enter="enter"
