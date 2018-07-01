@@ -53,10 +53,9 @@ module.exports.getProducts = async function getProducts() {
       .reduce((accum, option) => {
         const key = `${option[0]}s`; // 'sizes' or 'colors'
         const value = option[1];
-        if (!accum[key]) accum[key] = [];
-        accum[key].push(value);
+        if (accum[key]) accum[key].push(value);
         return accum;
-      }, {}),
+      }, { sizes: [], colors: [] }),
     categories: p.relationships.categories.data.map(category => nameCategory(category.id)),
   }));
   return products;
