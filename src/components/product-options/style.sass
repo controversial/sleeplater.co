@@ -2,10 +2,55 @@
 @import '../../fonts'
 
 
+$title-color: #565472
+$desc-color: #424243
+
+
 .modal
   position: fixed
   left: 50%
   top: 50%
+  width: 40vw
+  height: 33vw
   transform: translate(-50%, -50%)
   background: $white
-  box-shadow: 0 0 0 100vmax transparentize($actually-black, .75)
+  box-shadow: 0 0 0 100vmax transparentize($actually-black, .75), 0 .2rem .65rem -.3rem transparentize($actually-black, .65)
+  padding: 2.2rem 0
+  border-radius: .5rem
+  display: flex
+
+  & > div
+    flex-grow: 1
+    flex-basis: 0
+    position: relative
+
+.left img
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  height: 110%
+  width: auto
+  filter: drop-shadow(0 1.1vh 4.7vh transparentize($actually-black, .8))
+
+.right
+  padding-right: 1.3rem
+
+  h1
+    font-family: $avenir-font-stack
+    font-style: italic
+    font-size: 1.3rem
+    font-weight: 700
+    text-transform: uppercase
+    color: $title-color
+    line-height: 1.2em
+    margin-bottom: .2rem
+
+    .price
+      font-weight: 400
+
+  .description
+    font-size: .75rem
+    font-family: 'Source Sans Pro', sans-serif
+    font-weight: 400
+    color: $desc-color
