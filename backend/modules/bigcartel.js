@@ -31,7 +31,7 @@ module.exports.getProducts = async function getProducts() {
     const option = r.included
       .filter(e => e.type === 'product_options')
       .find(o => o.id === optionId); // Find the right one
-    return { name: option.attributes.name, price: option.attributes.price };
+    return option.attributes.name.split(':');
   }
   // Find the name of the category with a given ID
   function nameCategory(categoryId) {
@@ -50,7 +50,13 @@ module.exports.getProducts = async function getProducts() {
     image: p.attributes.primary_image_url,
     options: p.relationships.options.data
       .map(option => findOption(option.id)) // Find options
-      .reduce((acc, o) => Object.assign(acc, { [o.name]: o.price }), {}), // Make into an object
+      .reduce((accum, option) => {
+        const key = `${option[0]}s`; // 'sizes' or 'colors'
+        const value = option[1];
+        if (!accum[key]) accum[key] = [];
+        accum[key].push(value);
+        return accum;
+      }, {}),
     categories: p.relationships.categories.data.map(category => nameCategory(category.id)),
   }));
   return products;
