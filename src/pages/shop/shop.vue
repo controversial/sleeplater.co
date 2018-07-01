@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page" v-on:click="closeAll">
     <h1 class="bg-title fade-in">sleep later</h1>
     <products-display
       v-bind:interactable="!(optionsOpen || cartOpen)"

@@ -15,4 +15,12 @@ export default {
         .reduce((a, b) => a + b, 0);
     },
   },
+  methods: {
+    closeAll(e) {
+      if (e.target === this.$el) {
+        this.cartOpen = false;
+        this.optionsOpen = false;
+      }
+    },
+  },
 };
