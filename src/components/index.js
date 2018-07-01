@@ -47,6 +47,9 @@ Vue.component('cart-button', CartButton);
 import Cart from './cart/cart.vue';
 Vue.component('cart', Cart);
 
+import ProductOptions from './product-options/product-options.vue';
+Vue.component('product-options', ProductOptions);
+
 
 // Contact
 

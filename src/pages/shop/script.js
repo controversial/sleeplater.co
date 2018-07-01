@@ -5,6 +5,8 @@ Vue.component('products-display', ProductsDisplay);
 export default {
   data: () => ({
     cartOpen: false,
+    optionsOpen: false,
+    currentProduct: undefined,
   }),
   computed: {
     itemsCount() {
