@@ -1,5 +1,9 @@
 @import '../../../colors'
 
+.colors
+  position: relative
+  height: 1.2rem
+
 .color
   display: inline-block
   width: 1.2rem
@@ -7,3 +11,14 @@
   box-shadow: 0 0 .6rem -.11rem transparentize($actually-black, .6)
   margin-right: .46rem
   border-radius: 50%
+  cursor: pointer
+
+.selected-indicator
+  color: $actually-white
+  width: .68rem
+  height: .68rem
+  filter: drop-shadow(0 0 .25rem transparentize($actually-black, .65))
+
+  position: absolute
+  top: 50%
+  transform: translate(-50%, -50%)
