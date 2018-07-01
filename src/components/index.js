@@ -3,35 +3,35 @@ import Vue from 'vue';
 
 // Feather icons
 import {
-  ChevronUpIcon,
-  ChevronDownIcon,
-  BarChartIcon,
-  GridIcon,
-  ShoppingCartIcon,
-  XIcon,
-  InstagramIcon,
-  TwitterIcon,
-  MailIcon,
-  CheckCircleIcon,
   AlertCircleIcon,
+  BarChartIcon,
+  CheckCircleIcon,
   CheckIcon,
-  PlusIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  GridIcon,
+  InstagramIcon,
+  MailIcon,
   MinusIcon,
+  PlusIcon,
+  ShoppingCartIcon,
+  TwitterIcon,
+  XIcon,
 } from 'vue-feather-icons';
-Vue.component('chevron-up-icon', ChevronUpIcon);
-Vue.component('chevron-down-icon', ChevronDownIcon);
-Vue.component('menu-icon', BarChartIcon); // Goes sideways
-Vue.component('grid-icon', GridIcon);
-Vue.component('shopping-cart-icon', ShoppingCartIcon);
-Vue.component('close-icon', XIcon);
-Vue.component('instagram-icon', InstagramIcon);
-Vue.component('twitter-icon', TwitterIcon);
-Vue.component('mail-icon', MailIcon);
-Vue.component('check-circle-icon', CheckCircleIcon);
 Vue.component('alert-circle-icon', AlertCircleIcon);
+Vue.component('menu-icon', BarChartIcon); // Goes sideways
+Vue.component('check-circle-icon', CheckCircleIcon);
 Vue.component('check-icon', CheckIcon);
-Vue.component('plus-icon', PlusIcon);
+Vue.component('chevron-down-icon', ChevronDownIcon);
+Vue.component('chevron-up-icon', ChevronUpIcon);
+Vue.component('grid-icon', GridIcon);
+Vue.component('instagram-icon', InstagramIcon);
+Vue.component('mail-icon', MailIcon);
 Vue.component('minus-icon', MinusIcon);
+Vue.component('plus-icon', PlusIcon);
+Vue.component('shopping-cart-icon', ShoppingCartIcon);
+Vue.component('twitter-icon', TwitterIcon);
+Vue.component('close-icon', XIcon);
 
 
 // Navigation
