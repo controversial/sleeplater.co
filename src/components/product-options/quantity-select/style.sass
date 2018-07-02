@@ -1,4 +1,28 @@
+@import '../../../colors'
+@import '../../../fonts'
+
+
 .quantity-select,
 .quantity-select *
   user-select: none
+
+.quantity-select
+  display: flex
   cursor: default
+  background: $header-text-light
+  justify-content: space-around
+  align-items: center
+  color: $actually-white
+  font-family: $avenir-font-stack
+  font-size: .75rem
+  font-weight: 600
+  padding: 0 .35rem
+
+  .feather
+    width: .75rem
+    height: .75rem
+    cursor: pointer
+
+    &.disabled
+      opacity: .4
+      cursor: default
