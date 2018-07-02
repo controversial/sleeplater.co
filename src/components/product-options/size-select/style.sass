@@ -1,0 +1,29 @@
+@import '../../../colors'
+@import '../../../fonts'
+
+$selection-color: #c8c8cf
+
+.sizes
+  position: relative
+  width: 95%
+  display: flex
+  justify-content: space-between
+
+.size
+  font-family: $avenir-font-stack
+  font-size: .9rem
+  font-weight: 700
+  color: $dark-1-contrast
+  text-transform: uppercase
+  cursor: pointer
+  z-index: 2
+
+.selected-indicator
+  width: 1.575rem
+  height: 1.575rem
+  border-radius: 50%
+  background: $selection-color
+  position: absolute
+  z-index: 1
+  transform: translate(-50%, -50%)
+  transition: left .25s
