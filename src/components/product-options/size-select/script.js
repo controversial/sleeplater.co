@@ -3,6 +3,7 @@ export default {
   data: () => ({
     allSizes: ['xs', 's', 'm', 'l', 'xl'],
     windowSize: [window.innerWidth, window.innerHeight],
+    mounted: false,
   }),
 
   computed: {
@@ -24,6 +25,6 @@ export default {
   methods: {
     resized() { this.windowSize = [window.innerWidth, window.innerHeight]; },
   },
-  mounted() { window.addEventListener('resize', this.resized); },
-  destroyed() { window.removeEventListener('resize', this.resized); this.$emit('reset'); },
+  mounted() { window.addEventListener('resize', this.resized); this.mounted = true; },
+  destroyed() { window.removeEventListener('resize', this.resized); this.$emit('reset'); this.mounted = false; },
 };

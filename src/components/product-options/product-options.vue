@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" v-if="open">
+  <div class="modal">
     <div class="left">
       <img v-bind:src="product.image" alt="Product preview">
     </div>

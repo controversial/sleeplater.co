@@ -8,9 +8,21 @@ Vue.component('size-select', SizeSelect);
 
 
 export default {
-  props: ['open', 'product'],
+  props: ['product'],
+
+  computed: {
+    productInCart() { return this.$store.state.cart.find(({ id }) => id === this.product.id); },
+    colorInCart() { return (this.productInCart || {}).color; },
+    sizeInCart() { return (this.productInCart || {}).size; },
+  },
+
   data: () => ({
     selectedColor: undefined,
     selectedSize: undefined,
   }),
+
+  beforeMount() {
+    this.selectedColor = this.colorInCart;
+    this.selectedSize = this.sizeInCart;
+  },
 };
