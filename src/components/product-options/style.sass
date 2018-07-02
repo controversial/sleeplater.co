@@ -72,6 +72,14 @@ $desc-color: #424243
     height: 1.5rem
     border-radius: .1875rem
     overflow: hidden
+    box-shadow: 0 7px 15px -3px transparentize($actually-black, .75)
+    transform: scale(1.001)
+    transition: transform .25s, box-shadow .25s
+
+    &:not(.disabled):hover
+      transform: scale(1.015)
+      box-shadow: 0 7px 20px -2px transparentize($actually-black, .75)
+
 
     .submit
       $submit-button-color: #777496
