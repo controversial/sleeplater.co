@@ -9,7 +9,7 @@
       <color-select v-if="product.options.colors.length" v-bind:colors="product.options.colors" v-model="selectedColor"></color-select>
       <size-select v-if="product.options.sizes.length" v-bind:sizes="product.options.sizes" v-model="selectedSize"></size-select>
 
-      <div class="bottom">
+      <div class="bottom-bar">
         <div class="submit">{{ productInCart ? 'Update in cart' : 'Add to cart' }}</div>
         <quantity-select v-model="selectedQuantity"></quantity-select>
       </div>
