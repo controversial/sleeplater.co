@@ -17,6 +17,12 @@ export default {
     colorInCart() { return (this.productInCart || {}).color; },
     sizeInCart() { return (this.productInCart || {}).size; },
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 0; },
+
+    configurationIsInCart() {
+      return this.productInCart
+        && this.productInCart.size === this.selectedSize
+        && this.productInCart.color === this.selectedColor;
+    },
   },
 
   data: () => ({
