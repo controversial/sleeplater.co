@@ -1,6 +1,6 @@
 <template>
   <div class="quantity-select">
-    <minus-icon v-on:click="$emit('input', Math.max(value - 1, 0))" v-bind:class="{ disabled: value === 0 }"></minus-icon>
+    <minus-icon v-on:click="$emit('input', Math.max(value - 1, 1))" v-bind:class="{ disabled: value === 1 }"></minus-icon>
     <span>{{value}}</span>
     <plus-icon v-on:click="$emit('input', value + 1)"></plus-icon>
   </div>

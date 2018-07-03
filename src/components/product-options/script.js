@@ -16,7 +16,7 @@ export default {
     productInCart() { return this.$store.state.cart.find(({ id }) => id === this.product.id); },
     colorInCart() { return (this.productInCart || {}).color; },
     sizeInCart() { return (this.productInCart || {}).size; },
-    quantityInCart() { return this.productInCart ? this.productInCart.quantity : 0; },
+    quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
 
     configurationIsInCart() {
       return this.productInCart
@@ -28,7 +28,7 @@ export default {
   data: () => ({
     selectedColor: undefined,
     selectedSize: undefined,
-    selectedQuantity: 0,
+    selectedQuantity: 1,
   }),
 
   beforeMount() {
