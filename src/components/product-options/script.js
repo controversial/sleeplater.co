@@ -30,4 +30,15 @@ export default {
     this.selectedSize = this.sizeInCart;
     this.selectedQuantity = this.quantityInCart;
   },
+
+  methods: {
+    addToCart() {
+      this.$store.commit('cartUpdate', {
+        id: this.product.id,
+        color: this.selectedColor,
+        size: this.selectedSize,
+        quantity: this.selectedQuantity,
+      });
+    },
+  },
 };
