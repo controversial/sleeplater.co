@@ -26,7 +26,10 @@ export default {
       return 'Add to cart';
     },
 
-    buttonDisabled() { return !this.selectedColor || !this.selectedSize; },
+    buttonDisabled() {
+      return (this.product.options.colors.length && !this.selectedColor)
+        || (this.product.options.sizes.length && !this.selectedSize);
+    },
   },
 
   data: () => ({
