@@ -10,7 +10,11 @@
       <size-select v-if="product.options.sizes.length" v-bind:sizes="product.options.sizes" v-model="selectedSize"></size-select>
 
       <div class="bottom-bar">
-        <div class="submit" v-on:click="addToCart">{{ configurationIsInCart ? 'Update in cart' : 'Add to cart' }}</div>
+        <div class="submit"
+          v-on:click="addToCart"
+          v-on:mousedown="$event.target.parentNode.classList.add('active')"
+          v-on:mouseup="$event.target.parentNode.classList.remove('active')"
+        >{{ configurationIsInCart ? 'Update in cart' : 'Add to cart' }}</div>
         <quantity-select v-model="selectedQuantity"></quantity-select>
       </div>
     </div>

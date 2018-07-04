@@ -80,6 +80,10 @@ $desc-color: #424243
       transform: scale(1.015)
       box-shadow: 0 7px 20px -2px transparentize($actually-black, .75)
 
+    // Class applied with JS *only* when the button side is active
+    &:not(.disabled).active
+      transform: scale(.99)
+
 
     .submit
       $submit-button-color: #777496
