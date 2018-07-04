@@ -74,8 +74,11 @@ $desc-color: #424243
     overflow: hidden
     box-shadow: 0 7px 15px -3px transparentize($actually-black, .75)
     transform: scale(1.001)
-    transition: transform .25s, box-shadow .25s
+    transition: transform .25s, box-shadow .25s, opacity .25s
     user-select: none
+
+    &.disabled
+      opacity: .35
 
     &:not(.disabled):hover
       transform: scale(1.015)

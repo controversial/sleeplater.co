@@ -23,12 +23,16 @@ export default {
         && this.productInCart.size === this.selectedSize
         && this.productInCart.color === this.selectedColor;
     },
+
+    buttonDisabled() { return !this.selectedColor || !this.selectedSize; },
   },
 
   data: () => ({
     selectedColor: undefined,
     selectedSize: undefined,
     selectedQuantity: 1,
+
+    buttonActive: false,
   }),
 
   beforeMount() {
