@@ -18,10 +18,12 @@ export default {
     sizeInCart() { return (this.productInCart || {}).size; },
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
 
-    configurationIsInCart() {
-      return this.productInCart
-        && this.productInCart.size === this.selectedSize
-        && this.productInCart.color === this.selectedColor;
+    buttonMessage() {
+      const p = this.productInCart;
+      if (p && p.size === this.selectedSize && p.color === this.selectedColor) {
+        return p.quantity === this.selectedQuantity ? 'Added!' : 'Update quantity';
+      }
+      return 'Add to cart';
     },
 
     buttonDisabled() { return !this.selectedColor || !this.selectedSize; },

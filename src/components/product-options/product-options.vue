@@ -14,7 +14,7 @@
           v-on:click="() => { if (!buttonDisabled) addToCart(); }"
           v-on:mousedown="buttonActive = true"
           v-on:mouseup="buttonActive = false"
-        >{{ configurationIsInCart ? 'Update in cart' : 'Add to cart' }}</div>
+        >{{ buttonMessage }}</div>
         <quantity-select v-model="selectedQuantity"></quantity-select>
       </div>
     </div>
