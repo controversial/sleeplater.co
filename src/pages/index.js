@@ -13,7 +13,7 @@ export default [
     name: 'shop',
     path: '/shop/:category',
     component: require('./shop/shop.vue').default,
-    meta: { primary: true, navIconColor: 'black' },
+    meta: { primary: true, navIconColor: 'black', allowScrollNav: false },
   },
   {
     name: 'contact',

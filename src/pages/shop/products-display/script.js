@@ -60,7 +60,6 @@ export default {
     },
 
     scrollHandler(evt) {
-      evt.stopPropagation(); // Prevent navigation
       evt.preventDefault();
 
       // Distinguish between user scrolling and "inertial" scrolling

@@ -2,16 +2,21 @@
 
 
 export class ScrollHandler {
-  constructor(upFunc, downFunc) {
+  constructor(upFunc, downFunc, vue) {
     this.upFunc = upFunc;
     this.downFunc = downFunc;
     this.lastScrollNav = 0;
+    this.vue = vue;
+  }
+
+  get enabled() {
+    return this.vue.$route.meta.allowScrollNav || typeof this.vue.$route.meta.allowScrollNav === 'undefined';
   }
 
   onWheel(e) {
     if (!e.ctrlKey && Math.abs(e.deltaY) > 15 && new Date() - this.lastScrollNav > 650) {
-      this[e.deltaY > 0 ? 'downFunc' : 'upFunc']();
       this.lastScrollNav = new Date();
+      if (this.enabled) this[e.deltaY > 0 ? 'downFunc' : 'upFunc']();
     }
   }
 }
