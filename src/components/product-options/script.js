@@ -13,16 +13,17 @@ export default {
   props: ['product'],
 
   computed: {
-    productInCart() { return this.$store.state.cart.find(({ id }) => id === this.product.id); },
+    // (most recent entry for this product)
+    // eslint-disable-next-line max-len
+    productInCart() { return this.$store.state.cart.filter(({ id }) => id === this.product.id).slice(-1)[0]; },
     colorInCart() { return (this.productInCart || {}).color; },
     sizeInCart() { return (this.productInCart || {}).size; },
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
 
     buttonMessage() {
-      const p = this.productInCart;
-      if (p && p.size === this.selectedSize && p.color === this.selectedColor) {
-        return p.quantity === this.selectedQuantity ? 'Added!' : 'Update quantity';
-      }
+      const p = this.$store.state.cart.find(({ id, color, size }) =>
+        id === this.product.id && color === this.selectedColor && size === this.selectedSize);
+      if (p) return p.quantity === this.selectedQuantity ? 'Added!' : 'Update quantity';
       return 'Add to cart';
     },
 
