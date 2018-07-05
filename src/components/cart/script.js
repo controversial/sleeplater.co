@@ -5,9 +5,29 @@ Vue.component('payment-method', PaymentMethod);
 export default {
   props: ['hidden'],
 
+  data: () => ({
+    itemsMaxHeight: 0,
+  }),
+
   methods: {
     roundPrice(price) {
       return (Math.round(price * 100) / 100).toFixed(2);
+    },
+
+    updateItemsMaxHeight() {
+      if (!this.itemsCount || !this.$refs.items) {
+        this.itemsMaxHeight = 0;
+      } else {
+        const itemsTop = this.$refs.items.getBoundingClientRect().top;
+        const maxBottom = (
+          window.innerHeight // Height of the window
+          - parseFloat(getComputedStyle(this.$el.getElementsByClassName('contents')[0]).paddingBottom) // Minus the padding at the bottom of the cart
+          // Minus the height of all of the content that needs to come after the cart items
+          - (this.$refs.bottommost.$el.getBoundingClientRect().bottom
+          - this.$refs.items.nextElementSibling.getBoundingClientRect().top)
+        );
+        this.itemsMaxHeight = `${(maxBottom - itemsTop)}px`;
+      }
     },
   },
 
@@ -37,4 +57,11 @@ export default {
         .reduce((a, b) => a + b, 0);
     },
   },
+
+  created() {
+    this.boundUpdate = this.updateItemsMaxHeight.bind(this);
+    window.addEventListener('resize', this.boundUpdate);
+  },
+  destroyed() { window.removeEventListener('resize', this.boundUpdate); },
+  updated() { this.updateItemsMaxHeight(); },
 };

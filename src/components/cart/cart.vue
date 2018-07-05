@@ -13,10 +13,12 @@
       </div>
 
       <div class="details" v-if="itemsCount">
-        <div class="cart-item" v-for="(product, i) in productsInCart">
-          <div class="number"><span>{{i+1}}.</span></div>
-          <div class="name">{{product.name}}</div>
-          <div class="price">${{product.price}}</div>
+        <div class="items" ref="items" v-bind:style="{ maxHeight: itemsMaxHeight }">
+          <div class="cart-item" v-for="(product, i) in productsInCart">
+            <div class="number"><span>{{i+1}}.</span></div>
+            <div class="name">{{product.name}}</div>
+            <div class="price">${{product.price}}</div>
+          </div>
         </div>
         <div class="cart-info">
           <div>
@@ -55,7 +57,7 @@
           ></payment-method>
         </div>
         <div class="row">
-          <submit-button style="flex-grow: 1" v-bind:disabled="!$store.state.paymentMethod">checkout</submit-button>
+          <submit-button ref="bottommost" style="flex-grow: 1" v-bind:disabled="!$store.state.paymentMethod">checkout</submit-button>
         </div>
       </div>
 

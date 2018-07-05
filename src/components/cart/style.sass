@@ -20,6 +20,7 @@
   background: $dark-1
   box-shadow: -375px 0 0 100vw transparentize($actually-black, .65)
   transition: transform .5s, box-shadow .5s
+  overflow: hidden
 
   &.hidden
     box-shadow: -375px 0 0 100vw transparentize($actually-black, 1)
@@ -86,11 +87,15 @@ h1
 
 .details
   margin-top: .88rem
-  padding: 5%
+  padding: .7rem
   background: $dark-2
   border-radius: 3px
   box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
 
+
+  // Scrollable section containing the cart-items
+  .items
+    overflow-y: scroll
 
   // Some info (subtotal, tax, total) that appears at the bottom below the .cart-item divs
 
