@@ -13,6 +13,7 @@
       </div>
 
       <div class="details" v-if="itemsCount">
+        <div class="scroll-fade" v-bind:style="{ height: itemsHeight }"></div>
         <div class="items" ref="items" v-bind:style="{ maxHeight: itemsMaxHeight }">
           <div class="cart-item" v-for="(product, i) in productsInCart">
             <div class="number"><span>{{i+1}}.</span></div>

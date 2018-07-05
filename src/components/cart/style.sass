@@ -86,8 +86,9 @@ h1
 // Detailed listing of all items in cart
 
 .details
+  position: relative
   margin-top: .88rem
-  padding: .7rem
+  padding: 0 .7rem .7rem
   background: $dark-2
   border-radius: 3px
   box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
@@ -95,7 +96,18 @@ h1
 
   // Scrollable section containing the cart-items
   .items
+    position: relative
+    padding: .7rem 0
     overflow-y: scroll
+
+  .scroll-fade
+    position: absolute
+    z-index: 100
+    top: 0
+    left: .7rem
+    width: calc(100% - 1.4rem)
+    box-shadow: inset 0 .9rem .75rem -.65rem $dark-2, inset 0 -.9rem .75rem -.55rem $dark-2
+    pointer-events: none
 
   // Some info (subtotal, tax, total) that appears at the bottom below the .cart-item divs
 

@@ -7,6 +7,7 @@ export default {
 
   data: () => ({
     itemsMaxHeight: 0,
+    itemsHeight: 0,
   }),
 
   methods: {
@@ -17,6 +18,7 @@ export default {
     updateItemsMaxHeight() {
       if (!this.itemsCount || !this.$refs.items) {
         this.itemsMaxHeight = 0;
+        this.itemsHeight = 0;
       } else {
         const itemsTop = this.$refs.items.getBoundingClientRect().top;
         const maxBottom = (
@@ -27,6 +29,7 @@ export default {
           - this.$refs.items.nextElementSibling.getBoundingClientRect().top)
         );
         this.itemsMaxHeight = `${(maxBottom - itemsTop)}px`;
+        this.itemsHeight = `${this.$refs.items.getBoundingClientRect().height}px`;
       }
     },
   },
