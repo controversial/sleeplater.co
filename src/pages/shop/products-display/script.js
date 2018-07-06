@@ -169,9 +169,9 @@ export default {
         transitionDuration: '0s',
         transform: `${this.titleStyle._initialTransform} translateX(${goingRight ? '' : '-'}25vw)`,
       };
-      await delay(50);
       // Switch title
       this.animatedTitle = title;
+      await delay(50); // Safari needs time to readjust vertical transform for new text, apparently
       // Fly in
       this.titleStyle = {
         ...this.titleStyle,
