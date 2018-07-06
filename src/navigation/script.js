@@ -108,7 +108,7 @@ export default {
 
     pageMouseover(e) {
       if (this.$store.state.navOpen) {
-        const pageName = e.target.getAttribute('name');
+        const pageName = e.currentTarget.getAttribute('name');
         const link = this.$refs.pageLinks.querySelector(`[name=${pageName}]`);
         if (link) {
           this.$refs.pageLinks.classList.add('highlight');
@@ -118,7 +118,7 @@ export default {
     },
     pageMouseout(e) {
       if (this.$store.state.navOpen) {
-        const pageName = e.target.getAttribute('name');
+        const pageName = e.currentTarget.getAttribute('name');
         const link = this.$refs.pageLinks.querySelector(`[name=${pageName}]`);
         if (link) {
           this.$refs.pageLinks.classList.remove('highlight');

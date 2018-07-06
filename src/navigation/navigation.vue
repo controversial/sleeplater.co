@@ -51,7 +51,7 @@
     <transition name="delay"><div class="other-pages" ref="stack" v-if="$store.state.navOpen">
       <div class="background-page-wrapper" v-for="page in otherRoutes" v-bind:name="page.name"
         v-bind:style="{ transitionDuration: wrapperTransitionDuration }"
-        v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout" v-on:click="linkClick($event.target.getAttribute('name'))"
+        v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout" v-on:click="linkClick($event.currentTarget.getAttribute('name'))"
       >
         <component v-bind:is="page.component"></component>
       </div>
