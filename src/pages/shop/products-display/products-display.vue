@@ -1,8 +1,8 @@
 <template>
   <div class="products-container" v-bind:style="{ pointerEvents: interactable ? 'all' : 'none' }">
-    <h1 class="bg-title fade-in">
-      {{bgTitle[0]}}
-      <br/><span class="lighter" v-if="bgTitle[1]"> {{bgTitle[1]}} </span>
+    <h1 class="bg-title fade-in" v-bind:style="titleStyle">
+      {{animatedTitle[0]}}
+      <br/><span class="lighter" v-if="animatedTitle[1]"> {{animatedTitle[1]}} </span>
     </h1>
 
     <transition-group tag="div" name="products" class="products" ref="products" v-on:wheel.native="scrollHandler" :appear="true" :css="false"

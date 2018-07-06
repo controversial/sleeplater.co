@@ -54,7 +54,7 @@ export async function enter(el, done) {
   // Wait for old items to leave
   const oldProducts = this.$store.state.products
     .filter(p => p.categories.includes(this.prevCategory));
-  if (oldProducts.length) await delay((leaveDuration * 600) + (stagger * oldProducts.length));
+  if (oldProducts.length) await delay((leaveDuration * 400) + (stagger * oldProducts.length) + 650);
 
   // Stagger delay
   await delay(goingRight

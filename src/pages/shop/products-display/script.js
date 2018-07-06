@@ -1,5 +1,5 @@
 import * as transitions from './item-transitions';
-import { clamp } from '../../../helpers';
+import { clamp, delay } from '../../../helpers';
 
 const Lethargy = require('exports-loader?this.Lethargy!lethargy/lethargy');
 const lethargy = new Lethargy(null, 30);
@@ -13,9 +13,20 @@ const apiBase = ['localhost', '0.0.0.0'].includes(window.location.hostname)
 export default {
   props: ['interactable'],
 
+  /* eslint-disable no-underscore-dangle */
   data: () => ({
     scrollPx: 0,
     prevCategory: null,
+
+    animatedTitle: ['', ''],
+    titleStyle: {
+      _initialTransform: 'translate(-47%, calc(-.4em - 25%))',
+      transform: 'translate(-47%, calc(-.4em - 25%))',
+      transitionProperty: 'transform, opacity',
+      transitionTimingFunction: 'ease-out',
+      transiitonDuration: '.4s',
+      opacity: 1,
+    },
 
     scrollEndTimeout: undefined,
     windowWidth: window.innerWidth, // Reactive version
@@ -122,6 +133,8 @@ export default {
     Object.assign(this, ...Object.keys(transitions).map(key => ({
       [key]: transitions[key].bind(this),
     })));
+
+    this.animatedTitle = this.bgTitle;
   },
 
   watch: {
@@ -133,6 +146,40 @@ export default {
       this.scrollPx = this.categories.indexOf(newCat) > this.categories.indexOf(oldCat)
         ? this.minScroll
         : this.maxScroll;
+    },
+
+    async bgTitle(title) {
+      const oldProducts = this.$store.state.products
+        .filter(p => p.categories.includes(this.prevCategory));
+      if (oldProducts.length) await delay((0.35 * 400) + (75 * oldProducts.length));
+
+      const goingRight = this.categoryIndex > this.categories.indexOf(this.prevCategory);
+      // Fly out
+      this.titleStyle = {
+        ...this.titleStyle,
+        transitionDuration: '.4s',
+        transitionTimingFunction: 'ease-in',
+        transform: `${this.titleStyle._initialTransform} translateX(${goingRight ? '-' : ''}25vw)`,
+        opacity: 0,
+      };
+      await delay(400);
+      // Jump to opposite side
+      this.titleStyle = {
+        ...this.titleStyle,
+        transitionDuration: '0s',
+        transform: `${this.titleStyle._initialTransform} translateX(${goingRight ? '' : '-'}25vw)`,
+      };
+      await delay(50);
+      // Switch title
+      this.animatedTitle = title;
+      // Fly in
+      this.titleStyle = {
+        ...this.titleStyle,
+        transitionDuration: '.4s',
+        transitionTimingFunction: 'ease-out',
+        transform: this.titleStyle._initialTransform,
+        opacity: 1,
+      };
     },
   },
 };
