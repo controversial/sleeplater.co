@@ -45,6 +45,10 @@ export default {
       const itemsWidthPx = itemsWidthVw * (0.01 * this.windowWidth);
       return clamp(itemsWidthPx - this.windowWidth, 0, Infinity);
     },
+
+    bgTitle() {
+      return this.$route.params.category.replace(/-/g, ' ').split(':');
+    },
   },
 
   methods: {
