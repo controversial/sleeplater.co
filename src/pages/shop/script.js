@@ -23,4 +23,9 @@ export default {
       }
     },
   },
+  watch: {
+    optionsOpen(val) {
+      this.$store.commit(val ? 'hideNavButtons' : 'showNavButtons');
+    },
+  },
 };
