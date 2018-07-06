@@ -1,9 +1,11 @@
 <template>
   <div class="shop-item" v-bind:style="{ transform }">
-    <img v-bind:src="image" alt="Product preview">
-    <div class="info">
-      <div class="title">{{name}}</div>
-      <div class="price">{{formattedPrice}}</div>
+    <div class="transform-wrapper">
+      <img v-bind:src="image" alt="Product preview">
+      <div class="info">
+        <div class="title">{{name}}</div>
+        <div class="price">{{formattedPrice}}</div>
+      </div>
     </div>
   </div>
 </template>

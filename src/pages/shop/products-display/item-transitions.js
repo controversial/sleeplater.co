@@ -8,6 +8,7 @@ const stagger = 0.075 * 1000;
 
 // Old items leaving
 export async function leave(el, done) {
+  const el2 = el.getElementsByClassName('transform-wrapper')[0];
   const goingRight = this.categoryIndex > this.categories.indexOf(this.prevCategory);
 
   // Stagger delay
@@ -18,13 +19,12 @@ export async function leave(el, done) {
     : stagger * (oldProducts.length - 1 - el.dataset.index)); // rightmost out first
 
   // Before
-  el.style.transition = `transform ${leaveDuration}s, opacity ${leaveDuration}s`;
-  el.style.pointerEvents = 'none';
+  el2.style.transition = `transform ${leaveDuration}s, opacity ${leaveDuration}s`;
+  el2.style.pointerEvents = 'none';
 
   // Animate
-  const initialTransform = el.style.transform;
-  el.style.transform = `${initialTransform} translateX(${goingRight ? '-' : ''}50%)`;
-  el.style.opacity = 0;
+  el2.style.transform = `translateX(${goingRight ? '-' : ''}50%)`;
+  el2.style.opacity = 0;
 
   // End
   await delay(leaveDuration * 1000);
@@ -39,22 +39,23 @@ export async function leave(el, done) {
 
 // Before
 export async function beforeEnter(el) {
+  const el2 = el.getElementsByClassName('transform-wrapper')[0];
   const goingRight = this.categoryIndex > this.categories.indexOf(this.prevCategory);
 
-  el.style.opacity = 0;
-  el.style.pointerEvents = 'none';
-  el.dataset.initialTransform = el.style.transform;
-  el.style.transform = `${el.dataset.initialTransform} translateX(${goingRight ? '' : '-'}50%)`;
-  el.style.transition = `transform ${enterDuration}s, opacity ${enterDuration}s`;
+  el2.style.opacity = 0;
+  el2.style.pointerEvents = 'none';
+  el2.style.transform = `translateX(${goingRight ? '' : '-'}50%)`;
+  el2.style.transition = `transform ${enterDuration}s, opacity ${enterDuration}s`;
 }
 
 export async function enter(el, done) {
+  const el2 = el.getElementsByClassName('transform-wrapper')[0];
   const goingRight = this.categoryIndex > this.categories.indexOf(this.prevCategory);
 
   // Wait for old items to leave
   const oldProducts = this.$store.state.products
     .filter(p => p.categories.includes(this.prevCategory));
-  if (oldProducts.length) await delay((leaveDuration * 400) + (stagger * oldProducts.length) + 650);
+  if (oldProducts.length) await delay((leaveDuration * 400) + (stagger * oldProducts.length) + 750);
 
   // Stagger delay
   await delay(goingRight
@@ -62,11 +63,11 @@ export async function enter(el, done) {
     : stagger * (this.categoryProducts.length - 1 - el.dataset.index));
 
   // Animate
-  el.style.opacity = 1;
-  el.style.transform = el.dataset.initialTransform;
+  el2.style.opacity = 1;
+  el2.style.transform = '';
 
   await delay(enterDuration * 1000);
-  el.style.pointerEvents = '';
-  el.style.transition = '';
+  el2.style.pointerEvents = '';
+  el2.style.transition = '';
   done();
 }
