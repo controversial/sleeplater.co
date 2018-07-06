@@ -61,6 +61,12 @@ export default {
     },
   },
 
+  watch: {
+    hidden(val) {
+      this.$store.commit(val ? 'showNavButtons' : 'hideNavButtons');
+    },
+  },
+
   created() {
     this.boundUpdate = this.updateItemsMaxHeight.bind(this);
     window.addEventListener('resize', this.boundUpdate);

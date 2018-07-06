@@ -1,13 +1,15 @@
 <template>
   <div class="navigation">
     <!-- Nav controls (atop pages) -->
-    <menu-button
-      v-bind:navOpen="$store.state.navOpen"
-      v-on:click="toggle"
-      v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
-    ></menu-button>
     <transition name="fade">
-      <nav-buttons ref="nav" v-if="!$store.state.navOpen"
+      <menu-button v-if="!$store.state.hideNavButtons"
+        v-bind:navOpen="$store.state.navOpen"
+        v-on:click="toggle"
+        v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"
+      ></menu-button>
+    </transition>
+    <transition name="fade">
+      <nav-buttons ref="nav" v-if="!$store.state.navOpen && !$store.state.hideNavButtons"
         v-bind:canGoUp="canGoUp" v-bind:canGoDown="canGoDown"
         v-on:up="navUp" v-on:down="navDown"
         v-bind:color="navIconColor" v-bind:transition-delay="navTransitionDelay"

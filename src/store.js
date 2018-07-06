@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     // Navigation
     navOpen: false,
+    hideNavButtons: false,
 
     // Home
     loaded: false,
@@ -39,6 +40,8 @@ export default new Vuex.Store({
     // Navigation
     toggleNav(state) { state.navOpen = !state.navOpen; },
     closeNav(state) { state.navOpen = false; },
+    hideNavButtons(state) { state.hideNavButtons = true; },
+    showNavButtons(state) { state.hideNavButtons = false; },
     // Home
     loaded(state) { state.loaded = true; },
     // Shop
