@@ -45,6 +45,13 @@ export default {
     this.selectedColor = this.colorInCart;
     this.selectedSize = this.sizeInCart;
     this.selectedQuantity = this.quantityInCart;
+
+    if (!this.selectedColor && this.product.options.colors.length === 1) {
+      this.selectedColor = this.product.options.colors[0];
+    }
+    if (!this.selectedSize && this.product.options.sizes.length === 1) {
+      this.selectedSize = this.product.options.sizes[0];
+    }
   },
 
   methods: {
