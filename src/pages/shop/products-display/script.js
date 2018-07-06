@@ -58,7 +58,7 @@ export default {
     },
 
     bgTitle() {
-      return this.$route.params.category.replace(/-/g, ' ').split(':');
+      return (this.$route.params.category || '').replace(/-/g, ' ').split(':');
     },
   },
 
