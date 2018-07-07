@@ -32,6 +32,7 @@ Vue.component('plus-icon', PlusIcon);
 Vue.component('shopping-cart-icon', ShoppingCartIcon);
 Vue.component('twitter-icon', TwitterIcon);
 Vue.component('close-icon', XIcon);
+Vue.component('x-icon', XIcon);
 
 
 // Navigation
