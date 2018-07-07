@@ -9,7 +9,8 @@ import QuantitySelect from './quantity-select/quantity-select.vue';
 Vue.component('quantity-select', QuantitySelect);
 
 import { formatPrice } from '../../helpers';
-
+import * as chroma from 'chroma-js';
+window.chroma = chroma;
 
 export default {
   props: ['product'],
@@ -32,6 +33,11 @@ export default {
     buttonDisabled() {
       return (this.product.options.colors.length && !this.selectedColor)
         || (this.product.options.sizes.length && !this.selectedSize);
+    },
+
+    imageShadow() {
+      const color = chroma(this.selectedColor || 'black').desaturate(2).darken(3).alpha(0.25);
+      return `0 1.1vh 4.7vh ${color.css()}`;
     },
   },
 

@@ -2,7 +2,7 @@
   <transition name="fade">
     <div class="product-options modal">
       <div class="left">
-        <img v-bind:src="product.image" alt="Product preview">
+        <img v-bind:src="product.image" alt="Product preview" v-bind:style="{ filter: `drop-shadow(${imageShadow})` }">
       </div>
       <div class="right">
         <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
