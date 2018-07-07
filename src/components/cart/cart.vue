@@ -18,7 +18,7 @@
           <div class="cart-item" v-for="(product, i) in productsInCart">
             <div class="number"><span>{{i+1}}.</span></div>
             <div class="name">{{product.name}}</div>
-            <div class="price">${{product.price}}</div>
+            <div class="price"><span class="multiplier" v-if="product.quantity > 1">{{product.quantity}} • </span>${{product.price}}</div>
           </div>
         </div>
         <div class="cart-info">
