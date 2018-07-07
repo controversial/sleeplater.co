@@ -9,7 +9,7 @@
       <div class="summary">
         <span>{{itemsCount}} item{{itemsCount === 1 ? '' : 's'}}</span>
         <div class="separator"></div>
-        <span>${{ roundPrice(subtotal, true) }}</span>
+        <span>${{ formatPrice(subtotal, true) }}</span>
       </div>
 
       <div class="details" v-if="itemsCount">
@@ -21,21 +21,21 @@
             <div class="price">
               <span v-if="product.quantity > 1">{{product.quantity}}</span>
               <x-icon v-if="product.quantity > 1"></x-icon>
-              ${{roundPrice(product.price, false)}}
+              ${{ formatPrice(product.price, false) }}
             </div>
           </div>
         </div>
         <div class="cart-info">
           <div>
             <span class="left">Subtotal</span>
-            <span class="right">${{ roundPrice(subtotal, true) }}</span>
+            <span class="right">${{ formatPrice(subtotal, true) }}</span>
           </div>
           <div>
             <span class="left">Tax</span>
-            <span class="right">${{ roundPrice(subtotal * 0.08, true) }}</span>
+            <span class="right">${{ formatPrice(subtotal * 0.08, true) }}</span>
           </div>
           <div>
-            <span class="left emphasis">Total</span><span class="right emphasis">${{ roundPrice(subtotal * 1.08, true) }}</span>
+            <span class="left emphasis">Total</span><span class="right emphasis">${{ formatPrice(subtotal * 1.08, true) }}</span>
           </div>
         </div>
       </div>
