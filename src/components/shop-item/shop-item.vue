@@ -3,8 +3,8 @@
     <div class="transform-wrapper">
       <img v-bind:src="image" alt="Product preview">
       <div class="info">
-        <div class="title">{{name}}</div>
-        <div class="price">{{formattedPrice}}</div>
+        <div class="title"><span>{{name}}</span></div>
+        <div class="price"><span>{{formattedPrice}}</span></div>
       </div>
     </div>
   </div>

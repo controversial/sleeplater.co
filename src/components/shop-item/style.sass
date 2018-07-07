@@ -32,6 +32,7 @@
     font-family: $avenir-font-stack
     font-style: italic
     font-size: 1.3rem
+    line-height: 1.55em
     color: transparentize($dark-1, .15)
 
     opacity: 0
@@ -45,6 +46,11 @@
 
     .price
       font-weight: 400
+
+    span
+      $bg: transparentize($actually-white, .65)
+      background: $bg
+      box-shadow: .25em 0 0 $bg, -.25em 0 0 $bg // adds some "padding" to the left and right of each line
 
   &:hover .info
     opacity: 1
