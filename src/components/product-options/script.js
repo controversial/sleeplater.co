@@ -8,6 +8,8 @@ Vue.component('size-select', SizeSelect);
 import QuantitySelect from './quantity-select/quantity-select.vue';
 Vue.component('quantity-select', QuantitySelect);
 
+import { formatPrice } from '../../helpers';
+
 
 export default {
   props: ['product'],
@@ -55,6 +57,8 @@ export default {
   },
 
   methods: {
+    formatPrice,
+
     addToCart() {
       this.$store.commit('cartUpdate', {
         id: this.product.id,
