@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="product-options modal">
+    <div class="product-options modal" v-if="$store.state.productsFetched">
       <div class="left">
         <img v-bind:src="product.image" alt="Product preview" v-bind:style="{ filter: `drop-shadow(${imageShadow})` }">
       </div>

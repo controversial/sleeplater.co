@@ -50,7 +50,17 @@ export default {
     buttonActive: false,
   }),
 
-  beforeMount() {
+  async beforeMount() {
+    // Wait for productsFetched mutation in Vuex before proceeding to ensure that products are
+    // populated with an API result
+    if (!this.$store.state.productsFetched) {
+      await new Promise((resolve) => {
+        this.$store.subscribe((mutation) => {
+          if (mutation.type === 'productsFetched') resolve();
+        });
+      });
+    }
+
     this.selectedColor = this.colorInCart;
     this.selectedSize = this.sizeInCart;
     this.selectedQuantity = this.quantityInCart;
