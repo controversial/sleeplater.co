@@ -19,7 +19,14 @@ export default {
   },
   methods: {
     openProduct(id) {
-      this.$router.push(`/shop/${this.$route.params.category}/product/${id}`);
+      // Appending a slug to the end of the URL doesn't actually change anything but it makes the
+      // URL nicer and I think does something for SEO too
+      const slug = this.$store.state.products
+        .find(p => p.id === id)
+        .name
+        .toLowerCase()
+        .replace(/\s/g, '-');
+      this.$router.push(`/shop/${this.$route.params.category}/product/${id}/${slug}`);
     },
     closeAll(e) {
       if (e.target === this.$el) {
