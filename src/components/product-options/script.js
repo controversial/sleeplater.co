@@ -13,9 +13,10 @@ import * as chroma from 'chroma-js';
 window.chroma = chroma;
 
 export default {
-  props: ['product'],
+  props: ['productId'],
 
   computed: {
+    product() { return this.$store.state.products.find(p => p.id === this.productId); },
     // (most recent entry for this product)
     // eslint-disable-next-line max-len
     productInCart() { return this.$store.state.cart.filter(({ id }) => id === this.product.id).slice(-1)[0]; },
