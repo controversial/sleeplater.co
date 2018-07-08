@@ -28,6 +28,10 @@ export default {
         .replace(/\s/g, '-');
       this.$router.push(`/shop/${this.$route.params.category}/product/${id}/${slug}`);
     },
+    openCart() {
+      this.optionsOpen = false;
+      this.cartOpen = true;
+    },
     closeAll(e) {
       if (e.target === this.$el) {
         this.cartOpen = false;
