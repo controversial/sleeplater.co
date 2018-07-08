@@ -4,7 +4,7 @@
       v-bind:interactable="!(optionsOpen || cartOpen)"
       v-on:productClick="currentProduct = $event; optionsOpen = true;"
     ></products-display>
-    <product-options v-if="optionsOpen" v-bind:product-id="currentProduct.id"></product-options>
+    <router-view></router-view>
     <cart-button v-bind:items-count="itemsCount" v-on:click.native="cartOpen = true"></cart-button>
     <cart v-bind:hidden="!cartOpen" v-on:close="cartOpen = false"></cart>
   </div>

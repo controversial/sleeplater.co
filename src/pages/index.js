@@ -13,6 +13,13 @@ export default [
     name: 'shop',
     path: '/shop/:category',
     component: require('./shop/shop.vue').default,
+    children: [
+      {
+        path: ':productId',
+        component: require('../components/product-options/product-options.vue').default,
+        props: true,
+      },
+    ],
     meta: { primary: true, navIconColor: 'black', allowScrollNav: false },
   },
   {
