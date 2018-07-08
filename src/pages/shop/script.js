@@ -5,7 +5,6 @@ Vue.component('products-display', ProductsDisplay);
 export default {
   data: () => ({
     cartOpen: false,
-    currentProduct: undefined,
   }),
   computed: {
     itemsCount() {
@@ -19,6 +18,9 @@ export default {
     },
   },
   methods: {
+    openProduct(id) {
+      this.$router.push(`/shop/${this.$route.params.category}/${id}`);
+    },
     closeAll(e) {
       if (e.target === this.$el) {
         this.cartOpen = false;

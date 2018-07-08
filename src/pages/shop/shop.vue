@@ -2,7 +2,7 @@
   <div class="page" v-on:click="closeAll">
     <products-display
       v-bind:interactable="!(optionsOpen || cartOpen)"
-      v-on:productClick="currentProduct = $event; optionsOpen = true;"
+      v-on:productClick="openProduct($event)"
     ></products-display>
     <router-view></router-view>
     <cart-button v-bind:items-count="itemsCount" v-on:click.native="cartOpen = true"></cart-button>

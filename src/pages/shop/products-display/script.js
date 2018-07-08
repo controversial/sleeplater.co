@@ -71,7 +71,7 @@ export default {
 
     clicked(i) {
       const product = this.categoryProducts[i];
-      this.$emit('productClick', product);
+      this.$emit('productClick', product.id);
     },
 
     scrollHandler(evt) {
