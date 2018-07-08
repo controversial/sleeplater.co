@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     openProduct(id) {
-      this.$router.push(`/shop/${this.$route.params.category}/${id}`);
+      this.$router.push(`/shop/${this.$route.params.category}/product/${id}`);
     },
     closeAll(e) {
       if (e.target === this.$el) {

@@ -15,7 +15,7 @@ export default [
     component: require('./shop/shop.vue').default,
     children: [
       {
-        path: ':productId',
+        path: 'product/:productId',
         component: require('../components/product-options/product-options.vue').default,
         props: true,
       },
