@@ -148,7 +148,9 @@ export default {
         : this.maxScroll;
     },
 
-    async bgTitle(title) {
+    async bgTitle(title, oldTitle) {
+      if (title[0] === oldTitle[0] && title[1] === oldTitle[1]) return;
+
       const oldProducts = this.$store.state.products
         .filter(p => p.categories.includes(this.prevCategory));
       if (oldProducts.length) await delay((0.35 * 400) + (75 * oldProducts.length));
