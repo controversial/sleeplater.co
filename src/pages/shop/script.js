@@ -5,7 +5,6 @@ Vue.component('products-display', ProductsDisplay);
 export default {
   data: () => ({
     cartOpen: false,
-    optionsOpen: false,
     currentProduct: undefined,
   }),
   computed: {
@@ -13,6 +12,10 @@ export default {
       return this.$store.state.cart
         .map(item => item.quantity)
         .reduce((a, b) => a + b, 0);
+    },
+    optionsOpen: {
+      get() { return !!this.$route.params.productId; },
+      set(value) { if (!value) { this.$router.push(`/shop/${this.$route.params.category}`); } },
     },
   },
   methods: {
