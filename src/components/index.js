@@ -69,6 +69,15 @@ Vue.component('cart', Cart);
 import ProductOptions from './product-options/product-options.vue';
 Vue.component('product-options', ProductOptions);
 
+import ColorSelect from './color-select/color-select.vue';
+Vue.component('color-select', ColorSelect);
+
+import SizeSelect from './size-select/size-select.vue';
+Vue.component('size-select', SizeSelect);
+
+import QuantitySelect from './quantity-select/quantity-select.vue';
+Vue.component('quantity-select', QuantitySelect);
+
 
 // Contact
 

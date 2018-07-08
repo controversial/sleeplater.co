@@ -1,12 +1,4 @@
 /* eslint-disable import/first */
-import Vue from 'vue';
-
-import ColorSelect from './color-select/color-select.vue';
-Vue.component('color-select', ColorSelect);
-import SizeSelect from './size-select/size-select.vue';
-Vue.component('size-select', SizeSelect);
-import QuantitySelect from './quantity-select/quantity-select.vue';
-Vue.component('quantity-select', QuantitySelect);
 
 import { formatPrice } from '../../helpers';
 import * as chroma from 'chroma-js';
