@@ -15,7 +15,7 @@
       <div class="details" v-if="itemsCount">
         <div class="scroll-fade" v-bind:style="{ height: itemsHeight }"></div>
         <div class="items" ref="items" v-bind:style="{ maxHeight: itemsMaxHeight }">
-          <div class="cart-item" v-for="(product, i) in productsInCart">
+          <div class="cart-item" v-for="(product, i) in productsInCart" v-bind:name="`item${i}`">
             <div class="number"><span>{{i+1}}.</span></div>
             <div class="name">{{product.name}}</div>
             <div class="price">
@@ -23,6 +23,10 @@
               <x-icon v-if="product.quantity > 1"></x-icon>
               ${{ formatPrice(product.price, false) }}
             </div>
+
+            <tippy :to="`item${i}`" interactive="true" placement="bottom" arrow="true" theme="sleeplater">
+              <cart-item-options v-bind:cart-index="i"></cart-item-options>
+            </tippy>
           </div>
         </div>
         <div class="cart-info">
