@@ -14,6 +14,13 @@ import store from './store';
 
 import Vue from 'vue';
 
+import VueTippy from 'vue-tippy';
+Vue.use(VueTippy, {
+  theme: 'sleeplater',
+  arrow: true,
+  interactive: true,
+});
+
 import NavigationController from './navigation/navigation.vue';
 Vue.component('navigation', NavigationController);
 
