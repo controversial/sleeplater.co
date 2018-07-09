@@ -70,6 +70,45 @@ export default new Vuex.Store({
         });
       }
     },
+    // Change a specific item in the cart to a new configuration (could be new color, size,
+    // quantity, anything)
+    cartMutate(state, payload) {
+      /*
+       * payload = {
+       *   cartIndex: 0,         <- index of the item in the cart array that we're updating
+       *   update: {
+       *     size: 'xl',         <- New size
+       *     color: '#hex_here', <- New color
+       *     quantity: 3,        <- new quantity
+       *   }
+       * }
+       */
+
+      const cartItem = state.cart[payload.cartIndex]; // what's in the cart already? (old state)
+
+      // Search for whatever our new configuration is in the cart
+      const newConfigInCart = state.cart
+        .find(e =>
+          e.id === cartItem.id
+          && e.size === payload.update.size
+          && e.color === payload.update.color);
+
+      if (!newConfigInCart) {
+        // Our new configuration doesn't match any in the cart. Simple! Just change it.
+        Object.assign(cartItem, payload.update);
+      } else if (state.cart.indexOf(newConfigInCart) !== payload.cartIndex) {
+        // There's a *different* entry in the cart that matches our new configuration.
+        // We should add however many of this item element we have to however many were stored in
+        // the old item
+        newConfigInCart.quantity += payload.update.quantity;
+        // And then remove the item we're mutating since we just combined it with an older one
+        state.cart.splice(payload.cartIndex, 1);
+      } else {
+        // We found the same item! This means we have the same config options and are only updating
+        // the quantity. Let's do that.
+        cartItem.quantity = payload.update.quantity;
+      }
+    },
     // Contact
     updateContactForm(state, payload) { state.contactForm[payload.item] = payload.value; },
   },
