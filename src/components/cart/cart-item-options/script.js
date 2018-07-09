@@ -13,6 +13,7 @@ export default {
     sizeInCart() { return this.productInCart.size; },
     colorInCart() { return this.productInCart.color; },
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
+    product() { return this.$store.state.products.find(p => p.id === this.productId); },
   },
 
   methods: {
