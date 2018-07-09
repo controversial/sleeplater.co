@@ -5,7 +5,7 @@ export default [
     name: 'home',
     path: '/',
     component: require('./home/home.vue').default,
-    meta: { primary: true, navIconColor: 'white' },
+    meta: { primary: true, title: 'sleep later', navIconColor: 'white' },
   },
   // When navigating to /shop, go to the category most recently visited
   { path: '/shop', redirect: () => `/shop/${store.state.shopCategory}` },
@@ -18,14 +18,22 @@ export default [
         path: 'product/:productId/:slug?',
         component: require('../components/product-options/product-options.vue').default,
         props: true,
+        meta: {
+          title(route) {
+            const product = store.state.products.find(p => p.id === route.params.productId);
+            return `sleep later – ${product.name}`;
+          },
+        },
       },
     ],
-    meta: { primary: true, navIconColor: 'black', allowScrollNav: false },
+    meta: {
+      primary: true, title: 'sleep later – shop', navIconColor: 'black', allowScrollNav: false,
+    },
   },
   {
     name: 'contact',
     path: '/contact',
     component: require('./contact/contact.vue').default,
-    meta: { primary: true, navIconColor: 'white' },
+    meta: { primary: true, navIconColor: 'white', title: 'sleep later – contact' },
   },
 ];
