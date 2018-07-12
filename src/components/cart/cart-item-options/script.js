@@ -16,13 +16,15 @@ export default {
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
 
     product() { return this.$store.state.products.find(p => p.id === this.productId); },
-
-    buttonDisabled() {
-      return this.selectedSize === this.sizeInCart
-        && this.selectedColor === this.colorInCart
-        && this.selectedQuantity === this.quantityInCart;
+    buttonMessage() {
+      return (
+        this.selectedSize === this.sizeInCart &&
+        this.selectedColor === this.colorInCart &&
+        this.selectedQuantity === this.quantityInCart
+      )
+        ? 'Up to date'
+        : 'Update';
     },
-    buttonMessage() { return this.buttonDisabled ? 'Up to date' : 'Update'; },
   },
 
   methods: {

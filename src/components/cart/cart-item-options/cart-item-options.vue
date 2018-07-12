@@ -16,7 +16,7 @@
 
     <cart-update-bar
       v-on:click="update"
-      v-bind:buttonDisabled="buttonDisabled"
+      v-bind:buttonDisabled="false"
       v-model="selectedQuantity"
     >{{ buttonMessage }}</cart-update-bar>
 
