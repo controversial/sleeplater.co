@@ -78,6 +78,14 @@
           ></payment-method>
         </div>
         <div class="row">
+          <payment-method
+            name="cash"
+            text="Pay with cash"
+            v-on:change="(name) => $store.commit('selectPaymentMethod', name)"
+            v-bind="{ selectedName: $store.state.paymentMethod, svg: require('!raw-loader!../../assets/hand-holding-usd-solid.svg')}"
+          ></payment-method>
+        </div>
+        <div class="row">
           <submit-button ref="bottommost" style="flex-grow: 1" v-bind:disabled="!$store.state.paymentMethod">checkout</submit-button>
         </div>
       </div>
