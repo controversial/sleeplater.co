@@ -35,6 +35,11 @@ export default {
         this.itemsHeight = `${this.$refs.items.getBoundingClientRect().height}px`;
       }
     },
+
+    /* eslint-disable no-underscore-dangle */
+    tippyShow(i) { this.$refs[`item-${i}`][0]._tippy.show(); },
+    tippyHide(i) { this.$refs[`item-${i}`][0]._tippy.hide(); },
+    /* eslint-enable no-underscore-dangle */
   },
 
   computed: {

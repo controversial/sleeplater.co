@@ -15,7 +15,12 @@
       <div class="details" v-if="itemsCount">
         <div class="scroll-fade" v-bind:style="{ height: itemsHeight }"></div>
         <div class="items" ref="items" v-bind:style="{ maxHeight: itemsMaxHeight }">
-          <div class="cart-item" v-for="(product, i) in productsInCart" v-bind:name="`item${i}`">
+          <div
+            class="cart-item"
+            v-for="(product, i) in productsInCart"
+            v-bind:name="`item-${i}`" v-bind:ref="`item-${i}`"
+            v-on:mouseenter="tippyShow(i)" v-on:mouseleave="tippyHide(i)"
+          >
             <div class="number"><span>{{i+1}}.</span></div>
             <div class="name">{{product.name}}</div>
             <div class="price">
@@ -25,14 +30,14 @@
             </div>
 
             <tippy
-              :to="`item${i}`"
+              :to="`item-${i}`"
               interactive="true"
               placement="bottom"
               arrow="true"
               theme="sleeplater"
               v-on:show="displayedOptions.push(i)"
               v-on:hidden="displayedOptions.splice(displayedOptions.indexOf(i), 1)"
-              trigger="click"
+              trigger="manual"
             >
               <cart-item-options v-bind:cart-index="i" v-bind:displayed="displayedOptions.includes(i)"></cart-item-options>
             </tippy>
