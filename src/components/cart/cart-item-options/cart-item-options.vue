@@ -1,7 +1,19 @@
 <template>
   <div class="cart-item-options">
-    <color-select v-bind:colors="product.options.colors" v-model="selectedColor"></color-select>
-    <size-select v-bind:sizes="product.options.sizes" v-model="selectedSize" v-bind:displayed="displayed"></size-select>
+
+    <color-select
+      v-if="product.options.colors.length"
+      v-bind:colors="product.options.colors"
+      v-model="selectedColor"
+    ></color-select>
+
+    <size-select
+      v-if="product.options.sizes.length"
+      v-bind:sizes="product.options.sizes"
+      v-model="selectedSize"
+      v-bind:displayed="displayed"
+    ></size-select>
+
   </div>
 </template>
 
