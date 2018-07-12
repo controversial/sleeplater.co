@@ -21,7 +21,7 @@ export default [
         meta: {
           title(route) {
             const product = store.state.products.find(p => p.id === route.params.productId);
-            return `sleep later – ${product.name}`;
+            return product ? `sleep later – ${product.name}` : 'sleep later';
           },
         },
       },
