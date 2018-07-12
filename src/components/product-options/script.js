@@ -38,8 +38,6 @@ export default {
     selectedColor: undefined,
     selectedSize: undefined,
     selectedQuantity: 1,
-
-    buttonActive: false,
   }),
 
   async beforeMount() {

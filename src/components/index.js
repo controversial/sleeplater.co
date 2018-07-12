@@ -81,6 +81,9 @@ Vue.component('size-select', SizeSelect);
 import QuantitySelect from './quantity-select/quantity-select.vue';
 Vue.component('quantity-select', QuantitySelect);
 
+import CartUpdateBar from './cart-update-bar/cart-update-bar.vue';
+Vue.component('cart-update-bar', CartUpdateBar);
+
 
 // Contact
 

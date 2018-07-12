@@ -10,14 +10,11 @@
         <color-select v-if="product.options.colors.length" v-bind:colors="product.options.colors" v-model="selectedColor"></color-select>
         <size-select v-if="product.options.sizes.length" v-bind:sizes="product.options.sizes" v-model="selectedSize"></size-select>
 
-        <div class="bottom-bar" v-bind:class="{ active: buttonActive, disabled: buttonDisabled }">
-          <div class="submit"
-            v-on:click="() => { if (!buttonDisabled) addToCart(); }"
-            v-on:mousedown="buttonActive = true"
-            v-on:mouseup="buttonActive = false"
-          >{{ buttonMessage }}</div>
-          <quantity-select v-model="selectedQuantity"></quantity-select>
-        </div>
+        <cart-update-bar
+          v-on:click="addToCart"
+          v-bind:buttonDisabled="buttonDisabled"
+          v-model="selectedQuantity"
+        >{{ buttonMessage }}</cart-update-bar>
       </div>
     </div>
   </transition>
