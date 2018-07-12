@@ -32,6 +32,7 @@
               theme="sleeplater"
               v-on:show="displayedOptions.push(i)"
               v-on:hidden="displayedOptions.splice(displayedOptions.indexOf(i), 1)"
+              trigger="click"
             >
               <cart-item-options v-bind:cart-index="i" v-bind:displayed="displayedOptions.includes(i)"></cart-item-options>
             </tippy>

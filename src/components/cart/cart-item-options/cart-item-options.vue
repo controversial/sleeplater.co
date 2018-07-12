@@ -14,6 +14,12 @@
       v-bind:displayed="displayed"
     ></size-select>
 
+    <cart-update-bar
+      v-on:click="update"
+      v-bind:buttonDisabled="buttonDisabled"
+      v-model="selectedQuantity"
+    >{{ buttonMessage }}</cart-update-bar>
+
   </div>
 </template>
 
