@@ -19,7 +19,7 @@
     <!-- Holds the actual full content, shrinks into navigation view -->
     <div class="page-wrapper" ref="pageWrapper" v-bind:name="$route.name"
       v-bind:class="{ 'nav-open': $store.state.navOpen }" v-bind:style="{ transitionDuration: wrapperTransitionDuration }"
-      v-on:click="$store.commit('closeNav')"
+      v-on:click="() => { if ($store.state.navOpen) $store.commit('closeNav'); }"
       v-on:mouseover="pageMouseover" v-on:mouseout="pageMouseout"
     >
       <!-- Main page -->
