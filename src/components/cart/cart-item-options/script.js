@@ -39,11 +39,18 @@ export default {
       });
       this.hide();
     },
+
+    copyConfig() {
+      this.selectedSize = this.sizeInCart;
+      this.selectedColor = this.colorInCart;
+      this.selectedQuantity = this.quantityInCart;
+    },
   },
 
-  beforeMount() {
-    this.selectedSize = this.sizeInCart;
-    this.selectedColor = this.colorInCart;
-    this.selectedQuantity = this.quantityInCart;
+  // When the cart-item-options is first created, and every time it displays, make sure the options
+  // it shows reflect what's in the cart.
+  watch: {
+    displayed() { this.copyConfig(); },
   },
+  beforeMount() { this.copyConfig(); },
 };
