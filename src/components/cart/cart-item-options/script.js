@@ -1,5 +1,5 @@
 export default {
-  props: ['cartIndex', 'displayed'],
+  props: ['cartIndex', 'displayed', 'hide'],
 
   data: () => ({
     selectedSize: '',
@@ -37,6 +37,7 @@ export default {
           quantity: this.selectedQuantity,
         },
       });
+      this.hide();
     },
   },
 

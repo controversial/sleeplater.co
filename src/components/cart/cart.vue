@@ -19,7 +19,6 @@
             class="cart-item"
             v-for="(product, i) in productsInCart"
             v-bind:name="`item-${i}`" v-bind:ref="`item-${i}`"
-            v-on:mouseenter="tippyShow(i)" v-on:mouseleave="tippyHide(i)"
           >
             <div class="number"><span>{{i+1}}.</span></div>
             <div class="name">{{product.name}}</div>
@@ -37,9 +36,8 @@
               theme="sleeplater"
               v-on:show="displayedOptions.push(i)"
               v-on:hidden="displayedOptions.splice(displayedOptions.indexOf(i), 1)"
-              trigger="manual"
             >
-              <cart-item-options v-bind:cart-index="i" v-bind:displayed="displayedOptions.includes(i)"></cart-item-options>
+              <cart-item-options v-bind:cart-index="i" v-bind:displayed="displayedOptions.includes(i)" v-bind:hide="() => tippyHide(i)"></cart-item-options>
             </tippy>
           </div>
         </div>

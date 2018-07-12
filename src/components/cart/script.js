@@ -36,10 +36,7 @@ export default {
       }
     },
 
-    /* eslint-disable no-underscore-dangle */
-    tippyShow(i) { this.$refs[`item-${i}`][0]._tippy.show(); },
-    tippyHide(i) { this.$refs[`item-${i}`][0]._tippy.hide(); },
-    /* eslint-enable no-underscore-dangle */
+    tippyHide(i) { this.$refs[`item-${i}`][0]._tippy.hide(); }, // eslint-disable-line no-underscore-dangle
   },
 
   computed: {
