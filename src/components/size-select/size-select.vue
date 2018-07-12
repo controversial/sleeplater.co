@@ -8,7 +8,7 @@
     >{{ size }}</div>
 
     <div class="selected-indicator"
-      v-if="mounted && allSizes.indexOf(value) >= 0"
+      v-if="mounted && displayed && allSizes.indexOf(value) >= 0"
       v-bind:style="indicatorStyle"
     ></div>
   </div>

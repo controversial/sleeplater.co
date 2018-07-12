@@ -24,8 +24,16 @@
               ${{ formatPrice(product.price, false) }}
             </div>
 
-            <tippy :to="`item${i}`" interactive="true" placement="bottom" arrow="true" theme="sleeplater">
-              <cart-item-options v-bind:cart-index="i"></cart-item-options>
+            <tippy
+              :to="`item${i}`"
+              interactive="true"
+              placement="bottom"
+              arrow="true"
+              theme="sleeplater"
+              v-on:show="displayedOptions.push(i)"
+              v-on:hidden="displayedOptions.splice(displayedOptions.indexOf(i), 1)"
+            >
+              <cart-item-options v-bind:cart-index="i" v-bind:displayed="displayedOptions.includes(i)"></cart-item-options>
             </tippy>
           </div>
         </div>

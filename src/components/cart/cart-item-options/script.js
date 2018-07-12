@@ -1,5 +1,5 @@
 export default {
-  props: ['cartIndex'],
+  props: ['cartIndex', 'displayed'],
 
   data: () => ({
     selectedSize: '',

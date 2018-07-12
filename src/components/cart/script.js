@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 import Vue from 'vue';
 import PaymentMethod from './payment-method/payment-method.vue';
 Vue.component('payment-method', PaymentMethod);
@@ -9,6 +10,9 @@ export default {
   data: () => ({
     itemsMaxHeight: 0,
     itemsHeight: 0,
+
+    // The index of each cart item whose options are displayed via hover
+    displayedOptions: [],
   }),
 
   methods: {

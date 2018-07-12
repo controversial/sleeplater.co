@@ -1,5 +1,14 @@
 export default {
-  props: ['sizes', 'value'], // value is the selected size
+  props: {
+    sizes: Array,
+    value: String, // the selected size
+    // When this updates, layout will be recomputed; used to overcome rendering errors caused by
+    // 'display: none' which can result in incorrect values for highlight positioning
+    displayed: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data: () => ({
     allSizes: ['xs', 's', 'm', 'l', 'xl'],
     windowSize: [window.innerWidth, window.innerHeight],
@@ -8,7 +17,8 @@ export default {
 
   computed: {
     indicatorStyle() {
-      (() => {})(this.windowSize); // Trick Vue into recomputing on window resize
+      // Trick Vue into recomputing on window resize and on "displayed" prop change
+      (() => {})(this.windowSize, this.displayed);
 
       const v = this.value || this.allSizes[0];
       const highlighted = this.$refs[v][0];
