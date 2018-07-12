@@ -34,7 +34,7 @@
               placement="bottom"
               arrow="true"
               theme="sleeplater"
-              v-on:show="displayedOptions.push(i)"
+              v-on:show="displayedOptions.push(i); tippyHideOthers(i)"
               v-on:hidden="displayedOptions.splice(displayedOptions.indexOf(i), 1)"
             >
               <cart-item-options v-bind:cart-index="i" v-bind:displayed="displayedOptions.includes(i)" v-bind:hide="() => tippyHide(i)"></cart-item-options>
