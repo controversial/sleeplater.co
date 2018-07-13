@@ -86,7 +86,12 @@
           ></payment-method>
         </div>
         <div class="row">
-          <submit-button ref="bottommost" style="flex-grow: 1" v-bind:disabled="!$store.state.paymentMethod">checkout</submit-button>
+          <submit-button
+            ref="bottommost"
+            style="flex-grow: 1"
+            v-bind:disabled="!$store.state.paymentMethod"
+            v-on:click.native="checkout"
+          >checkout</submit-button>
         </div>
       </div>
 

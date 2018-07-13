@@ -45,6 +45,11 @@ export default {
         if (i !== i2) this.tippyHide(i2);
       }
     },
+
+    checkout() {
+      console.log(this.$store.state.cart);
+      console.log(this.$store.state.paymentMethod);
+    },
   },
 
   computed: {
