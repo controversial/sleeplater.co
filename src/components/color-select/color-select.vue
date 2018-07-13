@@ -10,7 +10,7 @@
     <check-icon
       class="selected-indicator"
       v-if="colors.indexOf(value) >= 0"
-      v-bind:style="{ left: `${.6 + (1.75 * colors.indexOf(value))}rem` }"
+      v-bind:style="{ left: `${.5 + ((.5 + .45 + .5) * colors.indexOf(value))}em` }"
     ></check-icon>
   </div>
 </template>
