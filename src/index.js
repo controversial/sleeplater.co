@@ -8,18 +8,15 @@ import 'whatwg-fetch';
 import './index.html';
 import './main.sass';
 
+import Vue from 'vue';
+
 import './components';
+import './plugins';
 import router from './router';
 import store from './store';
 
-import Vue from 'vue';
 
-import VueTippy from 'vue-tippy';
-Vue.use(VueTippy, {
-  // Bound popper.js elements to the viewport instead of the default behavior of the scroll parent
-  popperOptions: { modifiers: { preventOverflow: { boundariesElement: 'viewport' } } },
-});
-
+// Set up Navigation component
 import NavigationController from './navigation/navigation.vue';
 Vue.component('navigation', NavigationController);
 
@@ -33,7 +30,6 @@ if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad
 
 
 // Main app
-
 window.app = new Vue({
   el: '#app',
   router,
