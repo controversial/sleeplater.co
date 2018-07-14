@@ -124,11 +124,16 @@ export default {
             .then(products => this.$store.commit('productsFetched', products));
         }
 
+        // Navigate away from 'default' route
         if (this.$route.params.category === 'default') this.$router.replace(`/shop/${this.categories[0]}`);
 
+        // Register event listener for reactive innerWidth
         window.addEventListener('resize', () => {
           this.windowWidth = window.innerWidth;
         });
+
+        // Register Google Analytics impressions for products on page
+        this.categoryProducts.forEach(p => analytics.productVisible(p));
       })();
     }
 
@@ -149,6 +154,8 @@ export default {
       this.scrollPx = this.categories.indexOf(newCat) > this.categories.indexOf(oldCat)
         ? this.minScroll
         : this.maxScroll;
+      // Register Google Analytics impressions for new products
+      this.categoryProducts.forEach(p => analytics.productVisible(p));
     },
 
     async bgTitle(title, oldTitle) {

@@ -10,6 +10,12 @@ const obj = product => ({
 
 export default new Vue({
   methods: {
+    // Should be called whenever a product becomes visible. Logs a product "impression"
+    productVisible(product) {
+      const o = obj(product);
+      this.$ga.ecommerce.addImpression(o);
+    },
+
     // Should be called whenever a product is clicked on
     productClicked(product) {
       const o = obj(product);
