@@ -134,6 +134,7 @@ export default {
 
         // Register Google Analytics impressions for products on page
         this.categoryProducts.forEach(p => analytics.productVisible(p));
+        analytics.pageView(this.$route);
       })();
     }
 
@@ -156,6 +157,7 @@ export default {
         : this.maxScroll;
       // Register Google Analytics impressions for new products
       this.categoryProducts.forEach(p => analytics.productVisible(p));
+      analytics.pageView(this.$route);
     },
 
     async bgTitle(title, oldTitle) {

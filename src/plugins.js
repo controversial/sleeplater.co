@@ -8,6 +8,7 @@ Vue.use(VueAnalytics, {
   id: 'UA-122351714-1',
   router: require('./router').default,
   ecommerce: { enabled: true, enhanced: true },
+  ignoreRoutes: ['shop'],
 });
 
 
