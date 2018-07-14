@@ -2,7 +2,7 @@
 
 import { formatPrice } from '../../helpers';
 import * as chroma from 'chroma-js';
-window.chroma = chroma;
+import analytics from '../../analytics';
 
 export default {
   props: ['productId'],
@@ -73,6 +73,7 @@ export default {
         size: this.selectedSize,
         quantity: this.selectedQuantity,
       });
+      analytics.addToCart(this.product);
     },
   },
 };

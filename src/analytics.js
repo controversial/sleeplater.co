@@ -23,6 +23,13 @@ export default new Vue({
       this.$ga.ecommerce.setAction('detail');
     },
 
+    addToCart(product) {
+      const o = obj(product);
+      this.$ga.ecommerce.addProduct(o);
+      this.$ga.ecommerce.setAction('add');
+      this.$ga.event('UX', 'click');
+    },
+
     // Register a page view. Only call for routes where auto tracking has been disabled
     pageView($route) {
       this.$ga.page($route.path);
