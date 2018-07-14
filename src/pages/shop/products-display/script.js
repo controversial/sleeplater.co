@@ -1,5 +1,7 @@
 import * as transitions from './item-transitions';
+import analytics from '../../../analytics';
 import { clamp, delay } from '../../../helpers';
+
 
 const Lethargy = require('exports-loader?this.Lethargy!lethargy/lethargy');
 const lethargy = new Lethargy(null, 30);
@@ -71,6 +73,7 @@ export default {
 
     clicked(i) {
       const product = this.categoryProducts[i];
+      analytics.productClicked(product);
       this.$emit('productClick', product.id);
     },
 
