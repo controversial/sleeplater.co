@@ -1,6 +1,9 @@
+/* eslint-disable import/first */
 import Vue from 'vue';
 import ProductsDisplay from './products-display/products-display.vue';
 Vue.component('products-display', ProductsDisplay);
+import analytics from '../../analytics';
+
 
 export default {
   data: () => ({
@@ -42,6 +45,7 @@ export default {
   watch: {
     optionsOpen(val) {
       this.$store.commit(val ? 'hideNavButtons' : 'showNavButtons');
+      if (!val) analytics.pageView(this.$route);
     },
   },
 };
