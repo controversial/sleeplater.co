@@ -39,6 +39,10 @@ export default {
       });
       this.hide();
     },
+    remove() {
+      this.$store.commit('cartRemove', { cartIndex: this.cartIndex });
+      this.hide();
+    },
 
     copyConfig() {
       this.selectedSize = this.sizeInCart;

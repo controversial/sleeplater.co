@@ -20,6 +20,8 @@
       v-model="selectedQuantity"
     >{{ buttonMessage }}</cart-update-bar>
 
+    <div class="remove" v-on:click="remove">Remove</div>
+
   </div>
 </template>
 

@@ -111,6 +111,9 @@ export default new Vuex.Store({
         cartItem.quantity = payload.update.quantity;
       }
     },
+    cartRemove(state, payload) {
+      state.cart.splice(payload.cartIndex, 1);
+    },
     // Clear everything out the cart
     clearCart(state) {
       state.cart = [];
