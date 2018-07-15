@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const bigcartel = require('./modules/bigcartel');
 const contact = require('./modules/contact');
+const sendOrderNotification = require('./modules/ordertrack');
 
 // Create server
 const app = express();
@@ -33,6 +34,13 @@ app.post('/contact', (req, res) => {
   if (!name || !email || !message || !mode) res.status(400).send({ error: 'missing parameter(s)' });
   // Send request to Slack webhook
   else contact(name, email, phone, message, mode).then(() => res.send({ status: 'success' }));
+});
+
+// Order notifications
+app.post('/order', (req, res) => {
+  const { type, order, user } = req.body;
+  if (!type || !order || !user) res.status(400).send({ error: 'missing parameter(s)' });
+  else sendOrderNotification(type, order, user).then(() => res.send({ status: 'success' }));
 });
 
 
