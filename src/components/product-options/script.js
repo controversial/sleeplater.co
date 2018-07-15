@@ -9,6 +9,7 @@ export default {
 
   computed: {
     product() { return this.$store.state.products.find(p => p.id === this.productId); },
+    soldOut() { return this.product.status === 'sold_out'; },
     // (most recent entry for this product)
     // eslint-disable-next-line max-len
     productInCart() { return this.$store.state.cart.filter(({ id }) => id === this.product.id).slice(-1)[0]; },
@@ -19,12 +20,14 @@ export default {
     buttonMessage() {
       const p = this.$store.state.cart.find(({ id, color, size }) =>
         id === this.product.id && color === this.selectedColor && size === this.selectedSize);
+      if (this.soldOut) return 'Sold out';
       if (p) return p.quantity === this.selectedQuantity ? 'Added!' : 'Update quantity';
       return 'Add to cart';
     },
 
     buttonDisabled() {
-      return (this.product.options.colors.length && !this.selectedColor)
+      return this.soldOut
+        || (this.product.options.colors.length && !this.selectedColor)
         || (this.product.options.sizes.length && !this.selectedSize);
     },
 

@@ -8,7 +8,7 @@
         <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
         <div class="description">{{ product.description }} </div>
         <color-select v-if="product.options.colors.length" v-bind:colors="product.options.colors" v-model="selectedColor"></color-select>
-        <size-select v-if="product.options.sizes.length" v-bind:sizes="product.options.sizes" v-model="selectedSize"></size-select>
+        <size-select v-if="product.options.sizes.length" v-bind:sizes="soldOut ? [] : product.options.sizes" v-model="selectedSize"></size-select>
 
         <cart-update-bar
           v-on:click="addToCart"
