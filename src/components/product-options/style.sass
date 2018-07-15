@@ -10,8 +10,7 @@ $desc-color: #424243
   position: fixed
   left: 50%
   top: 50%
-  width: 25rem
-  height: 18rem
+  min-height: 18rem
   transform: translate(-50%, -50%)
   background: $white
   box-shadow: 0 0 0 1000px transparentize($actually-black, .75), 0 .2rem .65rem -.3rem transparentize($actually-black, .65)
@@ -20,28 +19,30 @@ $desc-color: #424243
   display: flex
 
   & > div
-    flex-grow: 1
-    flex-basis: 0
     position: relative
 
 
 
 
-.left img
-  position: absolute
-  top: 50%
-  left: 0
-  transform: translateY(-65%)
-  width: 70%
-  height: auto
-  margin: 15%
-  box-shadow: 0 .75vh 4vh -.5vh transparentize($actually-black, .75)
+.left
+  width: 15em
+
+  img
+    position: absolute
+    top: 50%
+    left: 0
+    transform: translateY(-65%)
+    width: 70%
+    height: auto
+    margin: 15%
+    box-shadow: 0 .75vh 4vh -.5vh transparentize($actually-black, .75)
 
 
 
 
 .right
   padding-right: 1.3rem
+  width: 13em
 
   h1
     font-family: $avenir-font-stack
