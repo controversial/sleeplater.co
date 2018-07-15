@@ -42,8 +42,10 @@ export default new Vuex.Store({
     closeNav(state) { state.navOpen = false; },
     hideNavButtons(state) { state.hideNavButtons = true; },
     showNavButtons(state) { state.hideNavButtons = false; },
+
     // Home
     loaded(state) { state.loaded = true; },
+
     // Shop
     changeCategory(state, category) { state.shopCategory = category; },
     productsFetched(state, products) { state.products = products; state.productsFetched = true; },
@@ -109,6 +111,12 @@ export default new Vuex.Store({
         cartItem.quantity = payload.update.quantity;
       }
     },
+    // Clear everything out the cart
+    clearCart(state) {
+      state.cart = [];
+      state.paymentMethod = '';
+    },
+
     // Contact
     updateContactForm(state, payload) { state.contactForm[payload.item] = payload.value; },
   },

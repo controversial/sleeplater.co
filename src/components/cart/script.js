@@ -54,8 +54,9 @@ export default {
       /* eslint-enable no-console */
     },
 
-    orderComplete(payer) {
-      onOrderComplete.bind(this)(payer);
+    async orderComplete(payer) {
+      const success = await onOrderComplete.bind(this)(payer);
+      if (success) this.$store.commit('clearCart');
     },
   },
 

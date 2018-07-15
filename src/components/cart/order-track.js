@@ -28,7 +28,7 @@ export default function onOrderComplete(payer) {
     }, ['color', 'quantity', 'size', 'name', 'price'])),
   };
 
-  fetch(url, {
+  return fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     // Only some properties of this
@@ -37,5 +37,5 @@ export default function onOrderComplete(payer) {
       user,
       order,
     }),
-  });
+  }).then(r => r.status >= 200 && r.status < 300);
 }
