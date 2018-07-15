@@ -3,6 +3,7 @@ import Vue from 'vue';
 import PaymentMethod from './payment-method/payment-method.vue';
 Vue.component('payment-method', PaymentMethod);
 import { formatPrice } from '../../helpers';
+import onOrderComplete from './order-track';
 
 export default {
   props: ['hidden'],
@@ -47,15 +48,14 @@ export default {
     },
 
     checkout() {
+      /* eslint-disable no-console */
       console.log(this.$store.state.cart);
       console.log(this.$store.state.paymentMethod);
+      /* eslint-enable no-console */
     },
 
-    paymentComplete(payer) {
-      console.log(`name: ${payer.first_name} ${payer.last_name}`);
-      console.log(`email: ${payer.email}`);
-      const a = payer.shipping_address;
-      console.log(`address: ${a.line1} ${a.city} ${a.state} ${a.postal_code} ${a.country_code}`);
+    orderComplete(payer) {
+      onOrderComplete.bind(this)(payer);
     },
   },
 
@@ -119,7 +119,7 @@ export default {
         }],
       }),
       onAuthorize: (data, actions) => actions.payment.execute()
-        .then(result => this.paymentComplete(result.payer.payer_info)),
+        .then((result) => { this.orderComplete(result.payer); }),
       style: {
         size: 'responsive',
         shape: 'rect',
