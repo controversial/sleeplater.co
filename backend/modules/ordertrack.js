@@ -44,7 +44,7 @@ module.exports = function sendOrderNotification(type, order, user) {
         fields: [
           { title: 'Product name', value: item.name, short: true },
           { title: 'Quantity', value: item.quantity, short: true },
-          { title: 'Size', value: item.size, short: true },
+          { title: 'Size', value: item.size.toUpperCase(), short: true },
           { title: 'Color', value: item.color, short: true },
           { title: 'Price', value: `$${item.price}` },
         ],
