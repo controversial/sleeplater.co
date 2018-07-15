@@ -17,6 +17,10 @@ export default function onOrderComplete(payer) {
     user.email = info.email;
     const a = info.shipping_address;
     user.address = `${a.line1}\n${a.city}, ${a.state} ${a.postal_code}\n${a.country_code}`;
+  } else if (paymentMethod === 'cash') {
+    user.name = payer.name;
+    user.email = payer.email;
+    user.address = payer.address;
   }
 
   // order

@@ -47,11 +47,22 @@ export default {
       }
     },
 
-    checkout() {
-      /* eslint-disable no-console */
-      console.log(this.$store.state.cart);
-      console.log(this.$store.state.paymentMethod);
-      /* eslint-enable no-console */
+    async checkout() {
+      if (this.$store.state.paymentMethod === 'cash') {
+        // gah no time for anythig better
+        /* eslint-disable no-alert */
+        const name = prompt('Enter your name');
+        const email = prompt('Enter your email');
+        const address = prompt('Enter your shipping address');
+        /* eslint-enable no-alert */
+        const success = await onOrderComplete.bind(this)({
+          payment_method: 'cash',
+          name,
+          email,
+          address,
+        });
+        if (success) this.$store.commit('clearCart');
+      }
     },
 
     async orderComplete(payer) {
@@ -108,6 +119,7 @@ export default {
   updated() { this.updateItemsMaxHeight(); },
 
   mounted() {
+    // Create paypal button
     window.paypal.Button.render({
       env: 'production',
       client: {
