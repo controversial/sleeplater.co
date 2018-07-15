@@ -50,6 +50,13 @@ export default {
       console.log(this.$store.state.cart);
       console.log(this.$store.state.paymentMethod);
     },
+
+    paymentComplete(payer) {
+      console.log(`name: ${payer.first_name} ${payer.last_name}`);
+      console.log(`email: ${payer.email}`);
+      const a = payer.shipping_address;
+      console.log(`address: ${a.line1} ${a.city} ${a.state} ${a.postal_code} ${a.country_code}`);
+    },
   },
 
   computed: {
@@ -112,7 +119,7 @@ export default {
         }],
       }),
       onAuthorize: (data, actions) => actions.payment.execute()
-        .then(() => console.log('done!')),
+        .then(result => this.paymentComplete(result.payer.payer_info)),
       style: {
         size: 'responsive',
         shape: 'rect',
