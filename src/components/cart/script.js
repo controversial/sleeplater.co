@@ -91,4 +91,20 @@ export default {
   },
   destroyed() { window.removeEventListener('resize', this.boundUpdate); },
   updated() { this.updateItemsMaxHeight(); },
+
+  mounted() {
+    window.paypal.Button.render({
+      env: 'sandbox',
+      client: {
+        sandbox: 'AasuLzwG0RtJkM14vRWCNk9v1qtMbyod3BMEI8HGvbQ9dQIrg8BAmWgA-NfsQNtHNaRACyK2aPrVakjl',
+      },
+      payment: (data, actions) => actions.payment.create({
+        transactions: [{
+          amount: { total: this.formatPrice(this.subtotal * 1.08, true), currency: 'USD' },
+        }],
+      }),
+      onAuthorize: (data, actions) => actions.payment.execute()
+        .then(() => console.log('done!')),
+    }, '#paypal-button');
+  },
 };

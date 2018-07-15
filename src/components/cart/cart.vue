@@ -80,6 +80,10 @@
         </div>
       </div>
 
+      <div class="row">
+        <div id="paypal-button"></div>
+      </div>
+
       <div class="empty-state" v-if="!itemsCount">There's nothing in your cart!</div>
 
     </div>
