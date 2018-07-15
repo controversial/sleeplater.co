@@ -2,7 +2,7 @@
   <transition name="fade">
     <div class="product-options modal" v-if="$store.state.productsFetched">
       <div class="left">
-        <img v-bind:src="product.secondary_image || product.image" alt="Product preview" v-bind:style="{ filter: `drop-shadow(${imageShadow})` }">
+        <img v-bind:src="product.secondary_image || product.image" alt="Product preview">
       </div>
       <div class="right">
         <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
