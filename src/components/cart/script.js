@@ -96,6 +96,9 @@ export default {
         // Sum
         .reduce((a, b) => a + b, 0);
     },
+    shipping() { return this.$store.state.paymentMethod === 'cash' ? 0 : 7; },
+    tax() { return (this.subtotal + this.shipping) * 0.08; },
+    total() { return this.subtotal + this.shipping + this.tax; },
   },
 
   watch: {
@@ -128,7 +131,7 @@ export default {
       },
       payment: (data, actions) => actions.payment.create({
         transactions: [{
-          amount: { total: this.formatPrice(this.subtotal * 1.08, true), currency: 'USD' },
+          amount: { total: this.formatPrice(this.total, true), currency: 'USD' },
         }],
       }),
       onAuthorize: (data, actions) => actions.payment.execute()

@@ -46,12 +46,17 @@
             <span class="left">Subtotal</span>
             <span class="right">${{ formatPrice(subtotal, true) }}</span>
           </div>
-          <div>
-            <span class="left">Tax</span>
-            <span class="right">${{ formatPrice(subtotal * 0.08, true) }}</span>
+          <div v-if="$store.state.paymentMethod !== 'cash'">
+            <span class="left">Shipping</span>
+            <span class="right">${{ formatPrice(shipping, true) }}</span>
           </div>
           <div>
-            <span class="left emphasis">Total</span><span class="right emphasis">${{ formatPrice(subtotal * 1.08, true) }}</span>
+            <span class="left">Tax</span>
+            <span class="right">${{ formatPrice(tax, true) }}</span>
+          </div>
+          <div>
+            <span class="left emphasis">Total</span>
+            <span class="right emphasis">${{ formatPrice(total, true) }}</span>
           </div>
         </div>
       </div>
