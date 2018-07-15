@@ -70,7 +70,7 @@
             v-bind="{ selectedName: $store.state.paymentMethod, svg: require('!raw-loader!../../assets/hand-holding-usd-solid.svg')}"
           ></payment-method>
         </div>
-        <div class="row">
+        <div class="row" v-bind:style="{ display: $store.state.paymentMethod === 'paypal' ? 'none' : ''}">
           <submit-button
             ref="bottommost"
             style="flex-grow: 1"

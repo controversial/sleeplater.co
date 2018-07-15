@@ -83,6 +83,13 @@ export default {
     hidden(val) {
       this.$store.commit(val ? 'showNavButtons' : 'hideNavButtons');
     },
+
+    // button breaks if its container element has any vue attribute so we do it like this
+    '$store.state.paymentMethod': function paymentMethodChanged(val) {
+      document.getElementById('paypal-button').style.display = val === 'paypal'
+        ? ''
+        : 'none';
+    },
   },
 
   created() {
@@ -94,9 +101,10 @@ export default {
 
   mounted() {
     window.paypal.Button.render({
-      env: 'sandbox',
+      env: 'production',
       client: {
         sandbox: 'AasuLzwG0RtJkM14vRWCNk9v1qtMbyod3BMEI8HGvbQ9dQIrg8BAmWgA-NfsQNtHNaRACyK2aPrVakjl',
+        production: 'AZUcKQOKOGm2o9lo2hi8jiG_NsH30cW9pwt7IUaGCPTgY6WiSIjUlTGaUl51V34WCSnoGeG12ExDfFqj',
       },
       payment: (data, actions) => actions.payment.create({
         transactions: [{
@@ -105,6 +113,13 @@ export default {
       }),
       onAuthorize: (data, actions) => actions.payment.execute()
         .then(() => console.log('done!')),
+      style: {
+        size: 'responsive',
+        shape: 'rect',
+        color: 'silver',
+        tagline: false,
+      },
     }, '#paypal-button');
+    document.getElementById('paypal-button').style.display = 'none';
   },
 };
