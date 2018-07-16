@@ -52,9 +52,21 @@ export default {
       if (this.$store.state.paymentMethod === 'cash') {
         // gah no time for anythig better
         /* eslint-disable no-alert */
-        const name = prompt('Enter your name');
-        const email = prompt('Enter your email');
-        const address = prompt('Enter your shipping address');
+        let name = '';
+        let email = '';
+        let address = '';
+        while (!name.length) {
+          name = prompt('Enter your name');
+          if (name === null) return;
+        }
+        while (!email.length) {
+          email = prompt('Enter your email');
+          if (email === null) return;
+        }
+        while (!address.length) {
+          address = prompt('Enter your shipping address');
+          if (address === null) return;
+        }
         /* eslint-enable no-alert */
         this.orderComplete({
           payment_method: 'cash',
