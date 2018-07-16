@@ -11,6 +11,7 @@ export default {
   data: () => ({
     itemsMaxHeight: 0,
     itemsHeight: 0,
+    orderPlaced: false,
 
     // The index of each cart item whose options are displayed via hover
     displayedOptions: [],
@@ -55,19 +56,18 @@ export default {
         const email = prompt('Enter your email');
         const address = prompt('Enter your shipping address');
         /* eslint-enable no-alert */
-        const success = await onOrderComplete.bind(this)({
+        this.orderComplete({
           payment_method: 'cash',
           name,
           email,
           address,
         });
-        if (success) this.$store.commit('clearCart');
       }
     },
 
     async orderComplete(payer) {
       const success = await onOrderComplete.bind(this)(payer);
-      if (success) this.$store.commit('clearCart');
+      if (success) { this.$store.commit('clearCart'); this.orderPlaced = true; }
     },
   },
 
@@ -99,6 +99,8 @@ export default {
     shipping() { return this.$store.state.paymentMethod === 'cash' ? 0 : 7; },
     tax() { return (this.subtotal + this.shipping) * 0.08; },
     total() { return this.subtotal + this.shipping + this.tax; },
+
+    cartEmptyMessage() { return this.orderPlaced ? 'Order received!' : "There's nothing in your cart!"; },
   },
 
   watch: {
@@ -111,6 +113,10 @@ export default {
       document.getElementById('paypal-button').style.display = val === 'paypal'
         ? ''
         : 'none';
+    },
+
+    productsInCart(ps) {
+      if (ps.length) this.orderPlaced = false;
     },
   },
 
