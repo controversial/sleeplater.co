@@ -1,3 +1,7 @@
+const os = require('os');
+const fs = require('fs');
+const path = require('path');
+
 const fetch = require('node-fetch');
 
 // Load environment variables from .env file
@@ -34,8 +38,15 @@ module.exports.fetchAlbumImages = function fetchAlbumImages(albumId) {
 // from the request exists. If there is a cached response, return that to reduce extraneous API
 // calls.
 // TODO: the whole caching part haha
-module.exports.getAlbumImages = function getAlbumImages(albumId) {
-  return module.exports.fetchAlbumImages(albumId);
+module.exports.getAlbumImages = async function getAlbumImages(albumId) {
+  const cacheFilename = path.join(os.tmpdir(), `${albumId}.json`);
+  // Is there a cached file less than an hour old?
+  if (fs.existsSync(cacheFilename) && new Date() - fs.statSync(cacheFilename).mtime < 3600000) {
+    return JSON.parse(fs.readFileSync(cacheFilename, 'utf8'));
+  }
+  const albumImages = await module.exports.fetchAlbumImages(albumId);
+  fs.writeFileSync(cacheFilename, JSON.stringify(albumImages));
+  return albumImages;
 };
 
 
