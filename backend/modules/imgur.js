@@ -16,14 +16,48 @@ const headers = {
   'X-Mashape-Key': process.env[`IMGUR_MASHAPE_KEY_${prod ? 'PROD' : 'TEST'}`],
 };
 
-module.exports.fetchAlbumsList = async function fetchAlbumsList() {
+// Retrieve list of albums in the sleeplaterco account from the API
+module.exports.fetchAlbumsList = function fetchAlbumsList() {
   return fetch(`${url}/account/sleeplaterco/albums`, { headers })
     .then(r => r.json())
     .then(json => json.data);
 };
 
-module.exports.fetchAlbumImages = async function fetchAlbumImages(albumId) {
+// Retrieve list of images for a given album ID
+module.exports.fetchAlbumImages = function fetchAlbumImages(albumId) {
   return fetch(`${url}/album/${albumId}/images`, { headers })
     .then(r => r.json())
     .then(json => json.data);
+};
+
+
+// Main function: fetch and process account album data into an object like:
+// {
+//   productId: {
+//     colorHex: [imageUrl1, imageUrl2, ...],
+//     anotherHex: [imageUrl3, imageUrl4, ...],
+//   },
+//   ...
+// }
+module.exports.getProductImages = async function getProductImages() {
+  const albums = await module.exports.fetchAlbumsList();
+  const ids = albums
+    // remove non-numeric titles to get only albums whose titles represent bigcartel product IDs
+    .filter(a => !Number.isNaN(Number(a.title)))
+    // Create an object with both the bigcartel id of a product and the imgur id of the album it
+    // goes with
+    .map(a => ({ imgur: a.id, bigcartel: a.title }));
+  const imagesRequests = ids.map(({ imgur }) => module.exports.fetchAlbumImages(imgur));
+  const imageSets = await Promise.all(imagesRequests);
+  // Restructure data into the shape defined in the comment above
+  return imageSets
+    .reduce((accum, albumImages, index) => {
+      const productId = ids[index].bigcartel;
+      accum[productId] = {};
+      albumImages.forEach(({ description: color, link }) => {
+        if (!accum[productId][color]) accum[productId][color] = [];
+        accum[productId][color].push(link);
+      });
+      return accum;
+    }, {});
 };
