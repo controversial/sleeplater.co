@@ -16,9 +16,14 @@ const headers = {
   'X-Mashape-Key': process.env[`IMGUR_MASHAPE_KEY_${prod ? 'PROD' : 'TEST'}`],
 };
 
-module.exports.fetchAlbumsList = async function fetchImages() {
-  const albums = await fetch(`${url}/account/sleeplaterco/albums`, { headers })
+module.exports.fetchAlbumsList = async function fetchAlbumsList() {
+  return fetch(`${url}/account/sleeplaterco/albums`, { headers })
     .then(r => r.json())
     .then(json => json.data);
-  return albums;
+};
+
+module.exports.fetchAlbumImages = async function fetchAlbumImages(albumId) {
+  return fetch(`${url}/album/${albumId}/images`, { headers })
+    .then(r => r.json())
+    .then(json => json.data);
 };
