@@ -28,10 +28,9 @@ app.get('/products', async (req, res) => {
   const products = await bigcartel.getProducts();
   // Add supplemental images from imgur to each product
   const productImages = await imgur.getProductImages();
-  Object.entries(productImages).forEach(([productId, images]) => {
-    products.find(p => p.id === productId).images = images;
-  });
-  res.send(products);
+  const productsWithImages = products
+    .map(p => Object.assign({}, p, { images: productImages[p.id] || {} }));
+  res.send(productsWithImages);
   console.timeEnd('/products');
 });
 
