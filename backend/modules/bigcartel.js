@@ -41,15 +41,6 @@ module.exports.getProducts = async function getProducts() {
       .find(c => c.id === categoryId) // Pick out the right one
       .attributes.name;
   }
-  // Find the URL of an image with a given ID
-  function findImage(imageId) {
-    // Build an array of "image" objects that were attached to teh response
-    if (typeof imageId === 'undefined') return undefined;
-    return r.included
-      .filter(e => e.type === 'product_images')
-      .find(i => i.id === imageId)
-      .attributes.url;
-  }
   const products = r.data.map(p => ({
     id: p.id,
     name: p.attributes.name,
@@ -57,7 +48,6 @@ module.exports.getProducts = async function getProducts() {
     description: p.attributes.description,
     price: p.attributes.default_price,
     image: p.attributes.primary_image_url,
-    secondary_image: findImage((p.relationships.images.data[1] || {}).id),
     options: p.relationships.options.data
       .map(option => findOption(option.id)) // Find options
       .reduce((accum, option) => {

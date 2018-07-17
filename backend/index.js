@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const bigcartel = require('./modules/bigcartel');
+const imgur = require('./modules/imgur');
 const contact = require('./modules/contact');
 const sendOrderNotification = require('./modules/ordertrack');
 
@@ -22,7 +23,14 @@ app.get('/', (req, res) => {
 // Get a list of all products
 
 app.get('/products', async (req, res) => {
-  res.send(await bigcartel.getProducts());
+  // Get all of the product info that comes from bigcartel
+  const products = await bigcartel.getProducts();
+  // Add supplemental images from imgur to each product
+  const productImages = await imgur.getProductImages();
+  Object.entries(productImages).forEach(([productId, images]) => {
+    products.find(p => p.id === productId).images = images;
+  });
+  res.send(products);
 });
 
 

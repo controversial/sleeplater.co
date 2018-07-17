@@ -37,7 +37,6 @@ module.exports.fetchAlbumImages = function fetchAlbumImages(albumId) {
 // Retrieve list of images for a given album ID from the imgur API only if no recent cached response
 // from the request exists. If there is a cached response, return that to reduce extraneous API
 // calls.
-// TODO: the whole caching part haha
 module.exports.getAlbumImages = async function getAlbumImages(albumId) {
   const cacheFilename = path.join(os.tmpdir(), `${albumId}.json`);
   // Is there a cached file less than an hour old?
