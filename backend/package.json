@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "deploy": "now --dotenv=.env"
+    "deploy": "now --dotenv=.env -e NODE_ENV=production"
   },
   "author": "Luke Deen Taylor",
   "license": "MIT",
