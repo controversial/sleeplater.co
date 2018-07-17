@@ -23,11 +23,19 @@ module.exports.fetchAlbumsList = function fetchAlbumsList() {
     .then(json => json.data);
 };
 
-// Retrieve list of images for a given album ID
+// Retrieve list of images for a given album ID from the imgur API
 module.exports.fetchAlbumImages = function fetchAlbumImages(albumId) {
   return fetch(`${url}/album/${albumId}/images`, { headers })
     .then(r => r.json())
     .then(json => json.data);
+};
+
+// Retrieve list of images for a given album ID from the imgur API only if no recent cached response
+// from the request exists. If there is a cached response, return that to reduce extraneous API
+// calls.
+// TODO: the whole caching part haha
+module.exports.getAlbumImages = function getAlbumImages(albumId) {
+  return module.exports.fetchAlbumImages(albumId);
 };
 
 
@@ -47,7 +55,7 @@ module.exports.getProductImages = async function getProductImages() {
     // Create an object with both the bigcartel id of a product and the imgur id of the album it
     // goes with
     .map(a => ({ imgur: a.id, bigcartel: a.title }));
-  const imagesRequests = ids.map(({ imgur }) => module.exports.fetchAlbumImages(imgur));
+  const imagesRequests = ids.map(({ imgur }) => module.exports.getAlbumImages(imgur));
   const imageSets = await Promise.all(imagesRequests);
   // Restructure data into the shape defined in the comment above
   return imageSets
