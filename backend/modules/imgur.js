@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
@@ -41,8 +42,10 @@ module.exports.getAlbumImages = async function getAlbumImages(albumId) {
   const cacheFilename = path.join(os.tmpdir(), `${albumId}.json`);
   // Is there a cached file less than an hour old?
   if (fs.existsSync(cacheFilename) && new Date() - fs.statSync(cacheFilename).mtime < 3600000) {
+    console.log(`serving album ${albumId} from cache`);
     return JSON.parse(fs.readFileSync(cacheFilename, 'utf8'));
   }
+  console.log(`fetching album ${albumId} from imgur`);
   const albumImages = await module.exports.fetchAlbumImages(albumId);
   fs.writeFileSync(cacheFilename, JSON.stringify(albumImages));
   return albumImages;
