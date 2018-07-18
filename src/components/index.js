@@ -72,6 +72,9 @@ Vue.component('cart-item-options', CartItemOptions);
 import ProductOptions from './product-options/product-options.vue';
 Vue.component('product-options', ProductOptions);
 
+import ImageCarousel from './image-carousel/image-carousel.vue';
+Vue.component('image-carousel', ImageCarousel);
+
 import ColorSelect from './color-select/color-select.vue';
 Vue.component('color-select', ColorSelect);
 
