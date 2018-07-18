@@ -2,8 +2,7 @@
   <transition name="fade">
     <div class="product-options modal" v-if="$store.state.productsFetched">
       <div class="left">
-        <img v-bind:src="image" v-if="image" alt="Product preview">
-        <div class="image-missing" v-if="!image">No image</div>
+        <image-carousel v-bind:images="product.images[selectedColor] || []"></image-carousel>
       </div>
       <div class="right">
         <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>

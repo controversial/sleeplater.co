@@ -16,11 +16,6 @@ export default {
     sizeInCart() { return (this.productInCart || {}).size; },
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
 
-    image() {
-      const imagesForColor = this.product.images[this.selectedColor] || [];
-      return imagesForColor[0];
-    },
-
     buttonMessage() {
       const p = this.$store.state.cart.find(({ id, color, size }) =>
         id === this.product.id && color === this.selectedColor && size === this.selectedSize);

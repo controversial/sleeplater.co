@@ -28,28 +28,13 @@ $desc-color: #424243
 .left
   width: 15em
 
-  img
+  .image-carousel
     position: absolute
-    top: 50%
+    top: 0
+    bottom: 0
     left: 0
-    transform: translateY(-65%)
-    width: 70%
-    height: auto
-    margin: 15%
-    box-shadow: 0 .75vh 4vh -.5vh transparentize($actually-black, .75)
-
-  .image-missing
-    position: absolute
-    top: calc(50% - .5em)
-    width: 100%
-    text-align: center
-    font-family: $avenir-font-stack
-    font-size: .8rem
-    color: transparentize($black, .75)
-    pointer-events: none
-
-
-
+    right: 0
+    margin: 0 15%
 
 .right
   padding-right: 1.3rem
