@@ -1,7 +1,9 @@
 <template>
   <div class="image-carousel">
-    <img v-for="url in images" v-bind:src="url" alt="Product images">
-    <div class="image-missing" v-if="!images.length">No image</div>
+    <div class="images-container">
+      <img v-for="url in images" v-bind:src="url" alt="Product images">
+      <div class="image-missing" v-if="!images.length">No image</div>
+    </div>
   </div>
 </template>
 

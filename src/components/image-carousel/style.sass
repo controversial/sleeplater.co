@@ -5,11 +5,20 @@
 .image-carousel
   position: absolute
 
+  .images-container
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: calc(100% + (3.5vh * 2))
+    padding-bottom: calc(150% + ((3.5vh + .75vh) * 2))
+    overflow: hidden
+
   img
     position: absolute
     top: 50%
-    // left set by JS
-    width: 100%
+    left: 3.5vh
+    width: calc(100% - (3.5vh * 2))
     height: auto
     transform: translateY(-50%)
     box-shadow: 0 .75vh 4vh -.5vh transparentize($actually-black, .75)
