@@ -35,6 +35,7 @@ export default {
     selectedColor: undefined,
     selectedSize: undefined,
     selectedQuantity: 1,
+    carouselIndex: 0,
   }),
 
   async beforeMount() {
