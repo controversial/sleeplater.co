@@ -10,10 +10,18 @@ export function pick(object, keys) {
   return out;
 }
 
+// Given an array, return a copy without duplicates
+export function uniq(arr) {
+  return arr.filter((item, i) => arr.indexOf(item) === i);
+}
+
+// Clamp a number to a given range
 export function clamp(num, min = 0, max = Infinity) {
   return Math.max(Math.min(num, max), min);
 }
 
+// Format a price to a round dollar amount, adding 2 decimal places if necessary (or if
+// forceDecimal is set to true)
 export function formatPrice(price, forceDecimal = false) {
   const roundedToCent = (Math.round(price * 100) / 100);
   // If the price in dollars has a non-zero cent value, always display it. If the number is an
