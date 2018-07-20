@@ -79,8 +79,13 @@ export default {
   },
 
   watch: {
-    // When we switch colors, if there's only one size available select it automatically
+    // When we switch colors, updates to the selected size might be necessary
     selectedColor() {
+      // If the size we had selected isn't available on the new color, deselect it
+      if (!this.availableSizesForColor.includes(this.selectedSize)) {
+        this.selectedSize = undefined;
+      }
+      // If there's only one size available, select it automatically
       if (this.availableSizesForColor.length === 1) {
         this.selectedSize = this.availableSizesForColor[0];
       }
