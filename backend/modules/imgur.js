@@ -76,6 +76,7 @@ module.exports.getProductImages = async function getProductImages() {
       const productId = ids[index].bigcartel;
       accum[productId] = {};
       albumImages.forEach(({ description: color, link }) => {
+        color = color.toLowerCase();
         if (!accum[productId][color]) accum[productId][color] = [];
         accum[productId][color].push(link);
       });
