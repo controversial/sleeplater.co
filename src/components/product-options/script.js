@@ -1,6 +1,6 @@
 /* eslint-disable import/first */
 
-import { formatPrice } from '../../helpers';
+import { formatPrice, uniq } from '../../helpers';
 import analytics from '../../analytics';
 
 export default {
@@ -8,13 +8,23 @@ export default {
 
   computed: {
     product() { return this.$store.state.products.find(p => p.id === this.productId); },
-    soldOut() { return this.product.status === 'sold_out'; },
+    soldOut() { return !this.availableOptions.length; },
     // (most recent entry for this product)
     // eslint-disable-next-line max-len
     productInCart() { return this.$store.state.cart.filter(({ id }) => id === this.product.id).slice(-1)[0]; },
     colorInCart() { return (this.productInCart || {}).color; },
     sizeInCart() { return (this.productInCart || {}).size; },
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
+
+    colors() { return uniq(this.product.options.map(o => o.color)); },
+    sizes() { return uniq(this.product.options.map(o => o.size)); },
+    availableOptions() { return this.product.options.filter(o => o.quantity); },
+    availableSizesForColor() {
+      if (!this.selectedColor) return [];
+      return this.availableOptions
+        .filter(o => o.color === this.selectedColor)
+        .map(o => o.size);
+    },
 
     buttonMessage() {
       const p = this.$store.state.cart.find(({ id, color, size }) =>
@@ -25,9 +35,7 @@ export default {
     },
 
     buttonDisabled() {
-      return this.soldOut
-        || (this.product.options.colors.length && !this.selectedColor)
-        || (this.product.options.sizes.length && !this.selectedSize);
+      return this.soldOut || !this.selectedColor || !this.selectedSize;
     },
   },
 
@@ -53,10 +61,7 @@ export default {
     this.selectedSize = this.sizeInCart;
     this.selectedQuantity = this.quantityInCart;
 
-    if (!this.selectedColor) this.selectedColor = this.product.options.colors[0];
-    if (!this.selectedSize && this.product.options.sizes.length === 1) {
-      this.selectedSize = this.product.options.sizes[0];
-    }
+    if (!this.selectedColor) this.selectedColor = this.product.options[0].color;
   },
 
   methods: {
@@ -70,6 +75,15 @@ export default {
         quantity: this.selectedQuantity,
       });
       analytics.addToCart(this.product);
+    },
+  },
+
+  watch: {
+    // When we switch colors, if there's only one size available select it automatically
+    selectedColor() {
+      if (this.availableSizesForColor.length === 1) {
+        this.selectedSize = this.availableSizesForColor[0];
+      }
     },
   },
 };
