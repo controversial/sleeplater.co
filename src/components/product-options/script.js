@@ -8,7 +8,7 @@ export default {
 
   computed: {
     product() { return this.$store.state.products.find(p => p.id === this.productId); },
-    soldOut() { return !this.availableOptions.length; },
+    soldOut() { return !this.availableSizesForColor.length; },
     // (most recent entry for this product)
     // eslint-disable-next-line max-len
     productInCart() { return this.$store.state.cart.filter(({ id }) => id === this.product.id).slice(-1)[0]; },
