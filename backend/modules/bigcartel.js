@@ -31,7 +31,9 @@ module.exports.getProducts = async function getProducts() {
     const option = r.included
       .filter(e => e.type === 'product_options')
       .find(o => o.id === optionId); // Find the right one
-    return option.attributes.name.split(':');
+    const [color, size] = option.attributes.name.toLowerCase().split(':');
+    const quantity = option.attributes.peak_quantity;
+    return { color, size, quantity };
   }
   // Find the name of the category with a given ID
   function nameCategory(categoryId) {
@@ -48,14 +50,7 @@ module.exports.getProducts = async function getProducts() {
     description: p.attributes.description,
     price: p.attributes.default_price,
     image: p.attributes.primary_image_url,
-    options: p.relationships.options.data
-      .map(option => findOption(option.id)) // Find options
-      .reduce((accum, option) => {
-        const key = `${option[0]}s`; // 'sizes' or 'colors'
-        const value = option[1];
-        if (accum[key]) accum[key].push(value);
-        return accum;
-      }, { sizes: [], colors: [] }),
+    options: p.relationships.options.data.map(option => findOption(option.id)),
     categories: p.relationships.categories.data.map(category => nameCategory(category.id)),
   }));
   return products;
