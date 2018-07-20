@@ -64,10 +64,18 @@ export default {
     },
   },
 
-  // When the cart-item-options is first created, and every time it displays, make sure the options
-  // it shows reflect what's in the cart.
   watch: {
+    // When the cart-item-options is first created, and every time it displays, make sure the
+    // options it shows reflect what's in the cart.
     displayed() { this.copyConfig(); },
+
+    // When we switch colors, updates to the selected size might be necessary
+    selectedColor() {
+      // If the size we had selected isn't available on the new color, deselect it
+      if (!this.availableSizesForColor.includes(this.selectedSize)) {
+        this.selectedSize = undefined;
+      }
+    },
   },
   beforeMount() { this.copyConfig(); },
 };
