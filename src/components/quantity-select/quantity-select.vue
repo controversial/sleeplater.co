@@ -18,6 +18,7 @@
 export default {
   props: { value: Number, maxValue: { type: Number, default: Infinity } },
   data: () => ({ minValue: 1 }),
+  watch: { maxValue(v) { if (this.value > v) this.$emit('input', v); } },
 };
 </script>
 
