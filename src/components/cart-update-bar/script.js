@@ -1,4 +1,4 @@
 export default {
-  props: ['buttonDisabled', 'value'],
+  props: ['button-disabled', 'value', 'max-quantity'],
   data: () => ({ buttonActive: false }),
 };

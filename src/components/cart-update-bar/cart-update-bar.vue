@@ -5,7 +5,12 @@
       v-on:mousedown="buttonActive = true"
       v-on:mouseup="buttonActive = false"
     ><slot></slot></div>
-    <quantity-select v-bind:value="value" v-on:input="$emit('input', $event)"></quantity-select>
+
+    <quantity-select
+      v-bind:value="value"
+      v-bind:max-value="maxQuantity"
+      v-on:input="$emit('input', $event)"
+    ></quantity-select>
   </div>
 </template>
 
