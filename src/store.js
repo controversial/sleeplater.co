@@ -59,10 +59,6 @@ export default new Vuex.Store({
         cartItem.quantity = payload.quantity;
       // If this item/configuration does not already exist in the cart, add it
       } else {
-        const product = state.products.find(p => p.id === payload.id);
-        // Validate given options
-        if (product.options.sizes.length && !product.options.sizes.includes(payload.size)) throw new Error(`Size ${payload.size} not available for product ${payload.id}`);
-        if (product.options.colors.length && !product.options.colors.includes(payload.color)) throw new Error(`Color ${payload.color} not available for product ${payload.id}`);
         // Add
         state.cart.push({
           id: payload.id,
