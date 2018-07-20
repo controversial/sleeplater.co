@@ -28,7 +28,8 @@ export default {
         .find(p => p.id === id)
         .name
         .toLowerCase()
-        .replace(/\s/g, '-');
+        .replace(/\s/g, '-')
+        .replace(/[^[A-Za-z0-9-]/g, ''); // Remove non-alphanumeric/hyphen characters
       this.$router.push(`/shop/${this.$route.params.category}/product/${id}/${slug}`);
     },
     openCart() {
