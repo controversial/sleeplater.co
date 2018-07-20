@@ -28,6 +28,12 @@ export default {
         .filter(o => o.color === this.selectedColor)
         .map(o => o.size);
     },
+    optionQuantity() {
+      if (!this.selectedColor || !this.selectedSize) return 1;
+      return this.product.options
+        .find(o => o.size === this.selectedSize && o.color === this.selectedColor)
+        .quantity;
+    },
 
     buttonMessage() {
       return (

@@ -14,7 +14,8 @@
 
     <cart-update-bar
       v-on:click="update"
-      v-bind:buttonDisabled="!selectedSize || buttonMessage === 'Up to date'"
+      v-bind:button-disabled="!selectedSize || buttonMessage === 'Up to date'"
+      v-bind:max-quantity="optionQuantity"
       v-model="selectedQuantity"
     >{{ buttonMessage }}</cart-update-bar>
 

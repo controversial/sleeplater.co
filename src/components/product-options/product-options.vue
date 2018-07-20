@@ -14,6 +14,7 @@
           <cart-update-bar
             v-on:click="addToCart"
             v-bind:buttonDisabled="buttonDisabled"
+            v-bind:max-quantity="optionQuantity"
             v-model="selectedQuantity"
           >{{ buttonMessage }}</cart-update-bar>
         </div>
