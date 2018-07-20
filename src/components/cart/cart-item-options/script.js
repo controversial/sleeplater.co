@@ -1,3 +1,5 @@
+import { uniq } from '../../../helpers';
+
 export default {
   props: ['cartIndex', 'displayed', 'hide'],
 
@@ -16,6 +18,17 @@ export default {
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
 
     product() { return this.$store.state.products.find(p => p.id === this.productId); },
+
+    colors() { return uniq(this.product.options.map(o => o.color)); },
+    sizes() { return uniq(this.product.options.map(o => o.size)); },
+    availableOptions() { return this.product.options.filter(o => o.quantity); },
+    availableSizesForColor() {
+      if (!this.selectedColor) return [];
+      return this.availableOptions
+        .filter(o => o.color === this.selectedColor)
+        .map(o => o.size);
+    },
+
     buttonMessage() {
       return (
         this.selectedSize === this.sizeInCart &&

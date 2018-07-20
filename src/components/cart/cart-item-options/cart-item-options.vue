@@ -2,14 +2,12 @@
   <div class="cart-item-options">
 
     <color-select
-      v-if="product.options.colors.length"
-      v-bind:colors="product.options.colors"
+      v-bind:colors="colors"
       v-model="selectedColor"
     ></color-select>
 
     <size-select
-      v-if="product.options.sizes.length"
-      v-bind:sizes="product.options.sizes"
+      v-bind:sizes="availableSizesForColor"
       v-model="selectedSize"
       v-bind:displayed="displayed"
     ></size-select>
