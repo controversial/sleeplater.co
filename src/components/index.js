@@ -75,6 +75,9 @@ Vue.component('product-options', ProductOptions);
 import ImageCarousel from './image-carousel/image-carousel.vue';
 Vue.component('image-carousel', ImageCarousel);
 
+import ImageModal from './image-modal/image-modal.vue';
+Vue.component('image-modal', ImageModal);
+
 import ColorSelect from './color-select/color-select.vue';
 Vue.component('color-select', ColorSelect);
 
