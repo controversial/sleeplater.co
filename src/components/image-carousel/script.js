@@ -3,7 +3,12 @@ import { clamp, delay } from '../../helpers';
 export default {
   props: ['images', 'value'],
 
-  data: () => ({ changing: false, hasChanged: false }),
+  data: () => ({
+    changing: false,
+    hasChanged: false,
+    selectedImage: '',
+    modalDisplayed: false,
+  }),
 
   methods: {
     imageStyle(i) {
