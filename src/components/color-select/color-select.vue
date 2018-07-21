@@ -10,15 +10,14 @@
     <check-icon
       class="selected-indicator"
       v-if="colors.indexOf(value) >= 0"
-      v-bind:style="{ left: `${.5 + ((.5 + .45 + .5) * colors.indexOf(value))}em` }"
+      v-bind:style="{
+        left: `${.5 + ((.5 + .45 + .5) * colors.indexOf(value))}em`,
+        color: checkColor,
+      }"
     ></check-icon>
   </div>
 </template>
 
-<script>
-export default {
-  props: ['colors', 'value'], // value is the selected color
-};
-</script>
+<script src="./script.js"></script>
 
 <style scoped lang="sass" src="./style.sass"></style>
