@@ -50,6 +50,7 @@ export default {
     selectedSize: undefined,
     selectedQuantity: 1,
     carouselIndex: 0,
+    mobile: false,
   }),
 
   async beforeMount() {
@@ -63,11 +64,18 @@ export default {
       });
     }
 
+    // Select default options to reflect what's in cart
     this.selectedColor = this.colorInCart;
     this.selectedSize = this.sizeInCart;
     this.selectedQuantity = this.quantityInCart;
 
+    // Auto-select first color when opening so that we have images to display
     if (!this.selectedColor) this.selectedColor = this.product.options[0].color;
+
+    // Detect mobile layout
+    const mobileQuery = window.matchMedia('screen and (orientation: portrait) and (max-width: 500px)');
+    this.mobile = mobileQuery.matches;
+    mobileQuery.addListener((mq) => { this.mobile = mq.matches; });
   },
 
   methods: {
