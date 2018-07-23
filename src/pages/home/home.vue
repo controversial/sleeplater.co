@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import ../../colors
+@import ../../styles/common
 
 .main-loader
   position: absolute
