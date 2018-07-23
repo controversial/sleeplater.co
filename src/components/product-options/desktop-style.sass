@@ -1,0 +1,47 @@
+.wrapper
+  display: flex
+  align-items: center
+  justify-content: center
+
+.modal
+  position: relative
+  min-height: 21rem
+  background: $white
+  padding: 2.2rem 0
+  border-radius: .5rem
+  display: flex
+
+  & > div
+    position: relative
+
+  @media screen and (max-width: 500px)
+    width: 100vw
+
+
+.left
+  width: 15rem
+
+  .image-carousel
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    margin: 0 15%
+
+.right
+  padding-right: 1.3rem
+  width: 13rem
+
+  h1
+    font-size: 1.3rem
+    line-height: 1.2em
+    margin-bottom: .2rem
+
+  .description
+    font-size: .75rem
+    margin-bottom: .9rem
+
+  .colors,
+  .sizes
+    margin-bottom: .9rem

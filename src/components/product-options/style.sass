@@ -4,6 +4,8 @@
 $title-color: #565472
 $desc-color: #424243
 
+// Common styles for all layouts
+
 .wrapper
   position: fixed
   top: 0
@@ -11,62 +13,32 @@ $desc-color: #424243
   width: 100%
   height: 100%
   background: transparentize($actually-black, .65)
-  display: flex
-  align-items: center
-  justify-content: center
   pointer-events: none
 
 .modal
-  position: relative
-  min-height: 21rem
   pointer-events: all
-  background: $white
-  padding: 2.2rem 0
-  border-radius: .5rem
-  display: flex
 
-  & > div
-    position: relative
+h1
+  font-family: $avenir-font-stack
+  font-style: italic
+  font-weight: 700
+  text-transform: uppercase
+  color: $title-color
 
-  @media screen and (max-width: 500px)
-    width: 100vw
-
-
-.left
-  width: 15rem
-
-  .image-carousel
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
-    margin: 0 15%
-
-.right
-  padding-right: 1.3rem
-  width: 13rem
-
-  h1
-    font-family: $avenir-font-stack
-    font-style: italic
-    font-size: 1.3rem
-    font-weight: 700
-    text-transform: uppercase
-    color: $title-color
-    line-height: 1.2em
-    margin-bottom: .2rem
-
-    .price
-      font-weight: 400
-
-  .description
-    font-size: .75rem
-    font-family: 'Source Sans Pro', sans-serif
+  .price
     font-weight: 400
-    color: $desc-color
-    margin-bottom: .9rem
 
-  .colors,
-  .sizes
-    margin-bottom: .9rem
+.description
+  font-family: 'Source Sans Pro', sans-serif
+  font-weight: 400
+  color: $desc-color
+
+// Styles for mobile device layout
+
+@media #{$mobile-device-media}
+  @import mobile-style
+
+// Styles for desktop device layout
+
+@media not #{$mobile-device-media}
+  @import desktop-style
