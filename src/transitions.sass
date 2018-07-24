@@ -1,10 +1,12 @@
-.fade-enter-active,
-.fade-leave-active
-  transition: opacity .35s
+.fade
+  &-enter-active,
+  &-leave-active
+    transition: opacity .35s
 
-.fade-enter,
-.fade-leave-to
-  opacity: 0
+  &-enter,
+  &-leave-to
+    opacity: 0
+
 
 // Prevent an element with v-if from disappearing too quickly
 .delay-leave-active
