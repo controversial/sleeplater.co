@@ -14,11 +14,19 @@
 
 
 
+// Only elements marked with .slides class will actually slide in
 .slide-from-bottom
   &-enter-active,
   &-leave-active
-    transition: transform .35s
+    transition-duration: 3.35s
+
+    .slides
+      transition: transform .35s
 
   &-enter,
   &-leave-to
-    transform: translateY(100vh)
+    .slides
+      transform: translateY(100vh)
+
+.slides
+  will-change: transform

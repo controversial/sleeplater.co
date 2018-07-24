@@ -74,3 +74,15 @@
       .sizes
         width: 100%
         font-size: 1.35rem
+
+
+.slide-from-bottom
+  &-enter-active,
+  &-leave-active
+    &.wrapper // transition is applied directly to the wrapper element
+      transition: opacity .35s
+
+  &-enter,
+  &-leave-to
+    &.wrapper
+      opacity: 0
