@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition v-bind:name="mobile ? 'slide-from-bottom' : 'fade'">
     <div class="product-options wrapper" v-if="$store.state.productsFetched">
       <div class="modal">
 

@@ -11,3 +11,14 @@
 // Prevent an element with v-if from disappearing too quickly
 .delay-leave-active
   transition-duration: .25s
+
+
+
+.slide-from-bottom
+  &-enter-active,
+  &-leave-active
+    transition: transform .35s
+
+  &-enter,
+  &-leave-to
+    transform: translateY(100vh)
