@@ -12,11 +12,11 @@
         </div>
 
         <div class="right">
+          <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
           <!-- "pages" markup is only used in mobile layout; on desktop these divs are unstyled -->
           <div class="pages" v-bind:data-page="mobilePage">
-            <div class="page page-1">
-              <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
-              <div class="description">{{ product.description }} </div>
+            <div class="page page-1 description">
+              {{ product.description }}
             </div>
             <div class="page page-2">
               <color-select v-bind:colors="colors" v-model="selectedColor"></color-select>
