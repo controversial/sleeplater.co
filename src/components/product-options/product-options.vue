@@ -2,6 +2,7 @@
   <transition name="fade">
     <div class="product-options wrapper" v-if="$store.state.productsFetched">
       <div class="modal">
+
         <div class="left">
           <image-carousel
             v-bind:images="product.images[selectedColor] || []"
@@ -9,11 +10,19 @@
             v-model="carouselIndex"
           ></image-carousel>
         </div>
+
         <div class="right">
-          <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
-          <div class="description">{{ product.description }} </div>
-          <color-select v-bind:colors="colors" v-model="selectedColor"></color-select>
-          <size-select v-bind:sizes="availableSizesForColor" v-model="selectedSize"></size-select>
+          <!-- "pages" markup is only used in mobile layout; on desktop these divs are unstyled -->
+          <div class="pages" v-bind:data-page="mobilePage">
+            <div class="page page-1">
+              <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
+              <div class="description">{{ product.description }} </div>
+            </div>
+            <div class="page page-2">
+              <color-select v-bind:colors="colors" v-model="selectedColor"></color-select>
+              <size-select v-bind:sizes="availableSizesForColor" v-model="selectedSize"></size-select>
+            </div>
+          </div>
 
           <cart-update-bar
             v-on:click="addToCart"
@@ -22,6 +31,7 @@
             v-model="selectedQuantity"
           >{{ buttonMessage }}</cart-update-bar>
         </div>
+
       </div>
     </div>
   </transition>

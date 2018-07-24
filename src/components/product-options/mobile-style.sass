@@ -24,25 +24,34 @@
     right: 0
     margin: 7% 0 9%
 
+
 .right // (actually bottom in mobile layout)
   flex-grow: 0
-  padding: 5% 10% 10%
-
-  h1
-    font-size: 1.6rem
-    text-align: left
-    line-height: 1.2em
-    margin-bottom: .2rem
-
-  .description
-    font-size: 1.1rem
-    margin-bottom: 1.3rem
 
   .bottom-bar
+    margin: 1.3rem 10% 10%
     height: 2.25rem
     font-size: .8rem
 
-  // Temporary
-  .colors,
-  .sizes
-    display: none
+  .pages
+    display: flex
+    width: 200vw
+    transition: transform .5s
+
+    &[data-page='2']
+      transform: translate(-100vw)
+
+    .page
+      width: 100vw
+
+    .page-1
+      padding: 2.5% 5% 0
+
+      h1
+        font-size: 1.6rem
+        text-align: left
+        line-height: 1.2em
+        margin-bottom: .2rem
+
+      .description
+        font-size: 1.1rem

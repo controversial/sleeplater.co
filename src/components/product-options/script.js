@@ -51,6 +51,8 @@ export default {
     selectedQuantity: 1,
     carouselIndex: 0,
     mobile: false,
+    // Mobile has a paged layout with multiple steps
+    mobilePage: 1,
   }),
 
   async beforeMount() {
