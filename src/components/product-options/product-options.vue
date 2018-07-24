@@ -3,7 +3,11 @@
     <div class="product-options wrapper" v-if="$store.state.productsFetched">
       <div class="modal">
         <div class="left">
-          <image-carousel v-bind:images="product.images[selectedColor] || []" v-model="carouselIndex"></image-carousel>
+          <image-carousel
+            v-bind:images="product.images[selectedColor] || []"
+            v-bind:fullwidth="mobile"
+            v-model="carouselIndex"
+          ></image-carousel>
         </div>
         <div class="right">
           <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>

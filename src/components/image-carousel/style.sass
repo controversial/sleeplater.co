@@ -6,21 +6,10 @@
 
   .images-container
     position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    width: calc(100% + (3.5vh * 2))
-    padding-bottom: calc(150% + ((3.5vh + .75vh) * 2))
     overflow: hidden
 
   img
     position: absolute
-    top: 50%
-    left: 3.5vh
-    width: calc(100% - (3.5vh * 2))
-    height: auto
-    cursor: pointer
-    transform: translateY(-50%)
     transition: transform .5s, box-shadow .25s
     box-shadow: 0 .75vh 4vh -.5vh transparentize($actually-black, .75)
     will-change: transform
@@ -69,3 +58,39 @@
         position: absolute
         top: -.125rem
         left: -.125rem
+
+
+// container width-based layout
+
+.image-carousel:not(.full-width)
+  .images-container
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: calc(100% + (3.5vh * 2))
+    padding-bottom: calc(150% + ((3.5vh + .75vh) * 2))
+
+  img
+    top: 50%
+    left: 3.5vh
+    width: calc(100% - (3.5vh * 2))
+    height: auto
+    cursor: pointer
+    transform: translateY(-50%)
+
+// container height-based layout
+.image-carousel.full-width
+  .images-container
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: 100vw
+    height: 100%
+
+  img
+    height: 100%
+    width: auto
+    position: absolute
+    top: 0
+    left: 50%
+    transform: translate(-50%)

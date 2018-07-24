@@ -1,5 +1,5 @@
 <template>
-  <div class="image-carousel">
+  <div v-bind:class="{ 'image-carousel': true, 'full-width': fullwidth }">
     <div class="images-container">
       <img
         v-for="(url, i) in images"
