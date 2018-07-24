@@ -33,6 +33,7 @@ export default {
     },
 
     buttonMessage() {
+      if (this.mobile && this.mobilePage === 1) return 'Continue';
       const p = this.$store.state.cart.find(({ id, color, size }) =>
         id === this.product.id && color === this.selectedColor && size === this.selectedSize);
       if (this.soldOut) return 'Sold out';
@@ -41,7 +42,9 @@ export default {
     },
 
     buttonDisabled() {
-      return this.soldOut || !this.selectedColor || !this.selectedSize;
+      return this.mobile
+        ? this.mobilePage !== 1 && (this.soldOut || !this.selectedColor || !this.selectedSize)
+        : this.soldOut || !this.selectedColor || !this.selectedSize;
     },
   },
 
@@ -91,6 +94,12 @@ export default {
         quantity: this.selectedQuantity,
       });
       analytics.addToCart(this.product);
+    },
+
+    bottomBarClick() {
+      // Used to advance from first to second page on mobile layout
+      if (this.mobile && this.mobilePage === 1) this.mobilePage = 2;
+      else this.addToCart();
     },
   },
 

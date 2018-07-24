@@ -25,8 +25,9 @@
           </div>
 
           <cart-update-bar
-            v-on:click="addToCart"
+            v-on:click="bottomBarClick"
             v-bind:buttonDisabled="buttonDisabled"
+            v-bind:collapsed="mobilePage === 1"
             v-bind:max-quantity="optionQuantity"
             v-model="selectedQuantity"
           >{{ buttonMessage }}</cart-update-bar>
