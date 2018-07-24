@@ -38,7 +38,21 @@
     justify-content: center
     align-items: center
     cursor: pointer
+    transition: width .35s
 
   .quantity-select
     width: 34%
     font-size: 1.25em
+    overflow: hidden
+    transition: width .35s, padding .35s
+
+
+  // In "collapsed" mode the button occupies the full width
+
+  &.collapsed
+    .submit
+      width: 100%
+
+    .quantity-select
+      width: 0
+      padding: 0

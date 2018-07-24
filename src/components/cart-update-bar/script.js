@@ -1,4 +1,4 @@
 export default {
-  props: ['button-disabled', 'value', 'max-quantity'],
+  props: ['button-disabled', 'collapsed', 'value', 'max-quantity'],
   data: () => ({ buttonActive: false }),
 };

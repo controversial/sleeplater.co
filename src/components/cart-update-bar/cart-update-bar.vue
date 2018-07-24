@@ -1,5 +1,5 @@
 <template>
-  <div class="bottom-bar" v-bind:class="{ active: buttonActive, disabled: buttonDisabled }">
+  <div class="bottom-bar" v-bind:class="{ active: buttonActive, disabled: buttonDisabled, collapsed }">
     <div class="submit"
       v-on:click="() => { if (!buttonDisabled) this.$emit('click'); }"
       v-on:mousedown="buttonActive = true"
