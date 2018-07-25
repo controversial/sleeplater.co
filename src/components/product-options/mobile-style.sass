@@ -44,9 +44,6 @@
     width: 200vw
     transition: transform .5s
 
-    &[data-page='2']
-      transform: translate(-100vw)
-
     .page
       width: 100vw
 
@@ -72,6 +69,10 @@
       .sizes
         width: 100%
         font-size: 1.35rem
+
+.wrapper[data-page='2']
+  .pages
+    transform: translate(-100vw)
 
 
 .slide-from-bottom

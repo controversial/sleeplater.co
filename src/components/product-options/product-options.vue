@@ -1,6 +1,6 @@
 <template>
   <transition v-bind:name="mobile ? 'slide-from-bottom' : 'fade'">
-    <div class="product-options wrapper" v-if="$store.state.productsFetched">
+    <div class="product-options wrapper" v-if="$store.state.productsFetched" v-bind:data-page="mobilePage">
       <div class="modal slides">
 
         <div class="left">
@@ -14,7 +14,7 @@
         <div class="right">
           <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
           <!-- "pages" markup is only used in mobile layout; on desktop these divs are unstyled -->
-          <div class="pages" v-bind:data-page="mobilePage">
+          <div class="pages">
             <div class="page page-1 description">
               {{ product.description }}
             </div>
