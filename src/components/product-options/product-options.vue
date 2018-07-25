@@ -3,6 +3,8 @@
     <div class="product-options wrapper" v-if="$store.state.productsFetched" v-bind:data-page="mobilePage">
       <div class="modal slides" v-hammer:swipe.down="onSwipeDown">
 
+        <div class="touch-handle"></div>
+
         <div class="left">
           <image-carousel
             v-bind:images="product.images[selectedColor] || []"
