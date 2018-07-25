@@ -36,7 +36,7 @@ export function formatPrice(price, forceDecimal = false) {
 }
 
 
-export function wordWrap(el) {
+export function wordWrap(el, deep = true, level = 0) {
   // If it's a text node, replace it with a span for each word
   if (el.nodeType === Node.TEXT_NODE) {
     const newHTML = el.textContent
@@ -48,8 +48,8 @@ export function wordWrap(el) {
     temp.insertAdjacentHTML('beforebegin', newHTML);
     temp.remove();
   // Otherwise recur for each child node
-  } else {
-    [...el.childNodes].forEach(wordWrap);
+  } else if (level < 1 || deep) {
+    [...el.childNodes].forEach(wordWrap, deep, level + 1);
   }
   return el;
 }
