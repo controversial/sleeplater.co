@@ -36,6 +36,25 @@ export function formatPrice(price, forceDecimal = false) {
 }
 
 
+export function wordWrap(el) {
+  // If it's a text node, replace it with a span for each word
+  if (el.nodeType === Node.TEXT_NODE) {
+    const newHTML = el.textContent
+      .split(/\s/)
+      .map(word => `<span class="split-helper-span">${word}</span>`)
+      .join(' ');
+    const temp = document.createElement('span');
+    el.parentNode.replaceChild(temp, el);
+    temp.insertAdjacentHTML('beforebegin', newHTML);
+    temp.remove();
+  // Otherwise recur for each child node
+  } else {
+    [...el.childNodes].forEach(wordWrap);
+  }
+  return el;
+}
+
+
 // Given an element full of text, move each "line" of the wrapped text into its own div
 export function splitWrappedLines(el) {
   // Wrap each word in a span
