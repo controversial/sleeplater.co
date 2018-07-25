@@ -24,6 +24,7 @@ export default [
             const product = store.state.products.find(p => p.id === route.params.productId);
             return product ? `sleep later – ${product.name}` : 'sleep later';
           },
+          allowScrollNav: false,
         },
       },
     ],

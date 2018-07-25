@@ -28,7 +28,7 @@ export default {
 
   created() {
     this.scrollHandler = new ScrollHandler(() => this.navUp(), () => this.navDown(), this);
-    this.swipeHandler = new SwipeHandler(() => this.navUp(), () => this.navDown());
+    this.swipeHandler = new SwipeHandler(() => this.navUp(), () => this.navDown(), this);
   },
 
   computed: {

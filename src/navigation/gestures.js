@@ -22,9 +22,14 @@ export class ScrollHandler {
 }
 
 export class SwipeHandler {
-  constructor(upFunc, downFunc) {
+  constructor(upFunc, downFunc, vue) {
     this.upFunc = upFunc;
     this.downFunc = downFunc;
+    this.vue = vue;
+  }
+
+  get enabled() {
+    return this.vue.$route.meta.allowScrollNav || typeof this.vue.$route.meta.allowScrollNav === 'undefined';
   }
 
   onTouchStart(e) {
@@ -38,7 +43,7 @@ export class SwipeHandler {
     const delta = [pos[0] - this.touchStartPosition[0], pos[1] - this.touchStartPosition[1]];
 
     if (Math.abs(delta[1]) > 20 && this.canTouchNav) {
-      this[delta[1] > 0 ? 'upFunc' : 'downFunc']();
+      if (this.enabled) this[delta[1] > 0 ? 'upFunc' : 'downFunc']();
       this.canTouchNav = false;
     }
   }
