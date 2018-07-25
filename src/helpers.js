@@ -80,7 +80,10 @@ export function splitWrappedLines(el) {
   const lineElements = lines.map((l) => {
     const line = document.createElement('div');
     line.className = 'line';
-    l.forEach(word => line.appendChild(word));
+    l.forEach((word, i) => {
+      line.appendChild(word);
+      if (i < l.length - 1) line.appendChild(document.createTextNode(' '));
+    });
     return line;
   });
 
