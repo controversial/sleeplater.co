@@ -36,6 +36,7 @@ export function formatPrice(price, forceDecimal = false) {
 }
 
 
+// Wrap each word in a span
 export function wordWrap(el, deep = true, level = 0) {
   // If it's a text node, replace it with a span for each word
   if (el.nodeType === Node.TEXT_NODE) {
@@ -58,11 +59,8 @@ export function wordWrap(el, deep = true, level = 0) {
 // Given an element full of text, move each "line" of the wrapped text into its own div
 export function splitWrappedLines(el) {
   // Wrap each word in a span
-  el.innerHTML = el.innerText
-    .split(/\s/)
-    .map(word => `<span>${word}</span>`)
-    .join(' ');
-  const words = [...el.getElementsByTagName('span')];
+  wordWrap(el, false);
+  const words = [...el.children].filter(c => c.tagName === 'SPAN');
   const tops = []; // Array of numbers, each the offsetTop of an element
   const lines = []; // Array of div elements (created on the fly)
 
@@ -75,19 +73,16 @@ export function splitWrappedLines(el) {
       lines.push([]);
     }
 
-    lines[tops.indexOf(top)].push(w.innerText);
+    lines[tops.indexOf(top)].push(w);
   });
 
   // Create a div for each line
   const lineElements = lines.map((l) => {
     const line = document.createElement('div');
     line.className = 'line';
-    line.innerHTML = l.join(' ');
+    l.forEach(word => line.appendChild(word));
     return line;
   });
-
-  // Remove old word spans
-  words.forEach(w => el.removeChild(w));
 
   // Put new "line" divs into the container
   lineElements.forEach(line => el.appendChild(line));
