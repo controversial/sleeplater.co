@@ -18,3 +18,8 @@ Vue.use(VueTippy, {
   // Bound popper.js elements to the viewport instead of the default behavior of the scroll parent
   popperOptions: { modifiers: { preventOverflow: { boundariesElement: 'viewport' } } },
 });
+
+
+// vue2-hammer for touch events
+import { VueHammer } from 'vue2-hammer';
+Vue.use(VueHammer);

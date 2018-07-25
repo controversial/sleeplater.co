@@ -1,7 +1,7 @@
 <template>
   <transition v-bind:name="mobile ? 'slide-from-bottom' : 'fade'">
     <div class="product-options wrapper" v-if="$store.state.productsFetched" v-bind:data-page="mobilePage">
-      <div class="modal slides">
+      <div class="modal slides" v-hammer:swipe.down="onSwipeDown">
 
         <div class="left">
           <image-carousel

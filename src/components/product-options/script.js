@@ -108,6 +108,10 @@ export default {
       if (this.mobile && this.mobilePage === 1) this.mobilePage = 2;
       else this.addToCart();
     },
+
+    onSwipeDown() {
+      this.$parent.optionsOpen = false;
+    },
   },
 
   watch: {
