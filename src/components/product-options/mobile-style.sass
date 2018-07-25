@@ -29,6 +29,7 @@
   flex-grow: 0
 
   h1
+    position: relative
     font-size: 1.6rem
     text-align: left
     line-height: 1.2em
@@ -70,7 +71,22 @@
         width: 100%
         font-size: 1.35rem
 
-.wrapper[data-page='2']
+// https://vue-loader.vuejs.org/guide/scoped-css.html#dynamically-generated-content
+
+.modal /deep/ .line
+  position: relative
+  display: inline-block
+  transition: left .35s, transform .35s
+
+[data-page='1']
+  & /deep/ .line
+    left: 0
+
+[data-page='2']
+  & /deep/ .line
+    left: 50%
+    transform: translate(-50%)
+
   .pages
     transform: translate(-100vw)
 

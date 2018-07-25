@@ -1,6 +1,6 @@
 /* eslint-disable import/first */
 
-import { formatPrice, uniq } from '../../helpers';
+import { formatPrice, uniq, splitWrappedLines } from '../../helpers';
 import analytics from '../../analytics';
 
 export default {
@@ -49,6 +49,7 @@ export default {
   },
 
   data: () => ({
+    req: undefined,
     selectedColor: undefined,
     selectedSize: undefined,
     selectedQuantity: 1,
@@ -62,11 +63,12 @@ export default {
     // Wait for productsFetched mutation in Vuex before proceeding to ensure that products are
     // populated with an API result
     if (!this.$store.state.productsFetched) {
-      await new Promise((resolve) => {
+      this.req = new Promise((resolve) => {
         this.$store.subscribe((mutation) => {
           if (mutation.type === 'productsFetched') resolve();
         });
       });
+      await this.req;
     }
 
     // Select default options to reflect what's in cart
@@ -81,6 +83,11 @@ export default {
     const mobileQuery = window.matchMedia('screen and (orientation: portrait) and (max-width: 500px)');
     this.mobile = mobileQuery.matches;
     mobileQuery.addListener((mq) => { this.mobile = mq.matches; });
+  },
+
+  async mounted() {
+    await this.req;
+    splitWrappedLines(this.$refs.header);
   },
 
   methods: {

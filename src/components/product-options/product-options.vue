@@ -12,7 +12,7 @@
         </div>
 
         <div class="right">
-          <h1>{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
+          <h1 ref="header">{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
           <!-- "pages" markup is only used in mobile layout; on desktop these divs are unstyled -->
           <div class="pages">
             <div class="page page-1 description">
