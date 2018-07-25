@@ -1,3 +1,4 @@
+import Hammer from 'hammerjs';
 import { clamp, delay } from '../../helpers';
 
 export default {
@@ -11,26 +12,48 @@ export default {
   data: () => ({
     changing: false,
     hasChanged: false,
+    swiping: false,
     selectedImage: '',
     modalDisplayed: false,
+    offset: 0,
   }),
 
   methods: {
     imageStyle(i) {
       const transform = this.fullwidth
         // "full width" mode
-        ? `translateX(calc(-50% + (100vw * ${i - this.value})))`
+        ? `translateX(calc(-50% + (100vw * ${i - this.value}) + ${this.offset}px))`
         // desktop layout
         : `translateY(-50%) translate(calc((100% + 7vh) * ${i - this.value}))`;
 
       return {
         transform,
         ...(this.changing ? { transitionDuration: '0s', display: 'none' } : {}),
+        ...(this.swiping ? { transitionDuration: '0s' } : {}),
       };
     },
     change(i) { this.$emit('input', clamp(i, 0, this.images.length - 1)); },
     left() { this.change(this.value - 1); },
     right() { this.change(this.value + 1); },
+
+    pan(e) {
+      this.offset = e.deltaX;
+    },
+    panstart() { this.swiping = true; },
+    panend(e) {
+      this.swiping = false;
+      this.offset = 0;
+      const direction = {
+        [Hammer.DIRECTION_LEFT]: 'right', // Swipe left, go right
+        [Hammer.DIRECTION_RIGHT]: 'left',
+      }[e.direction];
+      if (
+        Math.abs(e.velocityX) > 0.1 // Smaller faster swipe
+        || e.distance > window.innerWidth / 4 // Big swipe
+      ) {
+        this[direction]();
+      }
+    },
   },
 
   watch: {

@@ -1,6 +1,11 @@
 <template>
   <div v-bind:class="{ 'image-carousel': true, 'full-width': fullwidth }">
-    <div class="images-container">
+    <div
+      class="images-container"
+      v-hammer:pan="pan"
+      v-hammer:panstart="panstart"
+      v-hammer:panend="panend"
+    >
       <img
         v-for="(url, i) in images"
         v-bind:style="imageStyle(i)"
