@@ -12,7 +12,7 @@
         v-bind:src="url"
         alt="Product images"
         draggable="false"
-        v-on:click="selectedImage = url; modalDisplayed = true;"
+        v-on:click="modalDisplayed = true;"
       >
       <div class="image-missing" v-if="!images.length">No image</div>
     </div>

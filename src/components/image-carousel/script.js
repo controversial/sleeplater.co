@@ -13,10 +13,15 @@ export default {
     changing: false,
     hasChanged: false,
     swiping: false,
-    selectedImage: '',
     modalDisplayed: false,
     offset: 0,
   }),
+
+  computed: {
+    selectedImage() {
+      return this.images[this.value];
+    },
+  },
 
   methods: {
     imageStyle(i) {
