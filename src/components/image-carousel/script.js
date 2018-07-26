@@ -51,7 +51,7 @@ export default {
         Math.abs(e.velocityX) > 0.1 // Smaller faster swipe
         || e.distance > window.innerWidth / 4 // Big swipe
       ) {
-        this[direction]();
+        if (this[direction]) this[direction]();
       }
     },
   },
