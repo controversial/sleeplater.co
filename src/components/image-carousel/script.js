@@ -33,8 +33,8 @@ export default {
 
       return {
         transform,
-        ...(this.changing ? { transitionDuration: '0s', display: 'none' } : {}),
-        ...(this.swiping ? { transitionDuration: '0s' } : {}),
+        ...(this.changing ? { display: 'none' } : {}),
+        ...((this.swiping || this.changing || this.modalDisplayed) ? { transitionDuration: '0s' } : {}),
       };
     },
     change(i) { this.$emit('input', clamp(i, 0, this.images.length - 1)); },

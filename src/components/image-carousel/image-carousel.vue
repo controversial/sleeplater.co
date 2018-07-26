@@ -24,7 +24,14 @@
         v-bind:class="{ selected: value === i }"
       ></div>
     </div>
-    <image-modal v-bind:image="selectedImage" v-bind:displayed="modalDisplayed" v-on:close="modalDisplayed = false;"></image-modal>
+
+    <image-modal
+      v-bind:image="selectedImage"
+      v-bind:displayed="modalDisplayed"
+      v-on:close="modalDisplayed = false;"
+      v-on:left="left"
+      v-on:right="right"
+    ></image-modal>
   </div>
 </template>
 
