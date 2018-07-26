@@ -12,6 +12,10 @@
   flex-direction: column
   will-change: auto
 
+  @media screen and (max-height: 400px), screen and (max-height: 500px) and (max-aspect-ratio: 380 / 450)
+    height: 100%
+
+
 .left // (actually top in mobile layout)
   flex-grow: 1
   position: relative
@@ -31,13 +35,13 @@
 
   h1
     position: relative
-    font-size: 1.6rem
+    font-size: calc(1.3rem + .5vh)
     text-align: left
     line-height: 1.2em
-    margin: 5% 10% .2rem
+    margin: 5% 4vh .2rem
 
   .bottom-bar
-    margin: 1.3rem 10% 10%
+    margin: 3vh 4vh 4.5vh
     height: 2.25rem
     font-size: .8rem
 
@@ -52,8 +56,8 @@
     // First page contains title and description
 
     .page-1
-      padding: 0 5%
-      font-size: 1.1rem
+      padding: 0 4vh
+      font-size: calc(.7rem + 1vh)
 
     // Second page contains color and size selection
 
@@ -93,18 +97,6 @@
     transform: translate(-100vw)
 
 
-.slide-from-bottom
-  &-enter-active,
-  &-leave-active
-    &.wrapper // transition is applied directly to the wrapper element
-      transition: opacity .35s
-
-  &-enter,
-  &-leave-to
-    &.wrapper
-      opacity: 0
-
-
 .touch-handle
   position: absolute
   z-index: 1
@@ -115,3 +107,15 @@
   height: 6px
   border-radius: 4px
   background: $touch-handle-color
+
+
+.slide-from-bottom
+  &-enter-active,
+  &-leave-active
+    &.wrapper // transition is applied directly to the wrapper element
+      transition: opacity .35s
+
+  &-enter,
+  &-leave-to
+    &.wrapper
+      opacity: 0
