@@ -16,7 +16,7 @@
         <div class="right">
           <h1 ref="header">{{ product.name }}&nbsp;<span class="price">${{ formatPrice(product.price, true) }}</span></h1>
           <!-- "pages" markup is only used in mobile layout; on desktop these divs are unstyled -->
-          <div class="pages">
+          <div class="pages" v-hammer:swipe.right="() => { mobilePage = 1; }">
             <div class="page page-1 description">
               {{ product.description }}
             </div>
