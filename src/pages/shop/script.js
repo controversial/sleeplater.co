@@ -49,4 +49,7 @@ export default {
       if (!val) analytics.pageView(this.$route);
     },
   },
+  beforeMount() {
+    this.$store.commit(this.optionsOpen ? 'hideNavButtons' : 'showNavButtons');
+  },
 };
