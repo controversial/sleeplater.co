@@ -24,10 +24,10 @@ module.exports.getStock = async function getStock() {
 
   const rows = await promisify(sheet.getRows)();
   const stock = rows.map(r => ({
-    id: r['product-id'],
-    color: r['product-color'],
-    size: r['product-size'],
-    quantity: r['product-quantity'],
+    id: r.id,
+    color: r.color,
+    size: r.size,
+    quantity: r.quantity,
   }));
 
   return stock.reduce((accum, product) => {
@@ -44,10 +44,10 @@ module.exports.updateQuantity = async function updateStock(id, options, delta) {
   const rows = await promisify(sheet.getRows)();
   const row = rows
     .find(r =>
-      r['product-id'] === id
-      && r['product-color'] === options.color
-      && r['product-size'] === options.size);
+      r.id === id
+      && r.color === options.color
+      && r.size === options.size);
   if (!row) throw new Error(`Couldn't find stock entry for product ${id} with color ${options.color} and size ${options.size}`);
-  row['product-quantity'] += delta;
+  row.quantity += delta; // delta should usually be negative
   row.save();
 };
