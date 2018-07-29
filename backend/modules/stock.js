@@ -49,5 +49,5 @@ module.exports.updateQuantity = async function updateStock(id, options, delta) {
       && r.size === options.size);
   if (!row) throw new Error(`Couldn't find stock entry for product ${id} with color ${options.color} and size ${options.size}`);
   row.quantity = parseInt(row.quantity, 10) + parseInt(delta, 10); // delta is usually negative
-  row.save();
+  await row.save();
 };
