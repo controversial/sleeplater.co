@@ -38,16 +38,14 @@ module.exports.getStock = async function getStock() {
   }, {});
 };
 
-module.exports.updateQuantity = async function updateStock(id, options, delta) {
+module.exports.handleOrder = async function handleOrder(items) {
   if (!sheet) await startup();
-
   const rows = await promisify(sheet.getRows)();
-  const row = rows
-    .find(r =>
-      r.id === id
-      && r.color === options.color
-      && r.size === options.size);
-  if (!row) throw new Error(`Couldn't find stock entry for product ${id} with color ${options.color} and size ${options.size}`);
-  row.quantity = parseInt(row.quantity, 10) + parseInt(delta, 10); // delta is usually negative
-  await row.save();
+
+  const updates = items.map(({ id, color, size, quantity }) => { // eslint-disable-line object-curly-newline, max-len
+    const row = rows.find(r => r.id === id && r.color === color && r.size === size);
+    row.quantity = parseInt(row.quantity, 10) - quantity;
+    return promisify(row.save)();
+  });
+  return Promise.all(updates);
 };
