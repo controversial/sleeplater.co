@@ -17,6 +17,9 @@ $desc-color: #424243
 
 .modal
   pointer-events: all
+  // Undo .slides rule for will-change: transform since that creates a context in which this element
+  // is considered a "containing block" for position: fixed elements, breaking the image-modal
+  will-change: auto
 
 h1
   font-family: $avenir-font-stack
