@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const bigcartel = require('./modules/bigcartel');
+const stockkeeper = require('./modules/stock');
 const imgur = require('./modules/imgur');
 const contact = require('./modules/contact');
 const sendOrderNotification = require('./modules/ordertrack');
@@ -25,7 +26,15 @@ app.get('/', (req, res) => {
 app.get('/products', async (req, res) => {
   console.time('/products');
   // Get all of the product info that comes from bigcartel
-  const products = await bigcartel.getProducts();
+  let products = await bigcartel.getProducts();
+  // Add product quantities from google sheets
+  const stock = await stockkeeper.getStock();
+  products = products.map(product => ({
+    ...product,
+    options: product.options.map(({ size, color }) => ({
+      size, color, quantity: stock[product.id][color][size],
+    })),
+  }));
   // Add supplemental images from imgur to each product
   const productImages = await imgur.getProductImages();
   const productsWithImages = products
