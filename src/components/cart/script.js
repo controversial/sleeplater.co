@@ -2,7 +2,7 @@
 import Vue from 'vue';
 import PaymentMethod from './payment-method/payment-method.vue';
 Vue.component('payment-method', PaymentMethod);
-import { formatPrice } from '../../helpers';
+import { delay, formatPrice } from '../../helpers';
 import onOrderComplete from './order-track';
 
 export default {
@@ -15,6 +15,7 @@ export default {
 
     // The index of each cart item whose options are displayed via hover
     displayedOptions: [],
+    checkoutButtonState: 'static',
   }),
 
   methods: {
@@ -78,8 +79,19 @@ export default {
     },
 
     async orderComplete(payer) {
+      this.checkoutButtonState = 'loading';
       const success = await onOrderComplete.bind(this)(payer);
-      if (success) { this.$store.commit('clearCart'); this.orderPlaced = true; }
+      if (success) {
+        this.checkoutButtonState = 'completed';
+        await delay(1000);
+        this.$store.commit('clearCart');
+        this.orderPlaced = true;
+        this.checkoutButtonState = 'static';
+      } else {
+        this.checkoutButtonState = 'failed';
+        await delay(1500);
+        this.checkoutButtonState = 'static';
+      }
     },
   },
 

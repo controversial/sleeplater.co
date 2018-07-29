@@ -77,8 +77,9 @@
         </div>
         <div class="row" v-bind:style="{ display: $store.state.paymentMethod === 'paypal' ? 'none' : ''}">
           <submit-button
+            class="checkout button"
             ref="bottommost"
-            style="flex-grow: 1"
+            v-bind:state="checkoutButtonState"
             v-bind:disabled="!$store.state.paymentMethod"
             v-on:click.native="checkout"
           >checkout</submit-button>
