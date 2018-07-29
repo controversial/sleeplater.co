@@ -29,7 +29,7 @@ export default function onOrderComplete(payer) {
     items: this.$store.state.cart.map(item => pick({
       ...item, // color, quantity, size come from here
       ...this.$store.state.products.find(p => p.id === item.id), // name, price come from here
-    }, ['color', 'quantity', 'size', 'name', 'price'])),
+    }, ['color', 'quantity', 'size', 'name', 'price', 'id'])),
   };
 
   return fetch(url, {
