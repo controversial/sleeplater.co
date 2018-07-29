@@ -10,7 +10,7 @@
         <text-input title="phone number" v-model="phone" :required="false" type="tel" v-bind:show-validation="hasAttempted"></text-input>
       </div>
       <text-area v-bind:title="messageBoxLabel" v-model="message" :required="true" :rows="10" v-bind:show-validation="hasAttempted"></text-area>
-      <submit-button ref="submit" v-on:click.native="submit">Submit</submit-button>
+      <submit-button ref="submit" v-bind:state="buttonState" v-on:click.native="submit">Submit</submit-button>
     </div>
   </div>
 </template>

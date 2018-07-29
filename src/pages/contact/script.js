@@ -51,6 +51,7 @@ export default {
   data: () => ({
     submitResetTimeout: undefined,
     mode: 'Work with us',
+    buttonState: 'static',
     hasAttempted: false,
   }),
 
@@ -60,19 +61,19 @@ export default {
     async submit() {
       // You can only press the "submit" button, can't submit while it's in a "loading,"
       // "completed," or "failed" state
-      if (this.$refs.submit.state !== 'static') return;
+      if (this.buttonState !== 'static') return;
 
       // If any inputs are invalid reveal that and stop
       if (!this.valid) {
-        this.$refs.submit.state = 'failed';
+        this.buttonState = 'failed';
         await delay(1500);
         this.hasAttempted = true;
-        this.$refs.submit.state = 'static';
+        this.buttonState = 'static';
         return;
       }
 
       // Show loading
-      this.$refs.submit.state = 'loading';
+      this.buttonState = 'loading';
 
       // Send request to back-end
       const result = await fetch(url, {
@@ -84,18 +85,18 @@ export default {
 
       // If request succeeded
       if (result.status === 200) {
-        this.$refs.submit.state = 'completed';
+        this.buttonState = 'completed';
         await delay(1500);
         this.reset();
       }
       // If server rejected request
       else {
-        this.$refs.submit.state = 'failed';
+        this.buttonState = 'failed';
         await delay(1500);
         // Record that the user has attempted to submit the form once
         // This will enable as-you-type validation on the whole form
         this.hasAttempted = true;
-        this.$refs.submit.state = 'static';
+        this.buttonState = 'static';
       }
     },
     /* eslint-enable brace-style */
@@ -103,7 +104,7 @@ export default {
     // Clear the form
     reset() {
       this.hasAttempted = false;
-      this.$refs.submit.state = 'static';
+      this.buttonState = 'static';
       this.name = '';
       this.email = '';
       this.phone = '';
