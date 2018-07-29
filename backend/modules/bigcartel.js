@@ -32,8 +32,7 @@ module.exports.getProducts = async function getProducts() {
       .filter(e => e.type === 'product_options')
       .find(o => o.id === optionId); // Find the right one
     const [color, size] = option.attributes.name.toLowerCase().split(':');
-    const quantity = option.attributes.peak_quantity;
-    return { color, size, quantity };
+    return { color, size, quantity: null };
   }
   // Find the name of the category with a given ID
   function nameCategory(categoryId) {
