@@ -19,7 +19,7 @@ async function startup() {
   sheet = info.worksheets[0]; // first sheet in the document is fine
 }
 
-module.exports = async function getStock() {
+module.exports.getStock = async function getStock() {
   if (!sheet) await startup();
 
   const rows = await promisify(sheet.getRows)();
@@ -36,4 +36,18 @@ module.exports = async function getStock() {
     accum[product.id][product.color][product.size] = parseInt(product.quantity, 10);
     return accum;
   }, {});
+};
+
+module.exports.updateQuantity = async function updateStock(id, options, delta) {
+  if (!sheet) await startup();
+
+  const rows = await promisify(sheet.getRows)();
+  const row = rows
+    .find(r =>
+      r['product-id'] === id
+      && r['product-color'] === options.color
+      && r['product-size'] === options.size);
+  if (!row) throw new Error(`Couldn't find stock entry for product ${id} with color ${options.color} and size ${options.size}`);
+  row['product-quantity'] += delta;
+  row.save();
 };
