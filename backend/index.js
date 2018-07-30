@@ -56,15 +56,17 @@ app.post('/contact', (req, res) => {
   console.timeEnd('/contact');
 });
 
+
 // Order callbacks (notification + quantity update)
+
 app.post('/order', async (req, res) => {
   console.time('/order');
   const { type, order, user } = req.body;
   if (!type || !order || !user) res.status(400).send({ error: 'missing parameter(s)' });
   else {
-    await stockkeeper.handleOrder(order.items);
-    await sendOrderNotification(type, order, user);
-    res.send({ status: 'success' });
+    const updates = await stockkeeper.handleOrder(order.items);
+    // await sendOrderNotification(type, order, user);
+    res.send({ status: 'success', updates });
   }
   console.timeEnd('/order');
 });
