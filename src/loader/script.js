@@ -6,7 +6,14 @@ export default {
   data: () => ({ progress: 0, split: false }),
 
   async mounted() {
-    await delay(1500);
+    // Products fetched
+    if (!this.$store.state.productsFetched) {
+      await new Promise((resolve) => {
+        this.$store.subscribe((mutation) => {
+          if (mutation.type === 'productsFetched') resolve();
+        });
+      });
+    }
     this.progress = 1;
   },
 
