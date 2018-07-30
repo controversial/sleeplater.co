@@ -152,9 +152,12 @@ export default {
     async bgTitle(title, oldTitle) {
       if (title[0] === oldTitle[0] && title[1] === oldTitle[1]) return;
 
+      const leaveStagger = 0.125 * 1000;
       const oldProducts = this.$store.state.products
         .filter(p => p.categories.includes(this.prevCategory));
-      if (oldProducts.length) await delay((0.35 * 400) + (75 * oldProducts.length));
+      if (oldProducts.length) {
+        await delay(leaveStagger * (oldProducts.length + 1));
+      }
 
       const goingRight = this.categoryIndex > this.categories.indexOf(this.prevCategory);
       // Fly out
