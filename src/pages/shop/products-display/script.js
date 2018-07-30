@@ -6,11 +6,6 @@ import { clamp, delay } from '../../../helpers';
 const Lethargy = require('exports-loader?this.Lethargy!lethargy/lethargy');
 const lethargy = new Lethargy(null, 30);
 
-// Send request to development server if running locally
-const apiBase = ['localhost', '0.0.0.0'].includes(window.location.hostname)
-  ? 'http://0.0.0.0:3000'
-  : 'https://api.sleeplater.co';
-
 
 export default {
   props: ['interactable'],
@@ -109,32 +104,26 @@ export default {
 
     // Called when inertial scrolling is finished
     scrollEnd() {},
+
+    onProductsFetched() {
+      // Register Google Analytics impressions for products on page
+      this.categoryProducts.forEach(p => analytics.productVisible(p));
+      analytics.pageView(this.$route);
+    },
   },
 
   created() {
-    // When the component is rendered in the nav menu don't try to do all this stuff haha
-    if (!this.$store.state.navOpen) {
-      (async () => {
-        // Make sure vuex record of category matches the one we're displaying
-        this.$store.commit('changeCategory', this.category);
-
-        // Get products list from backend if we don't have it
-        if (!this.$store.state.productsFetched) {
-          await fetch(`${apiBase}/products`)
-            .then(r => r.json())
-            .then(products => this.$store.commit('productsFetched', products));
-        }
-
-        // Register event listener for reactive innerWidth
-        window.addEventListener('resize', () => {
-          this.windowWidth = window.innerWidth;
-        });
-
-        // Register Google Analytics impressions for products on page
-        this.categoryProducts.forEach(p => analytics.productVisible(p));
-        analytics.pageView(this.$route);
-      })();
+    if (this.$store.state.productsFetched) this.onProductsFetched();
+    else {
+      this.$store.subscribe((mutation) => {
+        if (mutation.type === 'productsFetched') this.onProductsFetched();
+      });
     }
+
+    // Register event listener for reactive innerWidth
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth;
+    });
 
     // add transitions as methods such that each function keeps *this* context that we're in rn
     Object.assign(this, ...Object.keys(transitions).map(key => ({

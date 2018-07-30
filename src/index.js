@@ -16,14 +16,6 @@ import router from './router';
 import store from './store';
 
 
-// Fix for bad iOS scrolling behavior
-function iOSResize() { document.body.style.height = `${window.innerHeight}px`; }
-if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-  iOSResize();
-  window.addEventListener('resize', iOSResize);
-}
-
-
 // Main app
 window.app = new Vue({
   el: '#app',
@@ -32,4 +24,27 @@ window.app = new Vue({
   components: {
     navigation: require('./navigation/navigation.vue').default,
   },
+
+  data: {
+    // Send request to development server if running locally
+    apiBase: ['localhost', '0.0.0.0'].includes(window.location.hostname)
+      ? 'http://0.0.0.0:3000'
+      : 'https://api.sleeplater.co',
+  },
+  created() {
+    fetch(`${this.apiBase}/products`)
+      .then(r => r.json())
+      .then(products => this.$store.commit('productsFetched', products));
+  },
 });
+
+
+// --- miscellaneous stuff ---
+
+
+// Fix for bad iOS scrolling behavior
+function iOSResize() { document.body.style.height = `${window.innerHeight}px`; }
+if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+  iOSResize();
+  window.addEventListener('resize', iOSResize);
+}
