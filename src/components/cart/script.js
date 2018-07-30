@@ -80,9 +80,10 @@ export default {
 
     async orderComplete(payer) {
       this.checkoutButtonState = 'loading';
-      const success = await onOrderComplete.bind(this)(payer);
-      if (success) {
+      const { status, updates } = await onOrderComplete.bind(this)(payer);
+      if (status === 'success') {
         this.checkoutButtonState = 'completed';
+        this.$store.commit('stockUpdated', updates);
         await delay(1000);
         this.$store.commit('clearCart');
         this.orderPlaced = true;

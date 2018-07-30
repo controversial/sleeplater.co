@@ -41,5 +41,6 @@ export default function onOrderComplete(payer) {
       user,
       order,
     }),
-  }).then(r => r.status >= 200 && r.status < 300);
+  })
+    .then(r => r.json());
 }

@@ -49,6 +49,14 @@ export default new Vuex.Store({
     // Shop
     changeCategory(state, category) { state.shopCategory = category; },
     productsFetched(state, products) { state.products = products; state.productsFetched = true; },
+    stockUpdated(state, updates) { // Update product quantities after an order is completed
+      updates.forEach(({ id, color, size, quantity }) => { // eslint-disable-line object-curly-newline, max-len
+        state
+          .products.find(p => p.id === id)
+          .options.find(o => o.color === color && o.size === size)
+          .quantity = quantity;
+      });
+    },
     selectPaymentMethod(state, paymentMethodName) { state.paymentMethod = paymentMethodName; },
     cartUpdate(state, payload) { // Add or update an item in the cart
       // Search for the item/configuration in the existing cart state
