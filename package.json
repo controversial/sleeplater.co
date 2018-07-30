@@ -8,7 +8,7 @@
     "watch": "webpack --watch",
     "lint-sass": "sass-lint 'app/**/*.sass' -v",
     "lint-js": "eslint . --ext js,vue",
-    "deploy": "rm -rf build && webpack && cp now.json build && cd build && now"
+    "deploy": "rm -rf build && NODE_ENV=production webpack && cp now.json build && cd build && now"
   },
   "repository": {
     "type": "git",
