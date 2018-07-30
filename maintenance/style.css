@@ -1,0 +1,34 @@
+@import url('https://use.typekit.net/ygb1esi.css');
+
+div {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  font-family: 'Avenir Next', 'soleil', 'Avenir', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 14vw;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #565472;
+  user-select: none;
+  margin: 0 0 -.1em;
+}
+
+h3 {
+  font-family: 'Avenir Next', 'soleil', 'Avenir', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(15px + 2vw);
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: .025em;
+  white-space: nowrap;
+  color: #22212a;
+  user-select: none;
+  margin: 0;
+}
