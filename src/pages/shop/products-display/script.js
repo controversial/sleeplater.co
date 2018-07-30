@@ -154,8 +154,10 @@ export default {
         ? this.minScroll
         : this.maxScroll;
       // Register Google Analytics impressions for new products
-      this.categoryProducts.forEach(p => analytics.productVisible(p));
-      analytics.pageView(this.$route);
+      if (typeof oldCat !== 'undefined') {
+        this.categoryProducts.forEach(p => analytics.productVisible(p));
+        analytics.pageView(this.$route);
+      }
     },
 
     async bgTitle(title, oldTitle) {
