@@ -65,7 +65,7 @@ app.post('/order', async (req, res) => {
   if (!type || !order || !user) res.status(400).send({ error: 'missing parameter(s)' });
   else {
     const updates = await stockkeeper.handleOrder(order.items);
-    // await sendOrderNotification(type, order, user);
+    await sendOrderNotification(type, order, user);
     res.send({ status: 'success', updates });
   }
   console.timeEnd('/order');
