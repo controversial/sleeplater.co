@@ -23,6 +23,7 @@ window.app = new Vue({
   store,
   components: {
     navigation: require('./navigation/navigation.vue').default,
+    loader: require('./loader/loader.vue').default,
   },
 
   data: {

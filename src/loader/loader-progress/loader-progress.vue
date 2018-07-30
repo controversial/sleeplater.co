@@ -1,5 +1,5 @@
 <template>
-  <div class="main-loader" v-bind:class="{ split }">
+  <div class="loader-progress" v-bind:class="{ split }">
 
     <h1 v-for="n in 2" v-bind:ref="['track', 'fill'][n - 1]">
       <span>

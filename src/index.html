@@ -8,7 +8,9 @@
 </head>
 <body>
   <div id="app">
-    <!-- Main page -->
+    <transition name="fade">
+      <loader v-if="!$store.state.loaded"></loader>
+    </transition>
     <navigation></navigation>
   </div>
 

@@ -1,11 +1,7 @@
 import { delay } from '../../helpers';
 
 export default {
-  props: ['a', 'b', 'split'],
-
-  data: () => ({
-    progress: 0,
-  }),
+  props: ['a', 'b', 'progress', 'split'],
 
   computed: {
     mergedText() {
