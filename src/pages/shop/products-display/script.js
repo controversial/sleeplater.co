@@ -41,14 +41,15 @@ export default {
         .reduce((a, b) => a.concat(b), []) // flatten
         .filter((n, i, list) => list.indexOf(n) === i); // Remove duplicates
     },
+    category() { return this.$route.params.category || this.categories[0]; },
     categoryProducts() {
       return this.$store.state.products
-        .filter(p => p.categories.includes(this.$route.params.category));
+        .filter(p => p.categories.includes(this.category));
     },
 
     categoryIndex: {
-      get() { return this.categories.indexOf(this.$route.params.category); },
-      set(i) { this.$router.push(`/shop/${this.categories[i]}`); },
+      get() { return this.categories.indexOf(this.category); },
+      set(i) { this.$router.push(i === 0 ? '/' : `/${this.categories[i]}`); },
     },
 
     minScroll() { return 0; },
@@ -60,7 +61,7 @@ export default {
     },
 
     bgTitle() {
-      return (this.$route.params.category || '').replace(/-/g, ' ').split(':');
+      return (this.category || '').replace(/-/g, ' ').split(':');
     },
   },
 
@@ -115,7 +116,7 @@ export default {
     if (!this.$store.state.navOpen) {
       (async () => {
         // Make sure vuex record of category matches the one we're displaying
-        this.$store.commit('changeCategory', this.$route.params.category);
+        this.$store.commit('changeCategory', this.category);
 
         // Get products list from backend if we don't have it
         if (!this.$store.state.productsFetched) {
@@ -123,9 +124,6 @@ export default {
             .then(r => r.json())
             .then(products => this.$store.commit('productsFetched', products));
         }
-
-        // Navigate away from 'default' route
-        if (this.$route.params.category === 'default') this.$router.replace(`/shop/${this.categories[0]}`);
 
         // Register event listener for reactive innerWidth
         window.addEventListener('resize', () => {
@@ -147,10 +145,10 @@ export default {
   },
 
   watch: {
-    '$route.params.category': function categoryChanged(newCat, oldCat) {
+    category: function categoryChanged(newCat, oldCat) {
       this.prevCategory = oldCat;
       // Update current category stored in Vuex
-      this.$store.commit('changeCategory', this.$route.params.category);
+      this.$store.commit('changeCategory', this.category);
       // Match scroll position to the direction we're coming from for continuity
       this.scrollPx = this.categories.indexOf(newCat) > this.categories.indexOf(oldCat)
         ? this.minScroll

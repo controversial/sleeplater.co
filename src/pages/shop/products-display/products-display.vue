@@ -1,6 +1,6 @@
 <template>
   <div class="products-container" v-bind:style="{ pointerEvents: interactable ? 'all' : 'none' }">
-    <h1 class="bg-title fade-in" v-bind:style="titleStyle" v-if="bgTitle && bgTitle[0] !== 'default'">
+    <h1 class="bg-title fade-in" v-bind:style="titleStyle" v-if="bgTitle">
       {{animatedTitle[0]}}
       <br/><span class="lighter" v-if="animatedTitle[1]"> {{animatedTitle[1]}} </span>
     </h1>

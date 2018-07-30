@@ -13,7 +13,7 @@ export default new Vuex.Store({
     loaded: false,
 
     // Shop
-    shopCategory: 'default',
+    shopCategory: undefined,
     products: [],
     productsFetched: false,
     paymentMethod: '',

@@ -1,11 +1,17 @@
 import store from '../store';
 
 export default [
-  // When navigating to /shop, go to the category most recently visited
-  { path: '/shop', redirect: () => `/shop/${store.state.shopCategory}` },
+  // Appears below shop in the actual site but has to be listed first so that it matches first
+  {
+    name: 'contact',
+    path: '/contact',
+    component: require('./contact/contact.vue').default,
+    meta: { primary: 2, navIconColor: 'white', title: 'sleep later – contact' },
+  },
+
   {
     name: 'shop',
-    path: '/shop/:category',
+    path: '/:category?',
     component: require('./shop/shop.vue').default,
     children: [
       {
@@ -23,13 +29,7 @@ export default [
       },
     ],
     meta: {
-      primary: true, title: 'sleep later – shop', navIconColor: 'black', allowScrollNav: false,
+      primary: 1, title: 'sleep later – shop', navIconColor: 'black', allowScrollNav: false,
     },
-  },
-  {
-    name: 'contact',
-    path: '/contact',
-    component: require('./contact/contact.vue').default,
-    meta: { primary: true, navIconColor: 'white', title: 'sleep later – contact' },
   },
 ];

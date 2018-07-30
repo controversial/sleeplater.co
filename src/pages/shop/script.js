@@ -15,9 +15,16 @@ export default {
         .map(item => item.quantity)
         .reduce((a, b) => a + b, 0);
     },
+    categories() {
+      return this.$store.state.products
+        .map(p => p.categories) // get categories
+        .reduce((a, b) => a.concat(b), []) // flatten
+        .filter((n, i, list) => list.indexOf(n) === i); // Remove duplicates
+    },
+    category() { return this.$route.params.category || this.categories[0]; },
     optionsOpen: {
       get() { return !!this.$route.params.productId; },
-      set(value) { if (!value) { this.$router.push(`/shop/${this.$route.params.category}`); } },
+      set(value) { if (!value) { this.$router.push(`/${this.category === this.categories[0] ? '' : this.category}`); } },
     },
   },
   methods: {
@@ -30,7 +37,7 @@ export default {
         .toLowerCase()
         .replace(/\s/g, '-')
         .replace(/[^[A-Za-z0-9-]/g, ''); // Remove non-alphanumeric/hyphen characters
-      this.$router.push(`/shop/${this.$route.params.category}/product/${id}/${slug}`);
+      this.$router.push(`/${this.category}/product/${id}/${slug}`);
     },
     openCart() {
       this.optionsOpen = false;
