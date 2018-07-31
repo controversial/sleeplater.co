@@ -64,6 +64,14 @@
       <div class="checkout" v-if="itemsCount">
         <div class="row">
           <payment-method
+            name="credit"
+            text="Pay with credit card"
+            v-on:change="(name) => $store.commit('selectPaymentMethod', name)"
+            v-bind="{ selectedName: $store.state.paymentMethod, svg: require('!raw-loader!../../assets/credit-card.svg')}"
+          ></payment-method>
+        </div>
+        <div class="row">
+          <payment-method
             name="paypal"
             v-on:change="(name) => $store.commit('selectPaymentMethod', name)"
             v-bind="{ selectedName: $store.state.paymentMethod, svg: require('!raw-loader!../../assets/PayPal.svg')}"
@@ -75,7 +83,7 @@
             v-bind="{ selectedName: $store.state.paymentMethod, svg: require('!raw-loader!../../assets/hand-holding-usd-solid.svg')}"
           ></payment-method>
         </div>
-        <div class="row" v-bind:style="{ display: $store.state.paymentMethod === 'paypal' ? 'none' : ''}">
+        <div class="row" v-bind:style="{ display: $store.state.paymentMethod === 'cash' || !$store.state.paymentMethod ? '' : 'none'}">
           <submit-button
             class="checkout button"
             ref="bottommost"
@@ -88,6 +96,12 @@
 
       <div class="row">
         <div id="paypal-button"></div>
+      </div>
+      <div class="row">
+        <div class="credit-card-info" v-if="$store.state.paymentMethod === 'credit'">
+          To pay with a credit card without creating an account, select "Pay with Debit or Credit
+          Card" at the bottom of the PayPal checkout window.
+        </div>
       </div>
 
       <div class="empty-state" v-if="!itemsCount">{{ cartEmptyMessage }}</div>

@@ -11,16 +11,16 @@ export default function onOrderComplete(payer) {
 
   // User info
   const user = { name: undefined, address: undefined, email: undefined };
-  if (paymentMethod === 'paypal') {
+  if (paymentMethod === 'cash') {
+    user.name = payer.name;
+    user.email = payer.email;
+    user.address = payer.address;
+  } else {
     const info = payer.payer_info;
     user.name = `${info.first_name} ${info.last_name}`;
     user.email = info.email;
     const a = info.shipping_address;
     user.address = `${a.line1}\n${a.city}, ${a.state} ${a.postal_code}\n${a.country_code}`;
-  } else if (paymentMethod === 'cash') {
-    user.name = payer.name;
-    user.email = payer.email;
-    user.address = payer.address;
   }
 
   // order

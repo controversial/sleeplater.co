@@ -135,7 +135,7 @@ export default {
 
     // button breaks if its container element has any vue attribute so we do it like this
     '$store.state.paymentMethod': function paymentMethodChanged(val) {
-      document.getElementById('paypal-button').style.display = val === 'paypal'
+      document.getElementById('paypal-button').style.display = val === 'paypal' || val === 'credit'
         ? ''
         : 'none';
     },
