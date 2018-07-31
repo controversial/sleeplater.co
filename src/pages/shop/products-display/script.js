@@ -25,6 +25,9 @@ export default {
       opacity: 1,
     },
 
+    shouldDisplayTitle: false,
+    shouldDisplayProducts: false,
+
     scrollEndTimeout: undefined,
     windowWidth: window.innerWidth, // Reactive version
   }),
@@ -38,6 +41,7 @@ export default {
     },
     category() { return this.$route.params.category || this.categories[0]; },
     categoryProducts() {
+      if (!this.shouldDisplayProducts) return [];
       return this.$store.state.products
         .filter(p => p.categories.includes(this.category));
     },
@@ -56,7 +60,8 @@ export default {
     },
 
     bgTitle() {
-      return (this.category || '').replace(/-/g, ' ').split(':');
+      if (!this.shouldDisplayTitle || !this.category) return '';
+      return this.category.replace(/-/g, ' ').split(':');
     },
   },
 
@@ -117,6 +122,19 @@ export default {
     else {
       this.$store.subscribe((mutation) => {
         if (mutation.type === 'productsFetched') this.onProductsFetched();
+      });
+    }
+
+    // Don't display until after loader is finished
+    // These update staggered after $store.state.loaded updates
+    this.shouldDisplayTitle = this.$store.state.loaded;
+    this.shouldDisplayProducts = this.$store.state.loaded;
+    if (!this.shouldDisplay) {
+      this.$store.subscribe(async (mutation) => {
+        if (mutation.type === 'loaded') {
+          setTimeout(() => { this.shouldDisplayTitle = true; }, 100);
+          setTimeout(() => { this.shouldDisplayProducts = true; }, 700);
+        }
       });
     }
 
