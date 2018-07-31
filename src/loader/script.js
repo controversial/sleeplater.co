@@ -6,8 +6,11 @@ export default {
   data: () => ({ progress: 0, split: false }),
 
   async mounted() {
-    setTimeout(() => { if (!this.$store.state.productsFetched) this.progress = 0.15; }, 250);
-    setTimeout(() => { if (!this.$store.state.productsFetched) this.progress = 0.3; }, 800);
+    await delay(400);
+
+    // Font loading
+    if (document.fonts) document.fonts.ready.then(() => { this.progress += 0.1; });
+    else { this.progress += 0.1; }
 
     // Products fetched
     if (!this.$store.state.productsFetched) {
@@ -17,10 +20,10 @@ export default {
         });
       });
     }
-    this.progress = 0.75;
+    this.progress += 0.65;
 
     // Preload main product images so that they're cached when we try to display them
-    const increment = (1 - this.progress) / this.$store.state.products.length;
+    const increment = 0.25 / this.$store.state.products.length;
     this.$store.state.products
       .forEach((product) => {
         const img = new Image();
