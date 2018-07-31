@@ -6,6 +6,9 @@ export default {
   data: () => ({ progress: 0, split: false }),
 
   async mounted() {
+    setTimeout(() => { if (!this.$store.state.productsFetched) this.progress = 0.15; }, 250);
+    setTimeout(() => { if (!this.$store.state.productsFetched) this.progress = 0.3; }, 800);
+
     // Products fetched
     if (!this.$store.state.productsFetched) {
       await new Promise((resolve) => {
