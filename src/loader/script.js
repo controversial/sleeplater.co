@@ -17,7 +17,16 @@ export default {
         });
       });
     }
-    this.progress = 1;
+    this.progress = 0.75;
+
+    // Preload main product images so that they're cached when we try to display them
+    const increment = (1 - this.progress) / this.$store.state.products.length;
+    this.$store.state.products
+      .forEach((product) => {
+        const img = new Image();
+        img.onload = () => { this.progress += increment; };
+        img.src = product.image;
+      });
   },
 
 
