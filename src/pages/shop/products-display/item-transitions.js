@@ -20,11 +20,11 @@ export async function leave(el, done) {
     : leaveStagger * (oldProducts.length - 1 - el.dataset.index)); // rightmost out first
 
   // Before
-  el2.style.transition = `transform ${leaveDuration / 1000}s ease-in, opacity ${leaveDuration / 1000}s ease-in`;
+  el2.style.transition = `transform ${leaveDuration / 1000}s ease-in .01s, opacity ${leaveDuration / 1000}s ease-in .01s`;
   el2.style.pointerEvents = 'none';
 
   // Animate
-  el2.style.transform = `translateX(${goingRight ? '-' : ''}90%)`;
+  el2.style.transform = `translate3d(${goingRight ? '-' : ''}90%, 0, 0.01px)`;
   el2.style.opacity = 0;
 
   // End
@@ -45,8 +45,8 @@ export async function beforeEnter(el) {
 
   el2.style.opacity = 0;
   el2.style.pointerEvents = 'none';
-  el2.style.transform = `translateX(${goingRight ? '' : '-'}80%)`;
-  el2.style.transition = `transform ${enterDuration / 1000}s ease-out, opacity ${enterDuration / 1000}s ease-out`;
+  el2.style.transform = `translate3d(${goingRight ? '' : '-'}80%, 0, 0.01px)`;
+  el2.style.transition = `transform ${enterDuration / 1000}s ease-out .01s, opacity ${enterDuration / 1000}s ease-out .01s`;
 }
 
 export async function enter(el, done) {
