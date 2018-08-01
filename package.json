@@ -8,7 +8,8 @@
     "watch": "webpack --watch",
     "lint-sass": "sass-lint 'app/**/*.sass' -v",
     "lint-js": "eslint . --ext js,vue",
-    "deploy": "rm -rf build && NODE_ENV=production webpack && cp now.json build && cd build && now"
+    "deploy": "rm -rf build && NODE_ENV=production webpack && cp now.json build && cd build && now",
+    "postinstall": "rm node_modules/vue2-hammer/.babelrc"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,7 @@
   },
   "dependencies": {
     "animate.css": "^3.6.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-polyfill": "^6.26.0",
     "chroma-js": "^1.3.7",
     "hammerjs": "^2.0.8",
@@ -85,7 +87,8 @@
     ],
     "plugins": [
       "syntax-dynamic-import",
-      "transform-object-rest-spread"
+      "transform-object-rest-spread",
+      "transform-async-to-generator"
     ]
   },
   "eslintConfig": {
