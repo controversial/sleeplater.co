@@ -34,7 +34,7 @@ module.exports = function sendOrderNotification(type, order, user) {
           { title: 'Address', value: user.address, short: true },
           { title: 'Payment method', value: paymentMethodText, short: true },
           { title: 'Email', value: user.email, short: true },
-          { title: 'Order total', value: `$${order.total}`, short: true },
+          { title: 'Order total', value: `$${order.total.toFixed(2)}`, short: true },
         ],
       },
       // Order info
@@ -46,7 +46,7 @@ module.exports = function sendOrderNotification(type, order, user) {
           { title: 'Quantity', value: item.quantity, short: true },
           { title: 'Size', value: item.size.toUpperCase(), short: true },
           { title: 'Color', value: item.color, short: true },
-          { title: 'Price', value: `$${item.price}` },
+          { title: 'Price', value: `$${item.price.toFixed(2)}` },
         ],
       })),
     ],
