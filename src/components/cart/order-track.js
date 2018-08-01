@@ -25,7 +25,7 @@ export default function onOrderComplete(payer) {
 
   // order
   const order = {
-    total: formatPrice(this.subtotal * 1.08, true),
+    total: this.total,
     items: this.$store.state.cart.map(item => pick({
       ...item, // color, quantity, size come from here
       ...this.$store.state.products.find(p => p.id === item.id), // name, price come from here
