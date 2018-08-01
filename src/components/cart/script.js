@@ -121,7 +121,7 @@ export default {
         // Sum
         .reduce((a, b) => a + b, 0);
     },
-    shipping() { return this.$store.state.paymentMethod === 'cash' ? 0 : 7; },
+    shipping() { return this.$store.state.paymentMethod === 'cash' ? 0 : 10; },
     tax() { return (this.subtotal + this.shipping) * 0.08; },
     total() { return this.subtotal + this.shipping + this.tax; },
 
