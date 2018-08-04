@@ -32,5 +32,18 @@ module.exports.getProducts = async function getProducts() {
         fetchNextPage();
       }),
   ]);
+
+  // Basic product info comes from the records in the "Product" table
+
+  const products = productRecords.map((record) => {
+    const product = {};
+    product.id = record.get('Product slug');
+    product.name = record.get('Display name');
+    product.description = record.get('Product description');
+    product.price = record.get('Product price');
+    product.image = record.get('Cover image')[0].url;
+
+    return product;
+  });
   return [productRecords, inventoryRecords, imageRecords];
 };
