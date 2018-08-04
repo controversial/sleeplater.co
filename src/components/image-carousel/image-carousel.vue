@@ -7,9 +7,9 @@
       v-hammer:panend="panend"
     >
       <img
-        v-for="(url, i) in images"
+        v-for="(image, i) in images"
         v-bind:style="imageStyle(i)"
-        v-bind:src="url"
+        v-bind:src="image.thumb"
         alt="Product images"
         draggable="false"
         v-on:click="modalDisplayed = true;"
@@ -26,7 +26,7 @@
     </div>
 
     <image-modal
-      v-bind:image="selectedImage"
+      v-bind:image="selectedImage.full"
       v-bind:displayed="modalDisplayed"
       v-on:close="modalDisplayed = false;"
       v-on:left="left"
