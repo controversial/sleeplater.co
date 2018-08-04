@@ -23,21 +23,13 @@ export default {
     },
     category() { return this.$route.params.category || this.categories[0]; },
     optionsOpen: {
-      get() { return !!this.$route.params.productId; },
+      get() { return !!this.$route.params.productSlug; },
       set(value) { if (!value) { this.$router.push(`/${this.category === this.categories[0] ? '' : this.category}`); } },
     },
   },
   methods: {
-    openProduct(id) {
-      // Appending a slug to the end of the URL doesn't actually change anything but it makes the
-      // URL nicer and I think does something for SEO too
-      const slug = this.$store.state.products
-        .find(p => p.id === id)
-        .name
-        .toLowerCase()
-        .replace(/\s/g, '-')
-        .replace(/[^[A-Za-z0-9-]/g, ''); // Remove non-alphanumeric/hyphen characters
-      this.$router.push(`/${this.category}/product/${id}/${slug}`);
+    openProduct(slug) {
+      this.$router.push(`/${this.category}/product/${slug}`);
     },
     openCart() {
       this.optionsOpen = false;

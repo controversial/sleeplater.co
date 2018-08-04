@@ -1,7 +1,7 @@
 export default {
   props: [
     // Item info
-    'id', 'name', 'status', 'description', 'price', 'image', 'options',
+    'slug', 'name', 'status', 'description', 'price', 'image', 'options',
 
     'offsetX',
   ],

@@ -75,7 +75,7 @@ export default {
     clicked(i) {
       const product = this.categoryProducts[i];
       analytics.productClicked(product);
-      this.$emit('productClick', product.id);
+      this.$emit('productClick', product.slug);
     },
 
     scrollHandler(evt) {

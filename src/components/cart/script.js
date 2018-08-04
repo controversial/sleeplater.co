@@ -104,8 +104,8 @@ export default {
     },
     productsInCart() {
       return this.$store.state.cart
-        .map(({ id, size, color, quantity }) => { // eslint-disable-line object-curly-newline
-          const product = this.$store.state.products.find(p => p.id === id);
+        .map(({ slug, size, color, quantity }) => { // eslint-disable-line object-curly-newline
+          const product = this.$store.state.products.find(p => p.slug === slug);
           return {
             ...product,
             size,

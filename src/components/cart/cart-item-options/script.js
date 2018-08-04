@@ -12,12 +12,12 @@ export default {
 
   computed: {
     productInCart() { return this.$store.state.cart[this.cartIndex]; },
-    productId() { return this.productInCart.id; },
+    productSlug() { return this.productInCart.slug; },
     sizeInCart() { return this.productInCart.size; },
     colorInCart() { return this.productInCart.color; },
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
 
-    product() { return this.$store.state.products.find(p => p.id === this.productId); },
+    product() { return this.$store.state.products.find(p => p.slug === this.productSlug); },
 
     colors() { return uniq(this.product.options.map(o => o.color)); },
     sizes() { return uniq(this.product.options.map(o => o.size)); },

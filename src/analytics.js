@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 const obj = product => ({
-  id: product.id,
+  id: product.slug,
   name: product.name,
   brand: product.categories[0].split(':')[1], // undefined if no colon
   category: product.categories[0],

@@ -1,4 +1,4 @@
-import { formatPrice, pick } from '../../helpers';
+import { pick } from '../../helpers';
 
 // Send request to development server if running locally
 const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
@@ -28,8 +28,8 @@ export default function onOrderComplete(payer) {
     total: this.total,
     items: this.$store.state.cart.map(item => pick({
       ...item, // color, quantity, size come from here
-      ...this.$store.state.products.find(p => p.id === item.id), // name, price come from here
-    }, ['color', 'quantity', 'size', 'name', 'price', 'id'])),
+      ...this.$store.state.products.find(p => p.slug === item.slug), // name, price come from here
+    }, ['color', 'quantity', 'size', 'name', 'price', 'slug'])),
   };
 
   return fetch(url, {

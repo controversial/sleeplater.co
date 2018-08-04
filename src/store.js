@@ -20,7 +20,7 @@ export default new Vuex.Store({
     cart: [
       /*
       {
-        id: '',
+        slug: '',
         size: 'xl',
         color: '#D66763',
         quantity: 1,
@@ -50,9 +50,9 @@ export default new Vuex.Store({
     changeCategory(state, category) { state.shopCategory = category; },
     productsFetched(state, products) { state.products = products; state.productsFetched = true; },
     stockUpdated(state, updates) { // Update product quantities after an order is completed
-      updates.forEach(({ id, color, size, quantity }) => { // eslint-disable-line object-curly-newline, max-len
+      updates.forEach(({ slug, color, size, quantity }) => { // eslint-disable-line object-curly-newline, max-len
         state
-          .products.find(p => p.id === id)
+          .products.find(p => p.slug === slug)
           .options.find(o => o.color === color && o.size === size)
           .quantity = quantity;
       });
@@ -61,7 +61,7 @@ export default new Vuex.Store({
     cartUpdate(state, payload) { // Add or update an item in the cart
       // Search for the item/configuration in the existing cart state
       const cartItem = state.cart
-        .find(e => e.id === payload.id && e.size === payload.size && e.color === payload.color);
+        .find(e => e.slug === payload.slug && e.size === payload.size && e.color === payload.color);
       // If it's already in the cart, just update quantity
       if (cartItem) {
         cartItem.quantity = payload.quantity;
@@ -69,7 +69,7 @@ export default new Vuex.Store({
       } else {
         // Add
         state.cart.push({
-          id: payload.id,
+          slug: payload.slug,
           size: payload.size,
           color: payload.color,
           quantity: payload.quantity,
@@ -95,7 +95,7 @@ export default new Vuex.Store({
       // Search for whatever our new configuration is in the cart
       const newConfigInCart = state.cart
         .find(e =>
-          e.id === cartItem.id
+          e.slug === cartItem.slug
           && e.size === payload.update.size
           && e.color === payload.update.color);
 

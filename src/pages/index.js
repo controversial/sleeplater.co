@@ -16,12 +16,12 @@ export default [
     children: [
       {
         name: 'product',
-        path: 'product/:productId/:slug?',
+        path: 'product/:productSlug',
         component: require('../components/product-options/product-options.vue').default,
         props: true,
         meta: {
           title(route) {
-            const product = store.state.products.find(p => p.id === route.params.productId);
+            const product = store.state.products.find(p => p.slug === route.params.productSlug);
             return product ? `sleep later – ${product.name}` : 'sleep later';
           },
           allowScrollNav: false,

@@ -4,14 +4,13 @@ import { formatPrice, uniq, splitWrappedLines } from '../../helpers';
 import analytics from '../../analytics';
 
 export default {
-  props: ['productId'],
+  props: ['productSlug'],
 
   computed: {
-    product() { return this.$store.state.products.find(p => p.id === this.productId); },
+    product() { return this.$store.state.products.find(p => p.slug === this.productSlug); },
     soldOut() { return !this.availableSizesForColor.length; },
     // (most recent entry for this product)
-    // eslint-disable-next-line max-len
-    productInCart() { return this.$store.state.cart.filter(({ id }) => id === this.product.id).slice(-1)[0]; },
+    productInCart() { return this.$store.state.cart.filter(({ slug }) => slug === this.product.slug).slice(-1)[0]; }, // eslint-disable-line max-len
     colorInCart() { return (this.productInCart || {}).color; },
     sizeInCart() { return (this.productInCart || {}).size; },
     quantityInCart() { return this.productInCart ? this.productInCart.quantity : 1; },
@@ -34,8 +33,8 @@ export default {
 
     buttonMessage() {
       if (this.mobile && this.mobilePage === 1) return 'Continue';
-      const p = this.$store.state.cart.find(({ id, color, size }) =>
-        id === this.product.id && color === this.selectedColor && size === this.selectedSize);
+      const p = this.$store.state.cart.find(({ slug, color, size }) =>
+        slug === this.product.slug && color === this.selectedColor && size === this.selectedSize);
       if (this.soldOut) return 'Sold out';
       if (p) return p.quantity === this.selectedQuantity ? 'Added!' : 'Update quantity';
       return 'Add to cart';
@@ -95,7 +94,7 @@ export default {
 
     addToCart() {
       this.$store.commit('cartUpdate', {
-        id: this.product.id,
+        slug: this.product.slug,
         color: this.selectedColor,
         size: this.selectedSize,
         quantity: this.selectedQuantity,
