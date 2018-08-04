@@ -44,9 +44,22 @@ module.exports.getProducts = async function getProducts() {
     product.price = record.get('Product price');
     product.image = record.get('Cover image')[0].url;
     product.images = {};
+    product.options = [];
 
     productRefs[record.id] = product;
     return product;
+  });
+
+  // Add information from the "Inventory" table about the options available for each product and the
+  // available quantities for each option
+
+  inventoryRecords.forEach((record) => {
+    const product = productRefs[record.get('Parent product')[0]];
+    product.options.push({
+      size: record.get('Product size'),
+      color: record.get('Product color'),
+      quantity: record.get('Number remaining'),
+    });
   });
 
   // Add color-specific detail images from the "Images" table to each product's info
@@ -57,5 +70,5 @@ module.exports.getProducts = async function getProducts() {
       .map(({ url, thumbnails }) => ({ full: url, thumb: thumbnails.large.url }));
   });
 
-  return [productRecords, inventoryRecords, imageRecords];
+  return products;
 };
