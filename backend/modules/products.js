@@ -38,7 +38,7 @@ module.exports.get = async function getProducts() {
   const productRefs = {};
   const products = productRecords.map((record) => {
     const product = {};
-    product.id = record.get('Product slug');
+    product.slug = record.get('Product slug');
     product.name = record.get('Display name');
     product.description = record.get('Product description');
     product.price = record.get('Product price');
