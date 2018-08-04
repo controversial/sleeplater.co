@@ -14,7 +14,7 @@ export async function leave(el, done) {
 
   // Stagger delay
   const oldProducts = this.$store.state.products
-    .filter(p => p.categories.includes(this.prevCategory));
+    .filter(p => p.category === this.prevCategory);
   await delay(goingRight
     ? leaveStagger * el.dataset.index // leftmost out first
     : leaveStagger * (oldProducts.length - 1 - el.dataset.index)); // rightmost out first
@@ -55,7 +55,7 @@ export async function enter(el, done) {
 
   // Wait for old items to leave
   const oldProducts = this.$store.state.products
-    .filter(p => p.categories.includes(this.prevCategory));
+    .filter(p => p.category === this.prevCategory);
   if (oldProducts.length) {
     // Until start of new title enter
     await delay((leaveStagger * (oldProducts.length + 1)) + 400);

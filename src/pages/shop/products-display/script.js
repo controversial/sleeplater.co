@@ -35,15 +35,14 @@ export default {
   computed: {
     categories() {
       return this.$store.state.products
-        .map(p => p.categories) // get categories
-        .reduce((a, b) => a.concat(b), []) // flatten
+        .map(p => p.category) // get category
         .filter((n, i, list) => list.indexOf(n) === i); // Remove duplicates
     },
     category() { return this.$route.params.category || this.categories[0]; },
     categoryProducts() {
       if (!this.shouldDisplayProducts) return [];
       return this.$store.state.products
-        .filter(p => p.categories.includes(this.category));
+        .filter(p => p.category === this.category);
     },
 
     categoryIndex: {
@@ -172,7 +171,7 @@ export default {
 
       const leaveStagger = 0.125 * 1000;
       const oldProducts = this.$store.state.products
-        .filter(p => p.categories.includes(this.prevCategory));
+        .filter(p => p.category === this.prevCategory);
       if (oldProducts.length) {
         await delay(leaveStagger * (oldProducts.length + 1));
       }

@@ -3,8 +3,8 @@ import Vue from 'vue';
 const obj = product => ({
   id: product.slug,
   name: product.name,
-  brand: product.categories[0].split(':')[1], // undefined if no colon
-  category: product.categories[0],
+  brand: product.category.split(':')[1], // undefined if no colon
+  category: product.category,
   price: product.price,
 });
 

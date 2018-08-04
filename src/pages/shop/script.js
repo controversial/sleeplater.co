@@ -17,8 +17,7 @@ export default {
     },
     categories() {
       return this.$store.state.products
-        .map(p => p.categories) // get categories
-        .reduce((a, b) => a.concat(b), []) // flatten
+        .map(p => p.category) // get category
         .filter((n, i, list) => list.indexOf(n) === i); // Remove duplicates
     },
     category() { return this.$route.params.category || this.categories[0]; },
