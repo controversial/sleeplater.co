@@ -35,6 +35,7 @@ module.exports.getProducts = async function getProducts() {
 
   // Basic product info comes from the records in the "Product" table
 
+  const productRefs = {};
   const products = productRecords.map((record) => {
     const product = {};
     product.id = record.get('Product slug');
@@ -42,8 +43,19 @@ module.exports.getProducts = async function getProducts() {
     product.description = record.get('Product description');
     product.price = record.get('Product price');
     product.image = record.get('Cover image')[0].url;
+    product.images = {};
 
+    productRefs[record.id] = product;
     return product;
   });
+
+  // Add color-specific detail images from the "Images" table to each product's info
+
+  imageRecords.forEach((record) => {
+    const product = productRefs[record.get('Parent product')[0]];
+    product.images[record.get('Color')] = record.get('Images')
+      .map(({ url, thumbnails }) => ({ full: url, thumb: thumbnails.large.url }));
+  });
+
   return [productRecords, inventoryRecords, imageRecords];
 };
