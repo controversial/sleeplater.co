@@ -5,7 +5,7 @@ require('dotenv').config();
 const Airtable = require('airtable');
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
 
-module.exports.getProducts = async function getProducts() {
+module.exports.get = async function getProducts() {
   // Retrive all the info we'll need from the Airtable API. It's split across 3 tables: Products,
   // Inventory, and Images.
 
