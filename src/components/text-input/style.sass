@@ -38,11 +38,11 @@ input
 
   border-bottom: 2px solid
   padding: .125em 0 calc(.625em - 2px)
-  border-color: transparentize($actually-white, .8)
+  border-color: mix($actually-white, $dark-1, 20%)
   transition: border-color .2s
 
   &:focus
-    border-color: transparentize($actually-white, .65)
+    border-color: mix($actually-white, $dark-1, 35%)
 
   &:-webkit-autofill
     background: transparent
@@ -58,7 +58,7 @@ input
     color: transparentize($red, .65)
 
   input
-    border-color: transparentize($red, .65)
+    border-color: mix($red, $dark-1, 35%)
 
     &:focus
-      border-color: transparentize($red, .525)
+      border-color: mix($red, $dark-1, 47.5%)
