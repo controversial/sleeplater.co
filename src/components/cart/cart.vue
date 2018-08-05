@@ -103,7 +103,7 @@
 
         <div class="page-2">
           <div class="shipping">
-            <address-form></address-form>
+            <address-form ref="address" :showValidation="hasAttempted"></address-form>
           </div>
 
           <!-- Submit buttons -->
@@ -114,7 +114,7 @@
                 class="checkout button"
                 v-bind:state="checkoutButtonState"
                 v-bind:disabled="!$store.state.paymentMethod"
-                v-on:click.native="checkout"
+                v-on:click.native="() => ($refs.address.valid ? checkout : () => { hasAttempted = true; })()"
               >checkout</submit-button>
             </div>
             <div class="row">

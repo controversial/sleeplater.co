@@ -12,6 +12,7 @@ export default {
     itemsMaxHeight: 0,
     itemsHeight: 0,
     checkoutStep: 1,
+    hasAttempted: false,
     orderPlaced: false,
 
     // The index of each cart item whose options are displayed via hover
@@ -87,6 +88,8 @@ export default {
         this.$store.commit('stockUpdated', updates);
         await delay(1000);
         this.$store.commit('clearCart');
+        this.hasAttempted = false;
+        this.checkoutStep = 1;
         this.orderPlaced = true;
         this.checkoutButtonState = 'static';
       } else {
