@@ -34,6 +34,18 @@ Vue.component('twitter-icon', TwitterIcon);
 Vue.component('close-icon', XIcon);
 Vue.component('x-icon', XIcon);
 
+// Form components
+
+import TextInput from './text-input/text-input.vue';
+Vue.component('text-input', TextInput);
+import TextArea from './text-area/text-area.vue';
+Vue.component('text-area', TextArea);
+
+import SubmitButton from './submit-button/submit-button.vue';
+Vue.component('submit-button', SubmitButton);
+
+import Dropdown from './dropdown/dropdown.vue';
+Vue.component('dropdown', Dropdown);
 
 // Navigation
 
@@ -90,14 +102,6 @@ Vue.component('cart-update-bar', CartUpdateBar);
 
 
 // Contact
-
-import TextInput from './text-input/text-input.vue';
-Vue.component('text-input', TextInput);
-import TextArea from './text-area/text-area.vue';
-Vue.component('text-area', TextArea);
-
-import SubmitButton from './submit-button/submit-button.vue';
-Vue.component('submit-button', SubmitButton);
 
 import Spinner from './spinner/spinner.vue';
 Vue.component('spinner', Spinner);
