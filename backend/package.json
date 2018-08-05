@@ -11,6 +11,7 @@
   "author": "Luke Deen Taylor",
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "airtable": "^0.5.6",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
