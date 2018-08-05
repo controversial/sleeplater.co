@@ -10,7 +10,7 @@ export default {
     name: '',
     streetAddress: '',
     city: '',
-    country: '',
+    country: 'United States',
     zip: '',
     state: '',
   }),

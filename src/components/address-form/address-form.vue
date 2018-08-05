@@ -8,11 +8,11 @@
     </div>
     <div class="row">
       <text-input title="City" :required="true" v-model="city" v-bind="{ showValidation }"></text-input>
-      <dropdown title="Country / region" :required="true" v-model="country" v-bind:options="countries" v-bind="{ showValidation }"></dropdown>
+      <text-input title="State / Territory" :required="true" v-model="state" v-bind="{ showValidation }"></text-input>
     </div>
     <div class="row">
       <text-input title="ZIP/Postal code" :required="true" v-model="zip" v-bind="{ showValidation }"></text-input>
-      <text-input title="State / Territory" :required="true" v-model="state" v-bind="{ showValidation }"></text-input>
+      <dropdown title="Country / region" :required="true" v-model="country" v-bind:options="countries" v-bind="{ showValidation }"></dropdown>
     </div>
     <div class="cash-region-error" v-if="displayCashRegionError">
       Looks like you entered an address for which cash payments aren’t available. Cash payments are
