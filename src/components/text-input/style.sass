@@ -4,10 +4,11 @@
 div
   position: relative
   text-align: left
+  font-size: .8rem
 
 label
   display: block
-  font-size: .5rem
+  font-size: .625em
   font-family: $avenir-font-stack
   font-weight: 700
   text-transform: uppercase
@@ -17,7 +18,7 @@ label
   transition: transform .2s ease-out, color .2s
 
   &:not(.raised)
-    transform: translateY(1rem)
+    transform: translateY(2em)
 
 input
   // Remove default styles
@@ -29,14 +30,14 @@ input
   width: 100%
   border-radius: 0
 
-  font-size: .8rem
+  font-size: 1em
   font-family: 'Source Sans Pro', sans-serif
   font-weight: 400
   color: $actually-white
   caret-color: transparentize($actually-white, .25)
 
   border-bottom: 2px solid
-  padding: .1rem 0 calc(.5rem - 2px)
+  padding: .125em 0 calc(.625em - 2px)
   border-color: transparentize($actually-white, .8)
   transition: border-color .2s
 
