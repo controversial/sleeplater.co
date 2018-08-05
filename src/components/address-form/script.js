@@ -28,5 +28,10 @@ export default {
     },
 
     zipValid() { return this.cashZipCodes.includes(parseInt(this.zip, 10)); },
+    valid() {
+      const validatableChildren = this.$children.filter(c => typeof c.valid !== 'undefined');
+      const validChildren = this.$children.filter(c => c.valid);
+      return validatableChildren.length === validChildren.length;
+    },
   },
 };
