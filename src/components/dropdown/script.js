@@ -8,6 +8,6 @@ export default {
   },
 
   computed: {
-    valid() { return !this.required && this.value.length; },
+    valid() { return !(this.required && !this.value.length); },
   },
 };
