@@ -30,16 +30,15 @@ export default {
     countryValidForCash() { return this.country === 'United States'; },
     stateValidForCash() { return ['new york', 'ny'].includes(this.state.toLowerCase()); },
     zipValidForCash() { return this.cashZipCodes.includes(parseInt(this.zip, 10)); },
-    displayCashRegionError() {
+    cashRegionInvalid() {
       return this.$store.state.paymentMethod === 'cash'
-        && this.showValidation
         && !(this.countryValidForCash && this.stateValidForCash && this.zipValidForCash);
     },
 
     valid() {
       const validatableChildren = this.$children.filter(c => typeof c.valid !== 'undefined');
       const validChildren = this.$children.filter(c => c.valid);
-      return validatableChildren.length === validChildren.length;
+      return validatableChildren.length === validChildren.length && !this.cashRegionInvalid;
     },
   },
 };
