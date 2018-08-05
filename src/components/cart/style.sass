@@ -130,6 +130,18 @@ h1
         font-weight: 500
         margin-left: auto
 
+.sliding
+  display: flex
+  position: relative
+  width: 250%
+  justify-content: space-between
+  transition: transform .35s
+
+  & > div
+    width: 40%
+
+  &[data-page='2']
+    transform: translate(-60%)
 
 .empty-state
   font-family: $avenir-font-stack

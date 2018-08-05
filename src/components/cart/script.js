@@ -11,6 +11,7 @@ export default {
   data: () => ({
     itemsMaxHeight: 0,
     itemsHeight: 0,
+    checkoutStep: 1,
     orderPlaced: false,
 
     // The index of each cart item whose options are displayed via hover
