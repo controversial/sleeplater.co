@@ -29,20 +29,21 @@
         </tippy>
       </div>
     </div>
+
     <div class="cart-info">
       <div>
         <span class="left">Subtotal</span>
         <span class="right">${{ formatPrice(subtotal, true) }}</span>
       </div>
-      <div v-if="$store.state.paymentMethod !== 'cash'">
+      <div v-if="showShipping">
         <span class="left">Shipping</span>
         <span class="right">${{ formatPrice(shipping, true) }}</span>
       </div>
-      <div>
+      <div v-if="showShipping">
         <span class="left">Tax</span>
         <span class="right">${{ formatPrice(tax, true) }}</span>
       </div>
-      <div>
+      <div v-if="showShipping">
         <span class="left emphasis">Total</span>
         <span class="right emphasis">${{ formatPrice(total, true) }}</span>
       </div>

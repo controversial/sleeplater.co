@@ -6,6 +6,7 @@ export default {
     editable: Boolean,
     height: Number,
     maxHeight: Number,
+    showShipping: Boolean,
   },
 
   data: () => ({

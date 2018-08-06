@@ -70,7 +70,7 @@
           <div class="row">
             <submit-button
               class="checkout button"
-              v-on:click.native="($refs.address.valid ? () => { checkoutStep = 3; } : () => { hasAttempted = true; })()"
+              v-on:click.native="() => ($refs.address.valid ? () => { checkoutStep = 3; } : () => { hasAttempted = true; })()"
             >Continue</submit-button>
           </div>
         </div>
