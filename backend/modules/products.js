@@ -59,7 +59,7 @@ module.exports.get = async function getProducts() {
     product.options.push({
       size: record.get('Product size'),
       color: record.get('Product color'),
-      quantity: record.get('Number remaining'),
+      quantity: Math.max(record.get('Number remaining'), 0),
     });
   });
 
