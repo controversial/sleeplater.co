@@ -3,7 +3,7 @@
     <div class="contents">
 
       <close-icon v-if="checkoutStep === 1" v-on:click="$emit('close')"></close-icon>
-      <back-icon v-if="checkoutStep === 2" v-on:click="checkoutStep = 1"></back-icon>
+      <back-icon v-if="checkoutStep > 1" v-on:click="checkoutStep -= 1"></back-icon>
 
       <h1>Cart</h1>
 
@@ -88,6 +88,11 @@
             </div>
           </div>
 
+        </div>
+
+        <!-- Third page -->
+        <div class="page-3">
+          Hi!
         </div>
 
       </div>

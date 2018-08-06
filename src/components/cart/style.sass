@@ -78,19 +78,24 @@ h1
     background: transparentize($actually-white, .35)
     margin: 0 .3rem
 
+
 .sliding
   margin-top: .88rem
   display: flex
   position: relative
-  width: 250%
+  width: 400%
   justify-content: space-between
   transition: transform .5s
 
   & > div
-    width: 40%
+    width: 25%
 
   &[data-page='2']
-    transform: translate(-60%)
+    transform: translate(-37.5%)
+
+  &[data-page='3']
+    transform: translate(-75%)
+
 
 .empty-state
   font-family: $avenir-font-stack
