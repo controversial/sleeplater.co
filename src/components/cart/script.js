@@ -1,7 +1,4 @@
 /* eslint-disable import/first */
-import Vue from 'vue';
-import PaymentMethod from './payment-method/payment-method.vue';
-Vue.component('payment-method', PaymentMethod);
 import { delay, formatPrice } from '../../helpers';
 import onOrderComplete from './order-track';
 
@@ -15,8 +12,6 @@ export default {
     hasAttempted: false,
     orderPlaced: false,
 
-    // The index of each cart item whose options are displayed via hover
-    displayedOptions: [],
     checkoutButtonState: 'static',
   }),
 
@@ -24,30 +19,20 @@ export default {
     formatPrice,
 
     updateItemsMaxHeight() {
-      if (!this.itemsCount || !this.$refs.items) {
+      if (!this.itemsCount || !this.$refs.overview.$refs.items) {
         this.itemsMaxHeight = 0;
         this.itemsHeight = 0;
       } else {
-        const itemsTop = this.$refs.items.getBoundingClientRect().top;
+        const itemsTop = this.$refs.overview.$refs.items.getBoundingClientRect().top;
         const maxBottom = (
           window.innerHeight // Height of the window
           - parseFloat(getComputedStyle(this.$el.getElementsByClassName('contents')[0]).paddingBottom) // Minus the padding at the bottom of the cart
           // Minus the height of all of the content that needs to come after the cart items
           - (this.$refs.bottommost.$el.getBoundingClientRect().bottom
-          - this.$refs.items.nextElementSibling.getBoundingClientRect().top)
+          - this.$refs.overview.$refs.items.nextElementSibling.getBoundingClientRect().top)
         );
-        this.itemsMaxHeight = `${(maxBottom - itemsTop)}px`;
-        this.itemsHeight = `${this.$refs.items.getBoundingClientRect().height}px`;
-      }
-    },
-
-    tippyHide(i) {
-      const t = this.$refs[`item-${i}`][0]._tippy; // eslint-disable-line no-underscore-dangle
-      if (t.state.visible) t.hide();
-    },
-    tippyHideOthers(i) {
-      for (let i2 = 0; i2 < this.productsInCart.length; i2 += 1) {
-        if (i !== i2) this.tippyHide(i2);
+        this.itemsMaxHeight = maxBottom - itemsTop;
+        this.itemsHeight = this.$refs.overview.$refs.items.getBoundingClientRect().height;
       }
     },
 
@@ -125,9 +110,6 @@ export default {
         // Sum
         .reduce((a, b) => a + b, 0);
     },
-    shipping() { return this.$store.state.paymentMethod === 'cash' ? 0 : 10; },
-    tax() { return (this.subtotal + this.shipping) * 0.08; },
-    total() { return this.subtotal + this.shipping + this.tax; },
 
     cartEmptyMessage() { return this.orderPlaced ? 'Order received!' : "There's nothing in your cart!"; },
   },
@@ -166,7 +148,7 @@ export default {
       },
       payment: (data, actions) => actions.payment.create({
         transactions: [{
-          amount: { total: this.formatPrice(this.total, true), currency: 'USD' },
+          amount: { total: formatPrice(this.total, true), currency: 'USD' },
         }],
       }),
       onAuthorize: (data, actions) => actions.payment.execute()
@@ -179,5 +161,10 @@ export default {
       },
     }, '#paypal-button');
     document.getElementById('paypal-button').style.display = 'none';
+  },
+
+  components: {
+    'payment-method': require('./payment-method/payment-method.vue').default,
+    'order-overview': require('./order-overview/order-overview.vue').default,
   },
 };

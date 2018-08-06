@@ -1,0 +1,114 @@
+@import '../../../styles/common'
+
+// Listing of all items in cart
+
+.order-overview
+  position: relative
+  padding: 0 .7rem .7rem
+  background: $dark-2
+  border-radius: 3px
+  box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
+
+
+  // Scrollable section containing the cart-items
+  .items
+    position: relative
+    padding: .7rem 0
+    overflow-y: scroll
+
+  .scroll-fade
+    position: absolute
+    z-index: 100
+    top: 0
+    left: .7rem
+    width: calc(100% - 1.4rem)
+    box-shadow: inset 0 .9rem .75rem -.65rem $dark-2, inset 0 -.9rem .75rem -.55rem $dark-2
+    pointer-events: none
+
+  // Some info (subtotal, tax, total) that appears at the bottom below the .cart-item divs
+
+  .cart-info div
+    display: flex
+
+    span
+      font-family: $avenir-font-stack
+      font-size: 12px
+      font-weight: 600
+      letter-spacing: .53px
+      color: transparentize($actually-white, .55)
+
+      &.emphasis
+        font-size: 14px
+        color: transparentize($actually-white, .25)
+
+      &.left
+        font-weight: 600
+        margin-right: auto
+
+      &.right
+        font-weight: 500
+        margin-left: auto
+
+
+
+
+.cart-item
+  display: flex
+  align-items: center
+  padding: 5%
+  background: $dark-3
+  border-radius: 3px
+  box-shadow: 0 5px 25px -7px transparentize($actually-black, .75)
+
+  font-family: $avenir-font-stack
+
+  margin-bottom: 5%
+
+  &:last-child
+    margin-bottom: 0
+
+  .number
+    // Padding can make sure it's square bc it all refers to width
+    position: relative
+    width: 30px
+    padding-bottom: 30px
+    margin-right: 10px
+    flex: 0 0 auto
+    background: $dark-5
+    border-radius: 3px
+
+    font-weight: 600
+    font-size: 14px
+    color: $actually-white
+
+    span
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+
+  .name
+    font-size: 17px
+    font-weight: 500
+    color: $actually-white
+    white-space: nowrap
+    margin-right: 8px
+    flex: 0 1 auto
+    overflow: hidden
+    text-overflow: ellipsis
+
+  .price
+    font-size: 16px
+    font-weight: 600
+    color: transparentize($actually-white, .35)
+
+    flex: 0 0 auto
+    margin-left: auto
+
+    display: flex
+    align-items: center
+
+    .feather.feather-x
+      width: .8em
+      height: .8em
+      margin: 0 .2em
