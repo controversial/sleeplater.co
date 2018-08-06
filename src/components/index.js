@@ -4,6 +4,7 @@ import Vue from 'vue';
 // Feather icons
 import {
   AlertCircleIcon,
+  ArrowLeftIcon,
   BarChartIcon,
   CheckCircleIcon,
   CheckIcon,
@@ -19,6 +20,7 @@ import {
   XIcon,
 } from 'vue-feather-icons';
 Vue.component('alert-circle-icon', AlertCircleIcon);
+Vue.component('back-icon', ArrowLeftIcon);
 Vue.component('menu-icon', BarChartIcon); // Goes sideways
 Vue.component('check-circle-icon', CheckCircleIcon);
 Vue.component('check-icon', CheckIcon);

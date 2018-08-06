@@ -2,7 +2,8 @@
   <div class="cart" v-bind:class="{ hidden }">
     <div class="contents">
 
-      <close-icon v-on:click="$emit('close')"></close-icon>
+      <close-icon v-if="checkoutStep === 1" v-on:click="$emit('close')"></close-icon>
+      <back-icon v-if="checkoutStep === 2" v-on:click="checkoutStep = 1"></back-icon>
 
       <h1>Cart</h1>
 
