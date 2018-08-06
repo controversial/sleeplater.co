@@ -13,12 +13,12 @@
         <span>${{ formatPrice(subtotal, true) }}</span>
       </div>
 
-      <div class="sliding" v-if="itemsCount" v-bind:data-page="checkoutStep">
+      <div class="sliding" v-bind:data-page="checkoutStep">
 
         <!-- First page has order summary and payment options -->
 
         <div class="page-1">
-          <div class="details">
+          <div class="details" v-if="itemsCount">
             <div class="scroll-fade" v-bind:style="{ height: itemsHeight }"></div>
             <div class="items" ref="items" v-bind:style="{ maxHeight: itemsMaxHeight }">
               <div
@@ -67,7 +67,7 @@
             </div>
           </div>
 
-          <div class="checkout">
+          <div class="payment-methods" v-if="itemsCount">
             <div class="row">
               <payment-method
                 name="credit"
@@ -144,7 +144,7 @@
 
 <!-- these svg styles can't be scoped because the SVGs are added from require statements -->
 <style lang="sass">
-.cart .checkout .payment-method
+.cart .payment-methods .payment-method
   svg
     height: 18px
     flex-grow: 0
