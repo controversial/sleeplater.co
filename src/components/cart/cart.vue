@@ -77,6 +77,14 @@
 
         <!-- Third page -->
         <div class="page-3">
+          <order-overview v-if="itemsCount"
+            ref="overview"
+            v-bind:products="productsInCart"
+            show-shipping
+            v-bind:height="itemsHeight"
+            v-bind:maxHeight="itemsMaxHeight"
+          ></order-overview>
+
           <div class="submission">
             <div class="row" v-bind:style="{ display: $store.state.paymentMethod === 'cash' || !$store.state.paymentMethod ? '' : 'none'}">
               <submit-button

@@ -5,7 +5,7 @@
       <div
         class="cart-item"
         v-for="(product, i) in products"
-        v-bind:name="`item-${i}`" v-bind:ref="`item-${i}`"
+        v-bind:name="editable ? `item-${i}`: ''" v-bind:ref="`item-${i}`"
       >
         <div class="number"><span>{{i+1}}.</span></div>
         <div class="name">{{product.name}}</div>
