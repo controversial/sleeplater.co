@@ -4,28 +4,16 @@ export default {
   props: {
     products: Array,
     editable: Boolean,
+    costBreakdown: Object,
+
     height: Number,
     maxHeight: Number,
-    showShipping: Boolean,
   },
 
   data: () => ({
     // The index of each cart item whose options are displayed via hover
     displayedOptions: [],
   }),
-
-  computed: {
-    subtotal() {
-      return this.products
-        // Calculate price for each cart item
-        .map(({ price, quantity }) => price * quantity)
-        // Sum
-        .reduce((a, b) => a + b, 0);
-    },
-    shipping() { return this.$store.state.paymentMethod === 'cash' ? 0 : 10; },
-    tax() { return (this.subtotal + this.shipping) * 0.08; },
-    total() { return this.subtotal + this.shipping + this.tax; },
-  },
 
   methods: {
     formatPrice,

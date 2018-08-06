@@ -31,21 +31,9 @@
     </div>
 
     <div class="cart-info">
-      <div>
-        <span class="left">Subtotal</span>
-        <span class="right">${{ formatPrice(subtotal, true) }}</span>
-      </div>
-      <div v-if="showShipping">
-        <span class="left">Shipping</span>
-        <span class="right">${{ formatPrice(shipping, true) }}</span>
-      </div>
-      <div v-if="showShipping">
-        <span class="left">Tax</span>
-        <span class="right">${{ formatPrice(tax, true) }}</span>
-      </div>
-      <div v-if="showShipping">
-        <span class="left emphasis">Total</span>
-        <span class="right emphasis">${{ formatPrice(total, true) }}</span>
+      <div v-for="item in Object.entries(this.costBreakdown)">
+        <span class="left" v-bind:class="{ emphasis: item[0] === 'total' }">{{ item[0] }}</span>
+        <span class="right" v-bind:class="{ emphasis: item[0] === 'total' }">${{ formatPrice(item[1], true) }}</span>
       </div>
     </div>
   </div>

@@ -110,6 +110,9 @@ export default {
         // Sum
         .reduce((a, b) => a + b, 0);
     },
+    shipping() { return 10; }, // TODO
+    tax() { return (this.subtotal + this.shipping) * 0.08; },
+    total() { return this.subtotal + this.shipping + this.tax; },
 
     cartEmptyMessage() { return this.orderPlaced ? 'Order received!' : "There's nothing in your cart!"; },
   },

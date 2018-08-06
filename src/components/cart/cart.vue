@@ -18,10 +18,10 @@
         <!-- First page has order summary and payment options -->
 
         <div class="page-1">
-          <order-overview v-if="itemsCount"
-            ref="overview"
+          <order-overview v-if="itemsCount" ref="overview"
             v-bind:products="productsInCart"
             editable
+            v-bind:cost-breakdown="{ subtotal }"
             v-bind:height="itemsHeight"
             v-bind:maxHeight="itemsMaxHeight"
           ></order-overview>
@@ -77,10 +77,14 @@
 
         <!-- Third page -->
         <div class="page-3">
-          <order-overview v-if="itemsCount"
-            ref="overview"
+          <order-overview v-if="itemsCount" ref="overview2"
             v-bind:products="productsInCart"
-            show-shipping
+            v-bind:cost-breakdown="{
+              subtotal,
+              shipping,
+              tax,
+              total,
+            }"
             v-bind:height="itemsHeight"
             v-bind:maxHeight="itemsMaxHeight"
           ></order-overview>
