@@ -39,4 +39,8 @@ export default {
       }
     },
   },
+
+  components: {
+    'cart-item-options': require('../cart-item-options/cart-item-options.vue').default,
+  },
 };

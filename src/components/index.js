@@ -75,9 +75,6 @@ Vue.component('cart-button', CartButton);
 import Cart from './cart/cart.vue';
 Vue.component('cart', Cart);
 
-import CartItemOptions from './cart/cart-item-options/cart-item-options.vue';
-Vue.component('cart-item-options', CartItemOptions);
-
 import AddressForm from './address-form/address-form.vue';
 Vue.component('address-form', AddressForm);
 
