@@ -67,14 +67,23 @@
           </div>
 
           <!-- Submit buttons -->
+          <div class="row">
+            <submit-button
+              class="checkout button"
+              v-on:click.native="($refs.address.valid ? () => { checkoutStep = 3; } : () => { hasAttempted = true; })()"
+            >Continue</submit-button>
+          </div>
+        </div>
 
+        <!-- Third page -->
+        <div class="page-3">
           <div class="submission">
             <div class="row" v-bind:style="{ display: $store.state.paymentMethod === 'cash' || !$store.state.paymentMethod ? '' : 'none'}">
               <submit-button
                 class="checkout button"
                 v-bind:state="checkoutButtonState"
                 v-bind:disabled="!$store.state.paymentMethod"
-                v-on:click.native="() => ($refs.address.valid ? checkout : () => { hasAttempted = true; })()"
+                v-on:click.native="checkout"
               >checkout</submit-button>
             </div>
             <div class="row">
@@ -87,12 +96,6 @@
               </div>
             </div>
           </div>
-
-        </div>
-
-        <!-- Third page -->
-        <div class="page-3">
-          Hi!
         </div>
 
       </div>
