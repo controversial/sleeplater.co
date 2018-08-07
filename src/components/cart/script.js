@@ -1,5 +1,6 @@
 /* eslint-disable import/first */
 import { delay, formatPrice, getShippingCost } from '../../helpers';
+import doPaypal from './paypal';
 import onOrderComplete from './order-track';
 
 export default {
@@ -144,28 +145,10 @@ export default {
   updated() { this.updateItemsMaxHeight(); },
 
   mounted() {
-    // Create paypal button
-    window.paypal.Button.render({
-      env: 'production',
-      client: {
-        sandbox: 'AasuLzwG0RtJkM14vRWCNk9v1qtMbyod3BMEI8HGvbQ9dQIrg8BAmWgA-NfsQNtHNaRACyK2aPrVakjl',
-        production: 'AZUcKQOKOGm2o9lo2hi8jiG_NsH30cW9pwt7IUaGCPTgY6WiSIjUlTGaUl51V34WCSnoGeG12ExDfFqj',
-      },
-      payment: (data, actions) => actions.payment.create({
-        transactions: [{
-          amount: { total: formatPrice(this.total, true), currency: 'USD' },
-        }],
-      }),
-      onAuthorize: (data, actions) => actions.payment.execute()
-        .then((result) => { this.orderComplete(result.payer); }),
-      style: {
-        size: 'responsive',
-        shape: 'rect',
-        color: 'silver',
-        tagline: false,
-      },
-    }, '#paypal-button');
-    document.getElementById('paypal-button').style.display = 'none';
+    doPaypal({
+      getPaymentAmount: () => this.total,
+      onComplete: payer => onOrderComplete.bind(this)(payer),
+    });
   },
 
   components: {
