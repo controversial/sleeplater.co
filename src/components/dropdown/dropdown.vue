@@ -1,5 +1,6 @@
 <template>
   <div>
+    <label class="raised">{{ title }}</label>
     <select v-model="selectionValue">
       <option v-bind="{ value }" v-for="value in options"> {{ value }} </option>
     </select>
