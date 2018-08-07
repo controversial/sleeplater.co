@@ -35,6 +35,19 @@ export function formatPrice(price, forceDecimal = false) {
     : roundedToCent.toFixed(2);
 }
 
+
+// Format an address like it should go on a shipping label
+// I have no idea how internationally compliant this is
+export function formatAddress({ name, streetAddress, city, country, zip, state }) { // eslint-disable-line object-curly-newline, max-len
+  return [
+    name,
+    streetAddress,
+    `${city}, ${state} ${zip}`,
+    country,
+  ].join('\n');
+}
+
+
 // Zip codes for which cash payments are available
 export const cashZipCodes = ['12561', '12525', '12528', '12486', '12472', '12548', '12515'];
 
@@ -55,6 +68,7 @@ export function getShippingCost(zip, country, itemsCount) {
     ...(itemsCount < 3 ? { international: 25.5 } : { international: 50 }),
   }[addressClassification];
 }
+
 
 // Wrap each word in a span
 export function wordWrap(el, deep = true, level = 0) {
