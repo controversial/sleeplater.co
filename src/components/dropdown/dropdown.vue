@@ -4,6 +4,7 @@
     <select v-model="selectionValue">
       <option v-bind="{ value }" v-for="value in options"> {{ value }} </option>
     </select>
+    <chevron-down-icon></chevron-down-icon>
   </div>
 </template>
 
