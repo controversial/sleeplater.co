@@ -1,4 +1,4 @@
-import { pick } from '../../helpers';
+import { pick, formatAddress } from '../../helpers';
 
 // Send request to development server if running locally
 const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
@@ -10,18 +10,11 @@ export default function onOrderComplete(payer) {
   const paymentMethod = payer.payment_method;
 
   // User info
-  const user = { name: undefined, address: undefined, email: undefined };
-  if (paymentMethod === 'cash') {
-    user.name = payer.name;
-    user.email = payer.email;
-    user.address = payer.address;
-  } else {
-    const info = payer.payer_info;
-    user.name = `${info.first_name} ${info.last_name}`;
-    user.email = info.email;
-    const a = info.shipping_address;
-    user.address = `${a.line1}\n${a.city}, ${a.state} ${a.postal_code}\n${a.country_code}`;
-  }
+  const user = {
+    name: this.$store.state.address.name,
+    address: formatAddress(this.$store.state.address),
+    email: paymentMethod === 'cash' ? this.$store.state.address.email : payer.payer_info.email,
+  };
 
   // order
   const order = {

@@ -37,32 +37,9 @@ export default {
       }
     },
 
-    async checkout() {
+    checkout() {
       if (this.$store.state.paymentMethod === 'cash') {
-        // gah no time for anythig better
-        /* eslint-disable no-alert */
-        let name = '';
-        let email = '';
-        let address = '';
-        while (!name.length) {
-          name = prompt('Enter your name');
-          if (name === null) return;
-        }
-        while (!email.length) {
-          email = prompt('Enter your email');
-          if (email === null) return;
-        }
-        while (!address.length) {
-          address = prompt('Enter your shipping address');
-          if (address === null) return;
-        }
-        /* eslint-enable no-alert */
-        this.orderComplete({
-          payment_method: 'cash',
-          name,
-          email,
-          address,
-        });
+        this.orderComplete({ payment_method: 'cash' });
       }
     },
 
@@ -147,7 +124,7 @@ export default {
   mounted() {
     doPaypal({
       getPaymentAmount: () => this.total,
-      onComplete: payer => onOrderComplete.bind(this)(payer),
+      onComplete: payer => this.orderComplete(payer),
     });
   },
 
