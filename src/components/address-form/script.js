@@ -9,27 +9,17 @@ export default {
     // Info needed for form
     countries,
     cashZipCodes,
-    // Values from form
-    email: '',
-    name: '',
-    streetAddress: '',
-    city: '',
-    country: 'United States',
-    zip: '',
-    state: '',
   }),
 
   computed: {
-    address() {
-      const { name, line1, line2, city, country, zip, state } = this; // eslint-disable-line object-curly-newline, max-len
-      return [
-        name,
-        line1,
-        line2,
-        `${city}, ${state} ${zip}`,
-        country,
-      ];
-    },
+    // Form values come in as computed properties from vuex with setters for mutation
+    ...Object.assign({}, ...['email', 'name', 'streetAddress', 'city', 'state', 'zip', 'country']
+      .map(key => ({
+        [key]: {
+          get() { return this.$store.state.address[key]; },
+          set(value) { this.$store.commit('addressEdit', { key, value }); },
+        },
+      }))),
 
     countryValidForCash() { return this.country === 'United States'; },
     stateValidForCash() { return ['new york', 'ny'].includes(this.state.toLowerCase().trim()); },

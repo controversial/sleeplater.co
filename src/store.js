@@ -18,15 +18,17 @@ export default new Vuex.Store({
     productsFetched: false,
     paymentMethod: '',
     cart: [
-      /*
-      {
-        slug: '',
-        size: 'xl',
-        color: '#D66763',
-        quantity: 1,
-      }
-      */
+      // { slug: '', size: 'xl', color: '#D66763', quantity: 1 }
     ],
+    address: {
+      email: '',
+      name: '',
+      streetAddress: '',
+      city: '',
+      country: 'United States',
+      zip: '',
+      state: '',
+    },
 
     // Contact
     contactForm: {
@@ -122,6 +124,10 @@ export default new Vuex.Store({
     clearCart(state) {
       state.cart = [];
       state.paymentMethod = '';
+    },
+    // Change values in address
+    addressEdit(state, { key, value }) {
+      state.address[key] = value;
     },
 
     // Contact
