@@ -39,3 +39,12 @@ select
   border-color: mix($actually-white, $dark-1, 20%)
   padding: .125em 0 calc(.625em - 2px)
   transition: border-color .2s
+
+  &:focus
+    border-color: mix($actually-white, $dark-1, 35%)
+
+  &:-webkit-autofill
+    background: transparent
+    box-shadow: 0 0 0 1000px $dark-1 inset // Safari
+    color: $actually-white
+    -webkit-text-fill-color: $actually-white       // Safari
