@@ -35,6 +35,26 @@ export function formatPrice(price, forceDecimal = false) {
     : roundedToCent.toFixed(2);
 }
 
+// Zip codes for which cash payments are available
+export const cashZipCodes = ['12561', '12525', '12528', '12486', '12472', '12548', '12515'];
+
+// Get the shipping cost, in USD, for shipping for a given zip code, country, and number of items
+export function getShippingCost(zip, country, itemsCount) {
+  // Classify address as local, domestic, canada, or international
+  let addressClassification;
+  if (country === 'United States' && cashZipCodes.includes(zip.trim())) addressClassification = 'local';
+  else if (country === 'United States') addressClassification = 'domestic';
+  else if (country === 'Canada') addressClassification = 'canada';
+  else addressClassification = 'international';
+
+  // Determine and return shipping cost
+  return {
+    local: 2,
+    domestic: 7.25,
+    canada: 14.5,
+    ...(itemsCount < 3 ? { international: 25.5 } : { international: 50 }),
+  }[addressClassification];
+}
 
 // Wrap each word in a span
 export function wordWrap(el, deep = true, level = 0) {

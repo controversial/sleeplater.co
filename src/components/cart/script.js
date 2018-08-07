@@ -1,5 +1,5 @@
 /* eslint-disable import/first */
-import { delay, formatPrice } from '../../helpers';
+import { delay, formatPrice, getShippingCost } from '../../helpers';
 import onOrderComplete from './order-track';
 
 export default {
@@ -110,7 +110,9 @@ export default {
         // Sum
         .reduce((a, b) => a + b, 0);
     },
-    shipping() { return 10; }, // TODO
+    shipping() {
+      return getShippingCost(this.$refs.address.zip, this.$refs.address.country, this.itemsCount);
+    },
     tax() { return (this.subtotal + this.shipping) * 0.08; },
     total() { return this.subtotal + this.shipping + this.tax; },
 

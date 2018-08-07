@@ -1,3 +1,4 @@
+import { cashZipCodes } from '../../helpers';
 const countries = require('country-list')().getNames();
 
 
@@ -5,8 +6,10 @@ export default {
   props: ['show-validation'],
 
   data: () => ({
+    // Info needed for form
     countries,
-    cashZipCodes: [12561, 12525, 12528, 12486, 12472, 12548, 12515],
+    cashZipCodes,
+    // Values from form
     email: '',
     name: '',
     streetAddress: '',
@@ -29,8 +32,8 @@ export default {
     },
 
     countryValidForCash() { return this.country === 'United States'; },
-    stateValidForCash() { return ['new york', 'ny'].includes(this.state.toLowerCase()); },
-    zipValidForCash() { return this.cashZipCodes.includes(parseInt(this.zip, 10)); },
+    stateValidForCash() { return ['new york', 'ny'].includes(this.state.toLowerCase().trim()); },
+    zipValidForCash() { return this.cashZipCodes.includes(this.zip.trim()); },
     cashRegionInvalid() {
       return this.$store.state.paymentMethod === 'cash'
         && !(this.countryValidForCash && this.stateValidForCash && this.zipValidForCash);
