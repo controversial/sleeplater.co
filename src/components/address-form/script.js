@@ -7,6 +7,7 @@ export default {
   data: () => ({
     countries,
     cashZipCodes: [12561, 12525, 12528, 12486, 12472, 12548, 12515],
+    email: '',
     name: '',
     streetAddress: '',
     city: '',

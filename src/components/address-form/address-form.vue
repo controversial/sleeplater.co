@@ -1,5 +1,8 @@
 <template>
   <div class="form">
+    <div class="row" v-if="$store.state.paymentMethod === 'cash'">
+      <text-input title="Email" type="email" v-model="email" :required="true" v-bind="{ showValidation }"></text-input>
+    </div>
     <div class="row">
       <text-input title="Full name" v-model="name" :required="true" v-bind="{ showValidation }"></text-input>
     </div>
