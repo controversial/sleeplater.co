@@ -91,7 +91,11 @@ export default {
     shipping() {
       return getShippingCost(this.$refs.address.zip, this.$refs.address.country, this.itemsCount);
     },
-    tax() { return (this.subtotal + this.shipping) * 0.08; },
+    tax() {
+      return this.$store.state.paymentMethod === 'cash'
+        ? 0
+        : (this.subtotal + this.shipping) * 0.08;
+    },
     total() { return this.subtotal + this.shipping + this.tax; },
 
     cartEmptyMessage() { return this.orderPlaced ? 'Order received!' : "There's nothing in your cart!"; },
