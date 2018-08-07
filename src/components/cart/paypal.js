@@ -13,7 +13,7 @@ const buttonStyle = {
 
 export default function doPaypal({ getPaymentAmount, onComplete }) {
   window.paypal.Button.render({
-    env: 'sandbox',
+    env: 'production',
 
     // Keys for sandbox/prod
     client: {
