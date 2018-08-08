@@ -43,7 +43,7 @@ module.exports.get = async function getProducts() {
     product.description = record.get('Product description');
     product.price = record.get('Product price');
     product.category = record.get('Product category');
-    product.image = record.get('Cover image')[0].url;
+    product.image = (record.get('Cover image') || { 0: { url: '' } })[0].url;
     product.images = {};
     product.options = [];
 
