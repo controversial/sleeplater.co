@@ -36,39 +36,45 @@ module.exports.get = async function getProducts() {
   // Basic product info comes from the records in the "Product" table
 
   const productRefs = {};
-  const products = productRecords.map((record) => {
-    const product = {};
-    product.slug = record.get('Product slug');
-    product.name = record.get('Display name');
-    product.description = record.get('Product description');
-    product.price = record.get('Product price');
-    product.category = record.get('Product category');
-    product.image = (record.get('Cover image') || { 0: { url: '' } })[0].url;
-    product.images = {};
-    product.options = [];
+  const products = productRecords
+    .filter(record => record.get('Enabled'))
+    .map((record) => {
+      const product = {};
+      product.slug = record.get('Product slug');
+      product.name = record.get('Display name');
+      product.description = record.get('Product description');
+      product.price = record.get('Product price');
+      product.category = record.get('Product category');
+      product.image = (record.get('Cover image') || { 0: { url: '' } })[0].url;
+      product.images = {};
+      product.options = [];
 
-    productRefs[record.id] = product;
-    return product;
-  });
+      productRefs[record.id] = product;
+      return product;
+    });
 
   // Add information from the "Inventory" table about the options available for each product and the
   // available quantities for each option
 
   inventoryRecords.forEach((record) => {
     const product = productRefs[record.get('Parent product')[0]];
-    product.options.push({
-      size: record.get('Product size'),
-      color: record.get('Product color'),
-      quantity: Math.max(record.get('Number remaining'), 0),
-    });
+    if (product) {
+      product.options.push({
+        size: record.get('Product size'),
+        color: record.get('Product color'),
+        quantity: Math.max(record.get('Number remaining'), 0),
+      });
+    }
   });
 
   // Add color-specific detail images from the "Images" table to each product's info
 
   imageRecords.forEach((record) => {
     const product = productRefs[record.get('Parent product')[0]];
-    product.images[record.get('Color')] = record.get('Images')
-      .map(({ url, thumbnails }) => ({ full: url, thumb: thumbnails.large.url }));
+    if (product) {
+      product.images[record.get('Color')] = record.get('Images')
+        .map(({ url, thumbnails }) => ({ full: url, thumb: thumbnails.large.url }));
+    }
   });
 
   return products;
