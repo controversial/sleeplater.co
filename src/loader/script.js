@@ -27,7 +27,9 @@ export default {
     this.$store.state.products
       .forEach((product) => {
         const img = new Image();
-        img.onload = () => { this.progress += increment; };
+        img.onload = () => {
+          this.progress = Math.ceil((this.progress + increment) * 100) / 100;
+        };
         img.src = product.image;
       });
   },
