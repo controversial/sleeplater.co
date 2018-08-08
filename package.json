@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --open",
     "build": "webpack",
+    "stats": "NODE_ENV=production webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer bundle-stats.json",
     "watch": "webpack --watch",
     "lint-sass": "sass-lint 'app/**/*.sass' -v",
     "lint-js": "eslint . --ext js,vue",
@@ -55,6 +56,7 @@
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.5.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.3"
   },
