@@ -8,9 +8,11 @@ export default {
   async mounted() {
     await delay(400);
 
-    // Font loading
-    if (document.fonts) document.fonts.ready.then(() => { this.progress += 0.1; });
-    else { this.progress += 0.1; }
+    // Font loading (automatically complete if taking too long i'm looking at you Safari)
+    if (document.fonts) {
+      Promise.race([document.fonts.ready, delay(1000)])
+        .then(() => { this.progress += 0.1; });
+    } else { this.progress += 0.1; }
 
     // Products fetched
     if (!this.$store.state.productsFetched) {
