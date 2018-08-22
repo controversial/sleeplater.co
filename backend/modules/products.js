@@ -57,7 +57,7 @@ module.exports.get = async function getProducts() {
   // available quantities for each option
 
   inventoryRecords.forEach((record) => {
-    const product = productRefs[record.get('Parent product')[0]];
+    const product = productRefs[(record.get('Parent product') || [])[0]];
     if (product) {
       product.options.push({
         size: record.get('Product size'),
@@ -70,7 +70,7 @@ module.exports.get = async function getProducts() {
   // Add color-specific detail images from the "Images" table to each product's info
 
   imageRecords.forEach((record) => {
-    const product = productRefs[record.get('Parent product')[0]];
+    const product = productRefs[(record.get('Parent product') || [])[0]];
     if (product) {
       product.images[record.get('Color')] = record.get('Images')
         .map(({ url, thumbnails }) => ({ full: url, thumb: thumbnails.large.url }));
