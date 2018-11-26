@@ -20,7 +20,7 @@
     "node-fetch": "^2.1.2"
   },
   "devDependencies": {
-    "nodemon": "^1.17.4",
+    "nodemon": "^1.18.6",
     "now": "^11.1.12"
   }
 }
