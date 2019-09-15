@@ -15,6 +15,11 @@ import './plugins';
 import router from './router';
 import store from './store';
 
+// Send request to development server if running locally
+let base;
+if (['localhost', '0.0.0.0'].includes(window.location.hostname)) base = 'http://0.0.0.0:3000';
+if (window.location.hostname.includes('now.sh')) base = 'https://sleeplater-api.now.sh';
+else base = 'https://api.sleeplater.co';
 
 // Main app
 window.app = new Vue({
@@ -27,10 +32,7 @@ window.app = new Vue({
   },
 
   data: {
-    // Send request to development server if running locally
-    apiBase: ['localhost', '0.0.0.0'].includes(window.location.hostname)
-      ? 'http://0.0.0.0:3000'
-      : 'https://api.sleeplater.co',
+    apiBase: base,
   },
   created() {
     fetch(`${this.apiBase}/products`)

@@ -1,9 +1,12 @@
 import { pick, formatAddress } from '../../helpers';
 
 // Send request to development server if running locally
-const url = ['localhost', '0.0.0.0'].includes(window.location.hostname)
-  ? 'http://0.0.0.0:3000/order'
-  : 'https://api.sleeplater.co/order';
+let base;
+if (['localhost', '0.0.0.0'].includes(window.location.hostname)) base = 'http://0.0.0.0:3000';
+if (window.location.hostname.includes('now.sh')) base = 'https://sleeplater-api.now.sh';
+else base = 'https://api.sleeplater.co';
+
+const url = `${base}/order`;
 
 export default function onOrderComplete(payer) {
   // Payment method
