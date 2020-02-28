@@ -1,3 +1,19 @@
 {
-  "version": 1
+  "version": 2,
+  "builds": [
+    {
+      "src": "**/*.js",
+      "use": "@now/node"
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.js" }
+  ],
+  "env": {
+    "CONTACT_WEBHOOK_URL": "@sleeplater_contact_webhook_url",
+    "ORDERS_WEBHOOK_URL": "@sleeplater_orders_webhook_url",
+    "AIRTABLE_API_KEY": "@sleeplater_airtable_api_key",
+    "AIRTABLE_BASE_ID": "@sleeplater_airtable_base_id",
+    "SENDGRID_API_KEY": "@sleeplater_sendgrid_api_key"
+  }
 }
