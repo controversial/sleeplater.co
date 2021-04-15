@@ -4,6 +4,7 @@ import { pick, delay } from '../../helpers';
 let base;
 if (['localhost', '0.0.0.0'].includes(window.location.hostname)) base = 'http://0.0.0.0:3000';
 if (window.location.hostname.includes('now.sh')) base = 'https://sleeplater-api.now.sh';
+else if (window.location.hostname.includes('vercel.app')) base = 'https://sleeplater-api.vercel.app';
 else base = 'https://api.sleeplater.co';
 
 // Send request to development server if running locally
